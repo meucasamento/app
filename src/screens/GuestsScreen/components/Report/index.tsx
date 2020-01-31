@@ -1,19 +1,31 @@
 import React, { Component } from 'react';
-import { View, SafeAreaView, Text } from 'react-native';
+import { connect } from 'react-redux'
+import { Dispatch } from 'redux';
+
+import { 
+    View, 
+    SafeAreaView, 
+    Text
+} from 'react-native';
+
+import { 
+    GuestReport, GuestState
+} from '../../../../redux/types/guests.types';
 
 import styles from './stylesheet';
-import { Guest, GuestReport } from '../../../../redux/types/guests.types';
 
 type Props = {
-    report: GuestReport
+    guestState: GuestState
 }
 type State = {}
 
 class Report extends Component<Props, State> {
+    static defaultProps = {}
+
     render() {
         const { 
             report
-        } = this.props
+        } = this.props.guestState
 
         return (
             <SafeAreaView>
@@ -53,4 +65,13 @@ class Report extends Component<Props, State> {
     }
 }
 
-export default Report
+// export default Report
+
+const mapStateToProps = (state: Props) => state
+
+const mapDipatchToProps = (dispatch: Dispatch) => ({})
+
+export default connect(
+    mapStateToProps,
+    mapDipatchToProps
+)(Report)

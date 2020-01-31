@@ -52,8 +52,8 @@ class GuestScreen extends Component<Props, State> {
 
     private headerView = () => (
         <View style={styles.header}>
-            <MarriageBox wedding={ this.props.weddingState.wedding }/>
-            <Report report={ this.props.guestState.report }/>
+            <MarriageBox/>
+            <Report/>
         </View>
     )
 

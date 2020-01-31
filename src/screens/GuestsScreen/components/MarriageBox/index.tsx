@@ -1,12 +1,22 @@
 import React, { Component } from 'react';
-import { View, SafeAreaView, Text, Image } from 'react-native';
+import { connect } from 'react-redux'
+import { Dispatch } from 'redux';
 
-import { Wedding } from './../../../../redux/types/wedding.types'
+import { 
+    View, 
+    SafeAreaView, 
+    Text, 
+    Image
+} from 'react-native';
+
+import { 
+    WeddingState
+} from './../../../../redux/types/wedding.types'
 
 import styles from './stylesheet';
 
 type Props = {
-    wedding: Wedding
+    weddingState: WeddingState
 }
 
 type State = {}
@@ -18,7 +28,7 @@ class Report extends Component<Props, State> {
         const {
             formattedDate,
             formattedDaysLeft
-        } = this.props.wedding
+        } = this.props.weddingState.wedding
 
         return (
             <SafeAreaView>
@@ -37,4 +47,13 @@ class Report extends Component<Props, State> {
     }
 }
 
-export default Report
+// export default Report
+
+const mapStateToProps = (state: Props) => state
+
+const mapDipatchToProps = (dispatch: Dispatch) => ({})
+
+export default connect(
+    mapStateToProps,
+    mapDipatchToProps
+)(Report)
