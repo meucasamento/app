@@ -11,7 +11,7 @@ import {
 
 import { 
     WeddingState
-} from './../../../../redux/types/wedding.types'
+} from '../../../../redux/types/wedding.types'
 
 import styles from './stylesheet';
 
@@ -31,23 +31,19 @@ class Report extends Component<Props, State> {
         } = this.props.weddingState.wedding
 
         return (
-            <SafeAreaView>
-                <View style={ styles.container }>
-                    <Image 
-                    style={ styles.cover }
-                    source={ require('../../../../assets/cover.jpg') }
-                    resizeMode="contain"/>
-                    <Text style={ styles.label }>Data do casamento</Text>
-                    <Text style={ styles.date }>{ formattedDate }</Text>
-                    <Text style={ styles.label }>Faltam apenas</Text>
-                    <Text style={ styles.count }>{ formattedDaysLeft }</Text>
-                </View>
-            </SafeAreaView>
+            <View style={ styles.container }>
+                <Image 
+                style={ styles.cover }
+                source={ require('../../../../assets/cover.jpg') }
+                resizeMode="contain"/>
+                <Text style={ styles.label }>Data do casamento</Text>
+                <Text style={ styles.date }>{ formattedDate }</Text>
+                <Text style={ styles.label }>Faltam apenas</Text>
+                <Text style={ styles.count }>{ formattedDaysLeft }</Text>
+            </View>
         )
     }
 }
-
-// export default Report
 
 const mapStateToProps = (state: Props) => state
 

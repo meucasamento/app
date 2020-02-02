@@ -4,10 +4,6 @@ export default StyleSheet.create({
     list: {
         backgroundColor: 'white'
     },
-    header: {
-        flex: 1,
-        flexDirection: "column"
-    },
     section: {
         paddingTop: 22,
         paddingLeft: 14,

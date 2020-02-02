@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { Dispatch, bindActionCreators } from 'redux'
-import { NavigationStackProp } from 'react-navigation-stack';
 
 import { 
     View, 
@@ -10,21 +9,16 @@ import {
     SafeAreaView,
     SectionList,
     TouchableHighlight,
-    SectionListData,
-    Alert
+    SectionListData
 } from 'react-native';
 
 import { GuestState, Guest } from '../../redux/types/guests.types'
 import { WeddingState } from './../../redux/types/wedding.types'
 import { fetchGuests, updateGuest } from '../../redux/actions/guests.actions'
 
-import Report from './components/Report'
-import MarriageBox from './components/MarriageBox'
-
 import styles from './stylesheet'
 
 type Props = {
-    navigation: NavigationStackProp,
     guestState: GuestState,
     weddingState: WeddingState,
     fetchGuests(): void,
@@ -35,7 +29,7 @@ type State = {}
 
 class GuestScreen extends Component<Props, State> {
     static navigationOptions = {
-        title: 'Convidados'
+        title: 'Convidados',
     }
 
     componentDidMount() {
@@ -43,19 +37,12 @@ class GuestScreen extends Component<Props, State> {
     }
 
     private addGuest = () => {
-        this.props.navigation.navigate('Profile')
+        // this.props.navigation.navigate('Profile')
     }
 
     private toggleGuestConfirmation = (item: Guest, status: boolean) => {
         this.props.updateGuest(item, status)
     }
-
-    private headerView = () => (
-        <View style={styles.header}>
-            <MarriageBox/>
-            <Report/>
-        </View>
-    )
 
     private sectionView = (section: SectionListData<Guest>) => (
         <View style={ styles.section }>
@@ -99,7 +86,7 @@ class GuestScreen extends Component<Props, State> {
 
         const sections = [
             {
-                title: "Padrinhos & Madrinhas",
+                title: "Padrinhos",
                 data: guests.filter(guest => guest.isGodfather)
             },
             {
@@ -111,13 +98,13 @@ class GuestScreen extends Component<Props, State> {
         return(
             <SectionList
                 style={styles.list}
-                ListHeaderComponent={ this.headerView }
                 sections={ sections }
                 renderSectionHeader={ ({ section }) => this.sectionView(section) }
                 renderItem={ ({ item }) => this.rowView(item) }
                 ListEmptyComponent={this.emptyRow}
                 ItemSeparatorComponent={ this.separator }
-                showsVerticalScrollIndicator={false}/>
+                showsVerticalScrollIndicator={ false }
+                initialNumToRender={ 30 }/>
         )
     }
 
