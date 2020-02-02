@@ -23,6 +23,6 @@ export default StyleSheet.create({
     count: {
         textAlign: "center",
         fontWeight: "bold",
-        fontSize: 16
+        fontSize: 18
     }
 })

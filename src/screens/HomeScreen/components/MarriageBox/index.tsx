@@ -4,7 +4,6 @@ import { Dispatch } from 'redux';
 
 import { 
     View, 
-    SafeAreaView, 
     Text, 
     Image
 } from 'react-native';
@@ -34,7 +33,7 @@ class Report extends Component<Props, State> {
             <View style={ styles.container }>
                 <Image 
                 style={ styles.cover }
-                source={ require('../../../../assets/cover.jpg') }
+                source={ require('./../../../../../assets/cover.jpg') }
                 resizeMode="contain"/>
                 <Text style={ styles.label }>Data do casamento</Text>
                 <Text style={ styles.date }>{ formattedDate }</Text>
