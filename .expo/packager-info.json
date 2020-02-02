@@ -1,9 +1,9 @@
 {
   "devToolsPort": 19002,
-  "expoServerPort": 19000,
-  "packagerPort": 19001,
-  "packagerPid": 13921,
-  "expoServerNgrokUrl": "https://yz-tz6.anonymous.mygodfathers.exp.direct",
-  "packagerNgrokUrl": "https://packager.yz-tz6.anonymous.mygodfathers.exp.direct",
-  "ngrokPid": 13940
+  "expoServerPort": null,
+  "packagerPort": null,
+  "packagerPid": null,
+  "expoServerNgrokUrl": null,
+  "packagerNgrokUrl": null,
+  "ngrokPid": null
 }
