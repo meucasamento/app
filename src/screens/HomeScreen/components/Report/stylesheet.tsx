@@ -2,13 +2,12 @@ import { StyleSheet } from 'react-native'
 
 export default StyleSheet.create({
     container: {
-        flex: 1,
         flexDirection: "row",
         flexWrap: "wrap",
         marginTop: 16,
         marginLeft: 14,
         marginRight: 14,
-        marginBottom: 0
+        marginBottom: 16
     },
     report_content_container: {
         width: "50%",
@@ -19,7 +18,7 @@ export default StyleSheet.create({
         padding: 16,
         alignItems: "center",
         borderRadius: 8,
-        backgroundColor: "#F4F4F4"
+        backgroundColor: "#1CFEBA"
     },
     report_content_text: {
         fontWeight: "bold",

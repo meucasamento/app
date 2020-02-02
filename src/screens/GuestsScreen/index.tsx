@@ -104,7 +104,7 @@ class GuestScreen extends Component<Props, State> {
                 ListEmptyComponent={this.emptyRow}
                 ItemSeparatorComponent={ this.separator }
                 showsVerticalScrollIndicator={ false }
-                initialNumToRender={ 30 }/>
+                initialNumToRender={ 10 }/>
         )
     }
 

@@ -21,8 +21,13 @@ class HomeScreen extends Component<Props> {
     render() {
         return(
             <View style={styles.container}>
-                <MarriageBox/>
-                <Report/>
+                <View style={styles.header}>
+                    <MarriageBox/>
+                </View>
+                
+                <View style={styles.footer}>
+                    <Report/>
+                </View>
             </View>
         )
     }
