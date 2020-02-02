@@ -11,16 +11,19 @@ export default StyleSheet.create({
         marginBottom: 16
     },
     label: {
+        fontFamily: "Open Sans",
         color: "gray",
         fontSize: 12
     },
     date: {
+        fontFamily: "Open Sans",
         textAlign: "center",
         fontWeight: "bold",
         fontSize: 24,
         marginBottom: 12
     },
     count: {
+        fontFamily: "Open Sans",
         textAlign: "center",
         fontWeight: "bold",
         fontSize: 18
