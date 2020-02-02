@@ -11,7 +11,9 @@ const store = configureStore()
 
 const fetchFonts = () => {
   return Font.loadAsync({
-  'Open Sans': require('./assets/fonts/Open-Sans.ttf')
+  'Montserrat': require('./assets/fonts/Montserrat-Regular.ttf'),
+  'Montserrat Black': require('./assets/fonts/Montserrat-Black.ttf'),
+  'Montserrat Bold': require('./assets/fonts/Montserrat-Bold.ttf')
   })
 }
 

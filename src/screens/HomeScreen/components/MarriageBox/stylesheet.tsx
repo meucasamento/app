@@ -11,21 +11,21 @@ export default StyleSheet.create({
         marginBottom: 16
     },
     label: {
-        fontFamily: "Open Sans",
+        fontFamily: "Montserrat",
         color: "gray",
         fontSize: 12
     },
     date: {
-        fontFamily: "Open Sans",
+        fontFamily: "Montserrat Black",
         textAlign: "center",
-        fontWeight: "bold",
-        fontSize: 24,
+        fontWeight: "900",
+        fontSize: 30,
         marginBottom: 12
     },
     count: {
-        fontFamily: "Open Sans",
+        fontFamily: "Montserrat Black",
         textAlign: "center",
-        fontWeight: "bold",
-        fontSize: 18
+        fontWeight: "900",
+        fontSize: 22
     }
 })

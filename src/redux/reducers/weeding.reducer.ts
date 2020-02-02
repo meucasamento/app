@@ -7,7 +7,7 @@ export function weddingReducer(): WeddingState {
     const date = new Date(2020, 5, 6, 19, 0, 0)
     const diffTime = Math.abs(date.getTime() - now.getTime())
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24))
-    const formattedDate = format(date, "'Dia' dd 'de' MMMM',' iiii 'às 'HH:mm'h'", { locale: pt })
+    const formattedDate = format(date, "'Dia' dd 'de' MMMM',\n' iiii 'às 'HH:mm'h'", { locale: pt })
 
     return {
         wedding: {
