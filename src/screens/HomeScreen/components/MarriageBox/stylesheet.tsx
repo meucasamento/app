@@ -11,19 +11,16 @@ export default StyleSheet.create({
         marginBottom: 16
     },
     label: {
-        fontFamily: "Montserrat",
         color: "gray",
         fontSize: 12
     },
     date: {
-        fontFamily: "Montserrat Black",
         textAlign: "center",
         fontWeight: "900",
         fontSize: 30,
         marginBottom: 12
     },
     count: {
-        fontFamily: "Montserrat Black",
         textAlign: "center",
         fontWeight: "900",
         fontSize: 22

@@ -4,7 +4,6 @@ import { Dispatch, bindActionCreators } from 'redux'
 
 import { 
     View, 
-    Text, 
     Switch, 
     SafeAreaView,
     SectionList,
@@ -16,6 +15,7 @@ import { GuestState, Guest } from '../../redux/types/guests.types'
 import { WeddingState } from './../../redux/types/wedding.types'
 import { fetchGuests, updateGuest } from '../../redux/actions/guests.actions'
 
+import Text from './../../components/Text'
 import styles from './stylesheet'
 
 type Props = {

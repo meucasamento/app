@@ -4,7 +4,6 @@ import { Dispatch } from 'redux';
 
 import { 
     View, 
-    Text, 
     Image
 } from 'react-native';
 
@@ -12,6 +11,7 @@ import {
     WeddingState
 } from '../../../../redux/types/wedding.types'
 
+import Text from './../../../../components/Text'
 import styles from './stylesheet';
 
 type Props = {

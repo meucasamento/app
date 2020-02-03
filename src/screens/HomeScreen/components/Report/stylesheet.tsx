@@ -20,11 +20,8 @@ export default StyleSheet.create({
         borderRadius: 8,
         backgroundColor: "#1CFEBA"
     },
-    label: {
-        fontFamily: "Montserrat",
-    },
+    label: {},
     report_content_text: {
-        fontFamily: "Montserrat Bold",
         fontWeight: "bold",
         fontSize: 18
     }

@@ -4,16 +4,15 @@ import { Dispatch, bindActionCreators } from 'redux';
 
 import { 
     View, 
-    SafeAreaView, 
-    Text
 } from 'react-native';
 
 import { fetchGuests } from '../../../../redux/actions/guests.actions'
 
 import { 
-    GuestReport, GuestState
+     GuestState
 } from '../../../../redux/types/guests.types';
 
+import Text from './../../../../components/Text'
 import styles from './stylesheet';
 
 type Props = {
