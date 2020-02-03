@@ -10,6 +10,7 @@ type Props = {
     style?: TextStyle,
     children?: any
 }
+
 type State = {}
 
 export default class Text extends Component<Props, State> {
@@ -26,7 +27,6 @@ export default class Text extends Component<Props, State> {
         return(
             <RNText style={{
                 ...style,
-                fontFamily: "Montserrat"
                 }}>
                 {children}
             </RNText>
