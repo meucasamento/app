@@ -1,8 +1,7 @@
-import React, { Component } from 'react'
+import React, { Component, Children } from 'react'
 
 import { 
     Text as RNText,
-    StyleSheet,
     TextStyle
 } from 'react-native'
 
@@ -14,10 +13,6 @@ type Props = {
 type State = {}
 
 export default class Text extends Component<Props, State> {
-    constructor(props: Readonly<Props>) {
-        super(props)
-    }
-
     render() {
         const { 
             style,
@@ -26,14 +21,10 @@ export default class Text extends Component<Props, State> {
 
         return(
             <RNText style={{
-                ...style,
+                ...style
                 }}>
                 {children}
             </RNText>
         )
     }
 }
-
-const styles = StyleSheet.create({
-    defaultStyle: {}
-})

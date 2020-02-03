@@ -23,6 +23,6 @@ export default StyleSheet.create({
     label: {},
     report_content_text: {
         fontWeight: "bold",
-        fontSize: 18
+        // fontSize: 18
     }
 })
