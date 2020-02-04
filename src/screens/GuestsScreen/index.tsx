@@ -16,6 +16,8 @@ import { WeddingState } from './../../redux/types/wedding.types'
 import { fetchGuests, updateGuest } from '../../redux/actions/guests.actions'
 
 import Text from './../../components/Text'
+import Search from '../../components/Search';
+
 import styles from './stylesheet'
 
 type Props = {
@@ -96,15 +98,18 @@ class GuestScreen extends Component<Props, State> {
         ]
     
         return(
-            <SectionList
-                style={styles.list}
-                sections={ sections }
-                renderSectionHeader={ ({ section }) => this.sectionView(section) }
-                renderItem={ ({ item }) => this.rowView(item) }
-                ListEmptyComponent={this.emptyRow}
-                ItemSeparatorComponent={ this.separator }
-                showsVerticalScrollIndicator={ false }
-                initialNumToRender={ 10 }/>
+            <View>
+                <Search/>
+                <SectionList
+                    style={styles.list}
+                    sections={ sections }
+                    renderSectionHeader={ ({ section }) => this.sectionView(section) }
+                    renderItem={ ({ item }) => this.rowView(item) }
+                    ListEmptyComponent={this.emptyRow}
+                    ItemSeparatorComponent={ this.separator }
+                    showsVerticalScrollIndicator={ false }
+                    initialNumToRender={ 10 }/>
+            </View>
         )
     }
 
