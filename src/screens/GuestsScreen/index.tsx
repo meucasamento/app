@@ -102,7 +102,9 @@ class GuestScreen extends Component<Props, State> {
         return(
             <View style={{ flex: 1 }}>
                 <Search 
-                    placeholder="Busque um convidado"/>
+                    placeholder="Busque um convidado"
+                    delay={400}
+                    onChangedText={text => console.log(text)}/>
                 <SectionList
                         style={styles.list}
                         sections={sections}
@@ -111,6 +113,7 @@ class GuestScreen extends Component<Props, State> {
                         ListEmptyComponent={this.emptyRow}
                         ItemSeparatorComponent={this.separator}
                         showsVerticalScrollIndicator={false}
+                        stickySectionHeadersEnabled={false}
                         initialNumToRender={10}/>
                 <KeyboardSpacer/>
             </View>
