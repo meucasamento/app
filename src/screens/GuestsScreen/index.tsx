@@ -11,6 +11,8 @@ import {
     SectionListData
 } from 'react-native';
 
+import KeyboardSpacer from 'react-native-keyboard-spacer'
+
 import { GuestState, Guest } from '../../redux/types/guests.types'
 import { WeddingState } from './../../redux/types/wedding.types'
 import { fetchGuests, updateGuest } from '../../redux/actions/guests.actions'
@@ -47,9 +49,9 @@ class GuestScreen extends Component<Props, State> {
     }
 
     private sectionView = (section: SectionListData<Guest>) => (
-        <View style={ styles.section }>
+        <View style={styles.section}>
             <SafeAreaView>
-                <Text style={ styles.sectionText }> { section.title } </Text>
+                <Text style={styles.sectionText}> {section.title}</Text>
             </SafeAreaView>
         </View>
     )
@@ -57,16 +59,16 @@ class GuestScreen extends Component<Props, State> {
     private rowView = (guest: Guest) => (
         <SafeAreaView>
             <TouchableHighlight
-                onPress={ () => this.toggleGuestConfirmation(guest, !guest.isConfirmed) }
+                onPress={() => this.toggleGuestConfirmation(guest, !guest.isConfirmed)}
                 underlayColor="gray">
-                <View style={ styles.row }>
-                    <View style={ styles.leftContainer }>
-                        <Text>{ guest.name }</Text>
+                <View style={styles.row}>
+                    <View style={styles.leftContainer}>
+                        <Text>{guest.name}</Text>
                     </View>
-                    <View style={ styles.rightContainer }>
+                    <View style={styles.rightContainer}>
                         <Switch
-                            value={ guest.isConfirmed }
-                            onValueChange={ status => this.toggleGuestConfirmation(guest, status) }/>
+                            value={guest.isConfirmed }
+                            onValueChange={status => this.toggleGuestConfirmation(guest, status)}/>
                     </View>
                 </View>
             </TouchableHighlight>
@@ -98,17 +100,19 @@ class GuestScreen extends Component<Props, State> {
         ]
     
         return(
-            <View>
-                <Search/>
+            <View style={{ flex: 1 }}>
+                <Search 
+                    placeholder="Busque um convidado"/>
                 <SectionList
-                    style={styles.list}
-                    sections={ sections }
-                    renderSectionHeader={ ({ section }) => this.sectionView(section) }
-                    renderItem={ ({ item }) => this.rowView(item) }
-                    ListEmptyComponent={this.emptyRow}
-                    ItemSeparatorComponent={ this.separator }
-                    showsVerticalScrollIndicator={ false }
-                    initialNumToRender={ 10 }/>
+                        style={styles.list}
+                        sections={sections}
+                        renderSectionHeader={({section}) => this.sectionView(section)}
+                        renderItem={({item}) => this.rowView(item)}
+                        ListEmptyComponent={this.emptyRow}
+                        ItemSeparatorComponent={this.separator}
+                        showsVerticalScrollIndicator={false}
+                        initialNumToRender={10}/>
+                <KeyboardSpacer/>
             </View>
         )
     }

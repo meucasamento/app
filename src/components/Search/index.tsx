@@ -33,7 +33,7 @@ export default class Search extends Component<Props> {
                         style={styles.textInput}
                         placeholder={placeholder}
                         clearButtonMode="while-editing"
-                        returnKeyType="search"/>
+                        returnKeyType="done"/>
                 </SafeAreaView>
             </View>
         )
