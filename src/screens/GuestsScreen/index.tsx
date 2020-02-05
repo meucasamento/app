@@ -102,7 +102,7 @@ class GuestScreen extends Component<Props, State> {
         return(
             <View style={{ flex: 1 }}>
                 <Search 
-                    placeholder="Busque um convidado"
+                    placeholder="Pesquisar por um convidado"
                     delay={400}
                     onChangedText={text => console.log(text)}/>
                 <SectionList

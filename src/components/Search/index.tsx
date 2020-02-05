@@ -15,6 +15,7 @@ type Props = {
     delay: number,
     isEnabled: boolean,
     onChangedText?: (text: string) => void
+    onEndEditing?: (text?: string) => void
 }
 
 export default class Search extends Component<Props> {
@@ -24,6 +25,7 @@ export default class Search extends Component<Props> {
         placeholder: "Pesquise por aqui"      
     }
 
+    private currentValue?: string = this.props.value
     private timeOutAction?: number
 
     private changedText = (text: string) => {
@@ -36,6 +38,8 @@ export default class Search extends Component<Props> {
             clearTimeout(this.timeOutAction)
         }
 
+        this.currentValue = text
+        
         this.timeOutAction = setTimeout(() => {
             if (!onChangedText) { return }
             onChangedText(text)
@@ -46,7 +50,8 @@ export default class Search extends Component<Props> {
         const {
             value,
             placeholder,
-            isEnabled
+            isEnabled,
+            onEndEditing
         } = this.props
 
         return(
@@ -65,6 +70,10 @@ export default class Search extends Component<Props> {
                             returnKeyType="done"
                             autoCorrect={false}
                             onChangeText={this.changedText}
+                            onEndEditing={() => {
+                                if (!onEndEditing) { return }
+                                onEndEditing(this.currentValue)
+                            }}
                             editable={isEnabled}/>
                     </View>
                 </View>
