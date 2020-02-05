@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Icon from 'react-native-vector-icons/EvilIcons'
 
 import {
     View,
@@ -45,23 +46,29 @@ export default class Search extends Component<Props> {
         const {
             value,
             placeholder,
-            onChangedText,
             isEnabled
         } = this.props
 
         return(
-            <View style={styles.container}>
-                <SafeAreaView>
-                    <TextInput 
-                        value={value}
-                        style={styles.textInput}
-                        placeholder={placeholder}
-                        clearButtonMode="while-editing"
-                        returnKeyType="done"
-                        onChangeText={this.changedText}
-                        editable={isEnabled}/>
-                </SafeAreaView>
-            </View>
+            <SafeAreaView>
+                <View style={styles.container}>
+                    <View style={styles.content}>
+                        <Icon 
+                            style={styles.icon}
+                            name="search" 
+                            size={22}/>
+                        <TextInput 
+                            value={value}
+                            style={styles.textInput}
+                            placeholder={placeholder}
+                            clearButtonMode="while-editing"
+                            returnKeyType="done"
+                            autoCorrect={false}
+                            onChangeText={this.changedText}
+                            editable={isEnabled}/>
+                    </View>
+                </View>
+            </SafeAreaView>
         )
     }
 }
