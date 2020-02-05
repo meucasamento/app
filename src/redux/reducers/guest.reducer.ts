@@ -1,16 +1,19 @@
 import {
-    FETCH_DATA,
     STORE_GUEST,
     DELETE_GUEST,
+    UPDATE_GUEST,
+    FETCH_GUESTS,
+    SEARCH_GUESTS,
     GuestState,
     GuestActionsTypes,
-    UPDATE_GUEST,
     Guest,
-    GuestReport
+    GuestReport,
+    GuestSection,
 } from '../types/guests.types'
 
 const initialState: GuestState = {
     guests: [],
+    sections: [],
     report: {
         total: 0,
         confirmed: 0,
@@ -24,11 +27,16 @@ export function guestReducer(
     action: GuestActionsTypes
     ): GuestState {
     switch (action.type) {
-        case FETCH_DATA:
+        case FETCH_GUESTS:
             return {
                 ...state,
                 guests: action.payload,
                 report: report(action.payload)
+            }
+        case SEARCH_GUESTS:
+            return {
+                ...state,
+                sections: sections(action.payload.guests, action.payload.query)
             }
         case STORE_GUEST:
             return {
@@ -53,6 +61,25 @@ export function guestReducer(
         default:
             return state
     }
+}
+
+function sections(guests: Guest[], query?: string): GuestSection[] {
+    var filteredGuests = guests
+
+    if (query) {
+        filteredGuests = guests.filter(guest => guest.name.indexOf(query) !== -1)
+    }
+
+    return [
+        {
+            title: "Padrinhos",
+            data: filteredGuests.filter(guest => guest.isGodfather)
+        },
+        {
+            title: "Convidados",
+            data: filteredGuests.filter(guest => !guest.isGodfather)
+        }
+    ]
 }
 
 function report(guests: Guest[]): GuestReport {

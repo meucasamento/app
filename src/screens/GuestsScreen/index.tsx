@@ -15,7 +15,7 @@ import KeyboardSpacer from 'react-native-keyboard-spacer'
 
 import { GuestState, Guest } from '../../redux/types/guests.types'
 import { WeddingState } from './../../redux/types/wedding.types'
-import { fetchGuests, updateGuest } from '../../redux/actions/guests.actions'
+import { searchGuests, updateGuest } from '../../redux/actions/guests.actions'
 
 import Text from './../../components/Text'
 import Search from '../../components/Search';
@@ -25,7 +25,7 @@ import styles from './stylesheet'
 type Props = {
     guestState: GuestState,
     weddingState: WeddingState,
-    fetchGuests(): void,
+    searchGuests(query?: string): void,
     updateGuest(guest: Guest, status: boolean): void
 }
 
@@ -37,7 +37,7 @@ class GuestScreen extends Component<Props, State> {
     }
 
     componentDidMount() {
-        this.props.fetchGuests()
+        this.props.searchGuests()
     }
 
     private addGuest = () => {
@@ -85,26 +85,14 @@ class GuestScreen extends Component<Props, State> {
 
     render() {
         const { 
-            guests
+            sections,
         } = this.props.guestState
-
-        const sections = [
-            {
-                title: "Padrinhos",
-                data: guests.filter(guest => guest.isGodfather)
-            },
-            {
-                title: "Convidados",
-                data: guests.filter(guest => !guest.isGodfather)
-            },
-        ]
     
         return(
             <View style={{ flex: 1 }}>
                 <Search 
                     placeholder="Pesquisar por um convidado"
-                    delay={400}
-                    onChangedText={text => console.log(text)}/>
+                    onChangedText={text => this.props.searchGuests(text)}/>
                 <SectionList
                         style={styles.list}
                         sections={sections}
@@ -125,7 +113,7 @@ class GuestScreen extends Component<Props, State> {
 const mapStateToProps = (state: Props) => state
 
 const mapDipatchToProps = (dispatch: Dispatch) => ({
-    fetchGuests: bindActionCreators(fetchGuests, dispatch),
+    searchGuests: bindActionCreators(searchGuests, dispatch),
     updateGuest: (guest: Guest, status: boolean) => dispatch(updateGuest(guest, status))
 })
 
