@@ -1,8 +1,8 @@
 import {
-    STORE_GUEST,
-    REMOVE_GUEST,
-    UPDATE_GUEST,
-    SEARCH_GUESTS,
+    STORE,
+    REMOVE,
+    UPDATE,
+    SEARCH,
     GuestState,
     GuestActionsTypes,
     Guest,
@@ -26,17 +26,17 @@ export default function reducer(
     action: GuestActionsTypes
     ): GuestState {
     switch (action.type) {
-        case SEARCH_GUESTS:
+        case SEARCH:
             return {
                 ...state,
                 sections: sections(action.payload.guests, action.payload.query)
             }
-        case STORE_GUEST:
+        case STORE:
             return {
                 ...state,
                 guests: [...state.guests, action.payload]
             }
-        case UPDATE_GUEST:
+        case UPDATE:
             const guests = state.guests 
             const index = guests.indexOf(action.payload)
             guests[index].isConfirmed = action.payload.isConfirmed
@@ -46,7 +46,7 @@ export default function reducer(
                 guests,
                 report: report(guests)
             }
-        case REMOVE_GUEST:
+        case REMOVE:
             return {
                 ...state,
                 guests: state.guests.filter(guest => guest.id != action.payload.id)

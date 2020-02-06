@@ -6,24 +6,24 @@ import {
     View, 
 } from 'react-native';
 
-import { 
-     GuestState
-} from '../../../../store/modules/guest/guest.types';
+import {  GuestState } from '../../../../store/modules/guest/guest.types';
+import { search } from '../../../../store/modules/guest/guest.actions';
 
 import Text from '../../../../components/Text'
 import styles from './style';
 
 type Props = {
-    guest: GuestState
+    guest: GuestState,
+    search(query?: string): void
 }
 type State = {}
 
 class Report extends Component<Props, State> {
-    
+
     static defaultProps = {}
 
     componentDidMount() {
-        // this.props.fetchGuests()
+        // this.props.search()
     }
 
     render() {
@@ -68,7 +68,7 @@ class Report extends Component<Props, State> {
 const mapStateToProps = (state: Props) => state
 
 const mapDipatchToProps = (dispatch: Dispatch) => ({
-    // fetchGuests: bindActionCreators(fetchGuests, dispatch)
+    // search: (query?: string) => dispatch(search(query))
 })
 
 export default connect(

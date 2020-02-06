@@ -1,17 +1,16 @@
 import { 
-    SEARCH_GUESTS,
-    STORE_GUEST,
-    REMOVE_GUEST,
-    UPDATE_GUEST,
+    SEARCH,
+    STORE,
+    REMOVE,
+    UPDATE,
     GuestActionsTypes,
     Guest
 } from './guest.types'
 
 export function search(query?: string): GuestActionsTypes {
     return {
-        type: SEARCH_GUESTS,
+        type: SEARCH,
         payload: {
-            query,
             guests: []
         }
     }
@@ -19,7 +18,7 @@ export function search(query?: string): GuestActionsTypes {
 
 export function store(guest: Guest): GuestActionsTypes {
     return {
-        type: STORE_GUEST,
+        type: STORE,
         payload: guest
     }
 }
@@ -28,14 +27,14 @@ export function update(guest: Guest, status: boolean): GuestActionsTypes {
     guest.isConfirmed = status
 
     return {
-        type: UPDATE_GUEST,
+        type: UPDATE,
         payload: guest
     }
 }
 
 export function remove(guest: Guest): GuestActionsTypes {
     return {
-        type: REMOVE_GUEST,
+        type: REMOVE,
         payload: guest
     }
 }

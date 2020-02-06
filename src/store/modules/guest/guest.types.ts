@@ -1,9 +1,9 @@
 import { SectionListData } from "react-native"
 
-export const SEARCH_GUESTS = '@guest/SEARCH_GUESTS'
-export const STORE_GUEST = '@guest/STORE_GUEST'
-export const UPDATE_GUEST = '@guest/UPDATE_GUEST'
-export const REMOVE_GUEST = '@guest/REMOVE_GUEST'
+export const SEARCH = '@guest/SEARCHS'
+export const STORE = '@guest/STORE'
+export const UPDATE = '@guest/UPDATE'
+export const REMOVE = '@guest/REMOVE'
 
 export interface Guest {
     id: number
@@ -31,7 +31,7 @@ export interface GuestState {
 }
 
 interface Search {
-    type: typeof SEARCH_GUESTS
+    type: typeof SEARCH
     payload: {
         query?: string,
         guests: Guest[]
@@ -39,17 +39,17 @@ interface Search {
 }
 
 interface Store {
-    type: typeof STORE_GUEST
+    type: typeof STORE
     payload: Guest
 }
 
 interface Update {
-    type: typeof UPDATE_GUEST
+    type: typeof UPDATE
     payload: Guest
 }
 
 interface Remove {
-    type: typeof REMOVE_GUEST
+    type: typeof REMOVE
     payload: Guest
 }
 
