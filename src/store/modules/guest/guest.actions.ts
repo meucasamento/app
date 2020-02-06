@@ -5,7 +5,7 @@ import {
     UPDATE_GUEST,
     GuestActionsTypes,
     Guest
-} from './guests.types'
+} from './guest.types'
 
 export function search(query?: string): GuestActionsTypes {
     return {

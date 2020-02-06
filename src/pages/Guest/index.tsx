@@ -13,9 +13,8 @@ import {
 
 import KeyboardSpacer from 'react-native-keyboard-spacer'
 
-import { GuestState, Guest } from '../../redux/types/guests.types'
-import { WeddingState } from '../../redux/types/wedding.types'
-import { searchGuests, updateGuest } from '../../redux/actions/guests.actions'
+import { GuestState, Guest } from '../../store/modules/guest/guest.types'
+import { search, update } from '../../store/modules/guest/guest.actions'
 
 import Text from '../../components/Text'
 import Search from '../../components/Search';
@@ -23,10 +22,9 @@ import Search from '../../components/Search';
 import styles from './style'
 
 type Props = {
-    guestState: GuestState,
-    weddingState: WeddingState,
-    searchGuests(query?: string): void,
-    updateGuest(guest: Guest, status: boolean): void
+    guest: GuestState,
+    search(query?: string): void,
+    update(guest: Guest, status: boolean): void
 }
 
 type State = {}
@@ -37,7 +35,7 @@ class GuestScreen extends Component<Props, State> {
     }
 
     componentDidMount() {
-        this.props.searchGuests()
+        this.props.search()
     }
 
     private addGuest = () => {
@@ -45,7 +43,7 @@ class GuestScreen extends Component<Props, State> {
     }
 
     private toggleGuestConfirmation = (item: Guest, status: boolean) => {
-        this.props.updateGuest(item, status)
+        this.props.update(item, status)
     }
 
     private sectionView = (section: SectionListData<Guest>) => (
@@ -86,13 +84,13 @@ class GuestScreen extends Component<Props, State> {
     render() {
         const { 
             sections,
-        } = this.props.guestState
+        } = this.props.guest
     
         return(
             <View style={{ flex: 1 }}>
                 <Search 
                     placeholder="Pesquisar por um convidado"
-                    onChangedText={text => this.props.searchGuests(text)}/>
+                    onChangedText={text => this.props.search(text)}/>
                 <SectionList
                         style={styles.list}
                         sections={sections}
@@ -113,8 +111,8 @@ class GuestScreen extends Component<Props, State> {
 const mapStateToProps = (state: Props) => state
 
 const mapDipatchToProps = (dispatch: Dispatch) => ({
-    searchGuests: bindActionCreators(searchGuests, dispatch),
-    updateGuest: (guest: Guest, status: boolean) => dispatch(updateGuest(guest, status))
+    search: bindActionCreators(search, dispatch),
+    update: (guest: Guest, status: boolean) => dispatch(update(guest, status))
 })
 
 export default connect(

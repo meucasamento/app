@@ -8,7 +8,7 @@ import {
     Guest,
     GuestReport,
     GuestSection,
-} from './guests.types'
+} from './guest.types'
 
 const initialState: GuestState = {
     guests: [],

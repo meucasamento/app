@@ -8,17 +8,18 @@ import {
 
 import { 
      GuestState
-} from '../../../../store/modules/guest/guests.types';
+} from '../../../../store/modules/guest/guest.types';
 
 import Text from '../../../../components/Text'
 import styles from './style';
 
 type Props = {
-    guestState: GuestState
+    guest: GuestState
 }
 type State = {}
 
 class Report extends Component<Props, State> {
+    
     static defaultProps = {}
 
     componentDidMount() {
@@ -28,7 +29,7 @@ class Report extends Component<Props, State> {
     render() {
         const { 
             report
-        } = this.props.guestState
+        } = this.props.guest
 
         return (
             <View style={styles.container}>

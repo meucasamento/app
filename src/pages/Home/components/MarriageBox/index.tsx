@@ -15,7 +15,7 @@ import Text from '../../../../components/Text'
 import styles from './style';
 
 type Props = {
-    weddingState: WeddingState
+    wedding: WeddingState
 }
 
 type State = {}
@@ -27,13 +27,13 @@ class Report extends Component<Props, State> {
         const {
             formattedDate,
             formattedDaysLeft
-        } = this.props.weddingState.wedding
+        } = this.props.wedding.wedding
 
         return (
             <View style={ styles.container }>
                 <Image 
                 style={ styles.cover }
-                source={ require('./../../../../../assets/cover.jpg') }
+                source={ require('./../../../../assets/cover.jpg') }
                 resizeMode="contain"/>
                 <Text style={ styles.label }>Data do casamento</Text>
                 <Text style={ styles.date }>{ formattedDate }</Text>
