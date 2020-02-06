@@ -1,15 +1,14 @@
 import {
     STORE_GUEST,
-    DELETE_GUEST,
+    REMOVE_GUEST,
     UPDATE_GUEST,
-    FETCH_GUESTS,
     SEARCH_GUESTS,
     GuestState,
     GuestActionsTypes,
     Guest,
     GuestReport,
     GuestSection,
-} from '../types/guests.types'
+} from './guests.types'
 
 const initialState: GuestState = {
     guests: [],
@@ -22,17 +21,11 @@ const initialState: GuestState = {
     }
 }
 
-export function guestReducer(
+export default function reducer(
     state: GuestState = initialState, 
     action: GuestActionsTypes
     ): GuestState {
     switch (action.type) {
-        case FETCH_GUESTS:
-            return {
-                ...state,
-                guests: action.payload,
-                report: report(action.payload)
-            }
         case SEARCH_GUESTS:
             return {
                 ...state,
@@ -53,7 +46,7 @@ export function guestReducer(
                 guests,
                 report: report(guests)
             }
-        case DELETE_GUEST:
+        case REMOVE_GUEST:
             return {
                 ...state,
                 guests: state.guests.filter(guest => guest.id != action.payload.id)

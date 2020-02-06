@@ -6,18 +6,15 @@ import {
     View, 
 } from 'react-native';
 
-import { fetchGuests } from '../../../../redux/actions/guests.actions'
-
 import { 
      GuestState
-} from '../../../../redux/types/guests.types';
+} from '../../../../store/modules/guest/guests.types';
 
-import Text from './../../../../components/Text'
-import styles from './stylesheet';
+import Text from '../../../../components/Text'
+import styles from './style';
 
 type Props = {
-    guestState: GuestState,
-    fetchGuests(): void
+    guestState: GuestState
 }
 type State = {}
 
@@ -25,7 +22,7 @@ class Report extends Component<Props, State> {
     static defaultProps = {}
 
     componentDidMount() {
-        this.props.fetchGuests()
+        // this.props.fetchGuests()
     }
 
     render() {
@@ -67,12 +64,10 @@ class Report extends Component<Props, State> {
     }
 }
 
-// export default Report
-
 const mapStateToProps = (state: Props) => state
 
 const mapDipatchToProps = (dispatch: Dispatch) => ({
-    fetchGuests: bindActionCreators(fetchGuests, dispatch)
+    // fetchGuests: bindActionCreators(fetchGuests, dispatch)
 })
 
 export default connect(

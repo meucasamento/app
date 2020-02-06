@@ -14,13 +14,13 @@ import {
 import KeyboardSpacer from 'react-native-keyboard-spacer'
 
 import { GuestState, Guest } from '../../redux/types/guests.types'
-import { WeddingState } from './../../redux/types/wedding.types'
+import { WeddingState } from '../../redux/types/wedding.types'
 import { searchGuests, updateGuest } from '../../redux/actions/guests.actions'
 
-import Text from './../../components/Text'
+import Text from '../../components/Text'
 import Search from '../../components/Search';
 
-import styles from './stylesheet'
+import styles from './style'
 
 type Props = {
     guestState: GuestState,

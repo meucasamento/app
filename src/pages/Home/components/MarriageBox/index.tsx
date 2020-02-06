@@ -9,10 +9,10 @@ import {
 
 import { 
     WeddingState
-} from '../../../../redux/types/wedding.types'
+} from '../../../../store/modules/wedding/wedding.types'
 
-import Text from './../../../../components/Text'
-import styles from './stylesheet';
+import Text from '../../../../components/Text'
+import styles from './style';
 
 type Props = {
     weddingState: WeddingState

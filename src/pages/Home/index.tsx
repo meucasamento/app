@@ -9,7 +9,7 @@ import {
 import Report from './components/Report'
 import MarriageBox from './components/MarriageBox'
 
-import styles from './stylesheet'
+import styles from './style'
 
 type Props = {}
 

@@ -1,5 +1,10 @@
 import { SectionListData } from "react-native"
 
+export const SEARCH_GUESTS = '@guest/SEARCH_GUESTS'
+export const STORE_GUEST = '@guest/STORE_GUEST'
+export const UPDATE_GUEST = '@guest/UPDATE_GUEST'
+export const REMOVE_GUEST = '@guest/REMOVE_GUEST'
+
 export interface Guest {
     id: number
     name: string
@@ -25,17 +30,6 @@ export interface GuestState {
     report: GuestReport
 }
 
-export const FETCH_GUESTS = 'FETCH_GUESTS'
-export const SEARCH_GUESTS = 'SEARCH_GUESTS'
-export const STORE_GUEST = 'STORE_GUEST'
-export const UPDATE_GUEST = 'UPDATE_GUEST'
-export const DELETE_GUEST = 'DELETE_GUEST'
-
-interface Fetch {
-    type: typeof FETCH_GUESTS
-    payload: Guest[]
-}
-
 interface Search {
     type: typeof SEARCH_GUESTS
     payload: {
@@ -54,9 +48,9 @@ interface Update {
     payload: Guest
 }
 
-interface Delete {
-    type: typeof DELETE_GUEST
+interface Remove {
+    type: typeof REMOVE_GUEST
     payload: Guest
 }
 
-export type GuestActionsTypes = Fetch | Search | Store | Update | Delete
+export type GuestActionsTypes = Search | Store | Update | Remove

@@ -2,9 +2,7 @@ import React from 'react';
 import Routes from './src/routes'
 import { Provider } from 'react-redux'
 
-import configureStore from './src/redux'
-
-const store = configureStore()
+import store from './src/store'
 
 export default function App() {
   return (
