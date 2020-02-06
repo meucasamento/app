@@ -9,9 +9,9 @@ import {
 
 import { 
     WeddingState
-} from './../../store/modules/wedding/wedding.types'
+} from '../../store/modules/wedding/wedding.types'
 
-import Text from './../Text'
+import Text from '../Text'
 import styles from './style';
 
 type Props = {
@@ -20,7 +20,7 @@ type Props = {
 
 type State = {}
 
-class Report extends Component<Props, State> {
+class WeddingBox extends Component<Props, State> {
     static defaultProps = {}
 
     render() {
@@ -51,4 +51,4 @@ const mapDipatchToProps = (dispatch: Dispatch) => ({})
 export default connect(
     mapStateToProps,
     mapDipatchToProps
-)(Report)
+)(WeddingBox)

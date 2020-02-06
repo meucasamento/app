@@ -1,19 +1,15 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { Dispatch } from 'redux'
 
 import { 
     View
 } from 'react-native'
 
 import Report from './../../components/Report'
-import MarriageBox from './../../components/MarriageBox'
+import WeedingBox from '../../components/WeddingBox'
 
 import styles from './style'
 
-type Props = {}
-
-class HomeScreen extends Component<Props> {
+export default class HomeScreen extends Component {
     static navigationOptions = {
         title: 'Casamento'
     }
@@ -22,7 +18,7 @@ class HomeScreen extends Component<Props> {
         return(
             <View style={styles.container}>
                 <View style={styles.header}>
-                    <MarriageBox/>
+                    <WeedingBox/>
                 </View>
                 
                 <View style={styles.footer}>
@@ -32,12 +28,3 @@ class HomeScreen extends Component<Props> {
         )
     }
 }
-
-const mapStateToProps = (state: Props) => state
-
-const mapDipatchToProps = (dispatch: Dispatch) => ({})
-
-export default connect(
-    mapStateToProps,
-    mapDipatchToProps
-)(HomeScreen)
