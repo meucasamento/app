@@ -6,8 +6,8 @@ import {
     View
 } from 'react-native'
 
-import Report from './components/Report'
-import MarriageBox from './components/MarriageBox'
+import Report from './../../components/Report'
+import MarriageBox from './../../components/MarriageBox'
 
 import styles from './style'
 

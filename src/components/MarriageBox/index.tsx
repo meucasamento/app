@@ -9,9 +9,9 @@ import {
 
 import { 
     WeddingState
-} from '../../../../store/modules/wedding/wedding.types'
+} from './../../store/modules/wedding/wedding.types'
 
-import Text from '../../../../components/Text'
+import Text from './../Text'
 import styles from './style';
 
 type Props = {

@@ -1,30 +1,23 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { Dispatch, bindActionCreators } from 'redux';
+import { Dispatch } from 'redux';
 
 import { 
     View, 
 } from 'react-native';
 
-import {  GuestState } from '../../../../store/modules/guest/guest.types';
-import { search } from '../../../../store/modules/guest/guest.actions';
+import {  GuestState } from '../../store/modules/guest/guest.types';
 
-import Text from '../../../../components/Text'
+import Text from '../Text'
 import styles from './style';
 
 type Props = {
-    guest: GuestState,
-    search(query?: string): void
+    guest: GuestState
 }
+
 type State = {}
 
 class Report extends Component<Props, State> {
-
-    static defaultProps = {}
-
-    componentDidMount() {
-        // this.props.search()
-    }
 
     render() {
         const { 
@@ -67,9 +60,7 @@ class Report extends Component<Props, State> {
 
 const mapStateToProps = (state: Props) => state
 
-const mapDipatchToProps = (dispatch: Dispatch) => ({
-    // search: (query?: string) => dispatch(search(query))
-})
+const mapDipatchToProps = (dispatch: Dispatch) => ({})
 
 export default connect(
     mapStateToProps,
