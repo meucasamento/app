@@ -14,7 +14,7 @@ import {
 import KeyboardSpacer from 'react-native-keyboard-spacer'
 
 import { GuestState, Guest } from '../../store/modules/guest/guest.types'
-import { search, update } from '../../store/modules/guest/guest.actions'
+import { search } from '../../store/modules/guest/guest.actions'
 
 import Text from '../../components/Text'
 import Search from '../../components/Search';
@@ -24,12 +24,12 @@ import styles from './style'
 type Props = {
     guest: GuestState,
     search(query?: string): void,
-    update(guest: Guest, status: boolean): void
+    // update(guest: Guest, status: boolean): void
 }
 
 type State = {}
 
-class GuestScreen extends Component<Props, State> {
+class GuestPage extends Component<Props, State> {
     static navigationOptions = {
         title: 'Convidados',
     }
@@ -43,7 +43,7 @@ class GuestScreen extends Component<Props, State> {
     }
 
     private toggleGuestConfirmation = (item: Guest, status: boolean) => {
-        this.props.update(item, status)
+        // this.props.update(item, status)
     }
 
     private sectionView = (section: SectionListData<Guest>) => (
@@ -112,10 +112,10 @@ const mapStateToProps = (state: Props) => state
 
 const mapDipatchToProps = (dispatch: Dispatch) => ({
     search: bindActionCreators(search, dispatch),
-    update: (guest: Guest, status: boolean) => dispatch(update(guest, status))
+    // update: (guest: Guest, status: boolean) => dispatch(update(guest, status))
 })
 
 export default connect(
     mapStateToProps,
     mapDipatchToProps
-)(GuestScreen)
+)(GuestPage)

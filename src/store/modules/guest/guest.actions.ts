@@ -1,40 +1,46 @@
 import { 
     SEARCH,
-    STORE,
-    REMOVE,
-    UPDATE,
+    SEARCH_SUCCESS,
+    SEARCH_FAILURE,
     GuestActionsTypes,
-    Guest
+    Guest,
 } from './guest.types'
 
-export function search(query?: string): GuestActionsTypes {
-    return {
-        type: SEARCH,
-        payload: {
-            guests: []
-        }
-    }
-}
+export const search = (query: string): GuestActionsTypes => ({
+    type: SEARCH,
+    payload: query
+})
 
-export function store(guest: Guest): GuestActionsTypes {
-    return {
-        type: STORE,
-        payload: guest
-    }
-}
+export const searchSuccess = (guests: Guest[]): GuestActionsTypes => ({
+    type: SEARCH_SUCCESS,
+    payload: guests
+})
 
-export function update(guest: Guest, status: boolean): GuestActionsTypes {
-    guest.isConfirmed = status
+export const searchFailure = (error: Error): GuestActionsTypes => ({
+    type: SEARCH_FAILURE,
+    payload: error
+})
 
-    return {
-        type: UPDATE,
-        payload: guest
-    }
-}
 
-export function remove(guest: Guest): GuestActionsTypes {
-    return {
-        type: REMOVE,
-        payload: guest
-    }
-}
+// export function store(guest: Guest): GuestActionsTypes {
+//     return {
+//         type: STORE,
+//         payload: guest
+//     }
+// }
+
+// export function update(guest: Guest, status: boolean): GuestActionsTypes {
+//     guest.isConfirmed = status
+
+//     return {
+//         type: UPDATE,
+//         payload: guest
+//     }
+// }
+
+// export function remove(guest: Guest): GuestActionsTypes {
+//     return {
+//         type: REMOVE,
+//         payload: guest
+//     }
+// }

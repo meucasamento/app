@@ -1,6 +1,9 @@
 import { SectionListData } from "react-native"
 
-export const SEARCH = '@guest/SEARCHS'
+export const SEARCH = '@guest/SEARCH'
+export const SEARCH_SUCCESS = '@guest/SEARCH_SUCCESS'
+export const SEARCH_FAILURE = '@guest/SEARCH_FAILURE'
+
 export const STORE = '@guest/STORE'
 export const UPDATE = '@guest/UPDATE'
 export const REMOVE = '@guest/REMOVE'
@@ -25,18 +28,34 @@ export interface GuestSection extends SectionListData<Guest> {
 }
 
 export interface GuestState {
+    error?: Error,
+    loading: boolean,
     guests: Guest[],
     sections: GuestSection[],
     report: GuestReport
 }
 
+// Begin Search Types
+
 interface Search {
-    type: typeof SEARCH
-    payload: {
-        query?: string,
-        guests: Guest[]
-    }
+    type: typeof SEARCH,
+    payload: string
 }
+
+interface SearchSuccess {
+    type: typeof SEARCH_SUCCESS
+    payload: Guest[]
+}
+
+interface SearchFailure {
+    type: typeof SEARCH_FAILURE
+    payload: Error
+}
+
+type SearchTypes = Search | SearchSuccess | SearchFailure
+
+// End Search Types
+
 
 interface Store {
     type: typeof STORE
@@ -53,4 +72,4 @@ interface Remove {
     payload: Guest
 }
 
-export type GuestActionsTypes = Search | Store | Update | Remove
+export type GuestActionsTypes = SearchTypes | Store | Update | Remove

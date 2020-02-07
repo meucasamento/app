@@ -9,7 +9,7 @@ import WeedingBox from '../../components/WeddingBox'
 
 import styles from './style'
 
-export default class HomeScreen extends Component {
+export default class HomePage extends Component {
     static navigationOptions = {
         title: 'Casamento'
     }
