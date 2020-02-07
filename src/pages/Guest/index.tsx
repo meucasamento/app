@@ -99,7 +99,7 @@ class GuestPage extends Component<Props, State> {
                         ListEmptyComponent={this.emptyRow}
                         ItemSeparatorComponent={this.separator}
                         showsVerticalScrollIndicator={false}
-                        stickySectionHeadersEnabled={false}
+                        stickySectionHeadersEnabled={true}
                         initialNumToRender={10}/>
                 <KeyboardSpacer/>
             </View>
