@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { Dispatch, bindActionCreators } from 'redux'
+import { Dispatch } from 'redux'
 
 import { 
     View, 
@@ -23,7 +23,7 @@ import styles from './style'
 
 type Props = {
     guest: GuestState,
-    search(query?: string): void,
+    search(query: string): void,
     // update(guest: Guest, status: boolean): void
 }
 
@@ -35,7 +35,7 @@ class GuestPage extends Component<Props, State> {
     }
 
     componentDidMount() {
-        this.props.search()
+        this.props.search("sdfsdf")
     }
 
     private addGuest = () => {
@@ -111,8 +111,7 @@ class GuestPage extends Component<Props, State> {
 const mapStateToProps = (state: Props) => state
 
 const mapDipatchToProps = (dispatch: Dispatch) => ({
-    search: bindActionCreators(search, dispatch),
-    // update: (guest: Guest, status: boolean) => dispatch(update(guest, status))
+    search: (query: string) => dispatch(search(query))
 })
 
 export default connect(

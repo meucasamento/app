@@ -37,7 +37,10 @@ export default function reducer(
             return {
                 ...state,
                 loading: false,
-                guests: action.payload
+                guests: action.payload,
+                sections: [
+                    { title: "Convidados", data: action.payload }
+                ]
             }
         case SEARCH_FAILURE:
             return {
