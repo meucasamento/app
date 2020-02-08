@@ -1,3 +1,3 @@
-import { NetworkClient } from './../networkClient'
+import { Client } from '../client'
 
-export default new NetworkClient("https://api-casamento-jenifereadriano.herokuapp.com/api/v1/")
+export default new Client("https://api-casamento-jenifereadriano.herokuapp.com/api/v1/")

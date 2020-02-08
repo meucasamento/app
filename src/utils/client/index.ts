@@ -8,11 +8,11 @@ export type Data = {
 
 export type Method = "post" | "put" | "get" | "delete" | "patch"
 
-export interface NetworkClientInterface {
+export interface ClientInterface {
     request<T>(url: string, method: Method, data?: Data): Promise<T>
 }
 
-export class NetworkClient implements NetworkClientInterface {
+export class Client implements ClientInterface {
     
     private instance: AxiosInstance
 

@@ -14,7 +14,7 @@ export default new class GuestRepository implements GuestRepositoryInterface {
         }
 
         const headers = {
-            Authorization: "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZTE5ZDYxMzY4Y2IyODAwMzkyODdkMWIiLCJpYXQiOjE1ODExNzU5NDksImV4cCI6MTU4MTE3OTU0OX0.U8Kb-dmH3d8wTQyiVYA_gwpz4o5nYRxcWjFoFiXw2gPdM26lt_a_9IBnP7qeBDtCf9HLtixiAD7eiJmVGvdlhA"
+            Authorization: "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZTE5ZDYxMzY4Y2IyODAwMzkyODdkMWIiLCJpYXQiOjE1ODExODQ5NTgsImV4cCI6MTU4MTE4ODU1OH0.weEclvcXveW4p3ZYL7-C2RdqOr4lVz3a1yLDKcuftTKKJYjp_Hdj91CV74fF66eIAqOsI0GdFoKcJXR4fiuc6g"
         }
 
         return API.request<PaginationResult<Guest>>("guests", "get", { params, headers })
