@@ -7,9 +7,10 @@ import {
     SEARCH_FAILURE,
     GuestState,
     GuestActionsTypes,
-    Guest,
-    GuestReport
 } from './guest.types'
+
+import Guest from '../../../models/guest.model'
+import GuestReport from '../../../models/guestReport.model'
 
 const initialState: GuestState = {
     guests: [],

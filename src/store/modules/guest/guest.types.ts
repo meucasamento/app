@@ -1,5 +1,8 @@
 import { SectionListData } from "react-native"
 
+import Guest from "../../../models/guest.model"
+import GuestReport from "../../../models/guestReport.model"
+
 export const SEARCH = '@guest/SEARCH'
 export const SEARCH_SUCCESS = '@guest/SEARCH_SUCCESS'
 export const SEARCH_FAILURE = '@guest/SEARCH_FAILURE'
@@ -7,20 +10,6 @@ export const SEARCH_FAILURE = '@guest/SEARCH_FAILURE'
 export const STORE = '@guest/STORE'
 export const UPDATE = '@guest/UPDATE'
 export const REMOVE = '@guest/REMOVE'
-
-export interface Guest {
-    id: number
-    name: string
-    isConfirmed?: boolean
-    isGodfather?: boolean
-}
-
-export interface GuestReport {
-    total: number
-    confirmed: number
-    unconfirmed: number
-    godfathers: number
-}
 
 export interface GuestSection extends SectionListData<Guest> {
     title: string,

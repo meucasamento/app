@@ -3,8 +3,9 @@ import {
     SEARCH_SUCCESS,
     SEARCH_FAILURE,
     GuestActionsTypes,
-    Guest,
 } from './guest.types'
+
+import Guest from '../../../models/guest.model'
 
 export const search = (query: string): GuestActionsTypes => ({
     type: SEARCH,

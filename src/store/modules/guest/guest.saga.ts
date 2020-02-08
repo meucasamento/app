@@ -6,15 +6,17 @@ import {
     delay
 } from 'redux-saga/effects'
 
-import { Guest, SEARCH, GuestActionsTypes } from './guest.types'
-import { searchSuccess, searchFailure } from './guest.actions'
+import { 
+    SEARCH, 
+    GuestActionsTypes
+} from './guest.types'
 
-const guests: Guest[] = [
-    { id: 1, name: "Jonatas" },
-    { id: 2, name: "Deise" },
-    { id: 3, name: "Dayana" },
-    { id: 4, name: "Wesley" }
-]
+import { 
+    searchSuccess, 
+    searchFailure
+} from './guest.actions'
+
+import Guest from '../../../models/guest.model'
 
 type Teste = {
     id: number,
