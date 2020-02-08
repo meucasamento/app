@@ -13,7 +13,9 @@ import {
 
 import KeyboardSpacer from 'react-native-keyboard-spacer'
 
-import { GuestState, Guest } from '../../store/modules/guest/guest.types'
+import Guest from '../../models/guest.model';
+
+import { GuestState } from '../../store/modules/guest/guest.types'
 import { search } from '../../store/modules/guest/guest.actions'
 
 import Text from '../../components/Text'
@@ -95,6 +97,7 @@ class GuestPage extends Component<Props, State> {
                         style={styles.list}
                         sections={sections}
                         renderSectionHeader={({section}) => this.sectionView(section)}
+                        keyExtractor={item => item._id}
                         renderItem={({item}) => this.rowView(item)}
                         ListEmptyComponent={this.emptyRow}
                         ItemSeparatorComponent={this.separator}
