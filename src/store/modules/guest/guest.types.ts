@@ -43,9 +43,6 @@ interface SearchFailure {
 
 type SearchTypes = Search | SearchSuccess | SearchFailure
 
-// End Search Types
-
-
 interface Store {
     type: typeof STORE
     payload: Guest

@@ -1,5 +1,4 @@
 import axios, { AxiosInstance } from 'axios'
-import Guest from '../../models/guest.model'
 
 export type Data = {
     headers?: any;

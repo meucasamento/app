@@ -1,6 +1,6 @@
 import SecureStore from 'expo-secure-store'
 
-import Authorization from '../../models/authorization'
+import Authorization from '../../models/authorization.model'
 
 export interface Session {
     start(auth: Authorization, token: string): Promise<void>
