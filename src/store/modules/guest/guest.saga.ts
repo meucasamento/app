@@ -17,6 +17,7 @@ import {
 
 import Guest from '../../../models/guest.model'
 import GuestRepository from './../../../repositories/guest/guest.repository'
+import sessionRepository from '../../../repositories/session/session.repository'
 
 const fetchData = async (): Promise<Guest[]> => {
     return await GuestRepository.guests()

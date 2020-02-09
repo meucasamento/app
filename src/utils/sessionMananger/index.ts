@@ -11,7 +11,7 @@ export interface Session {
     destroy(): Promise<void>
 }
 
-export default class SessionManager implements Session {
+export default new class SessionManager implements Session {
     
     private TOKEN = "token"
     private AUTH = "authentication"

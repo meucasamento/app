@@ -94,16 +94,16 @@ class GuestPage extends Component<Props, State> {
                     placeholder="Pesquisar por um convidado"
                     onChangedText={text => this.props.search(text)}/>
                 <SectionList
-                        style={styles.list}
-                        sections={sections}
-                        renderSectionHeader={({section}) => this.sectionView(section)}
-                        keyExtractor={item => item._id}
-                        renderItem={({item}) => this.rowView(item)}
-                        ListEmptyComponent={this.emptyRow}
-                        ItemSeparatorComponent={this.separator}
-                        showsVerticalScrollIndicator={false}
-                        stickySectionHeadersEnabled={true}
-                        initialNumToRender={10}/>
+                    style={styles.list}
+                    sections={sections}
+                    renderSectionHeader={({section}) => this.sectionView(section)}
+                    keyExtractor={item => item._id}
+                    renderItem={({item}) => this.rowView(item)}
+                    ListEmptyComponent={this.emptyRow}
+                    ItemSeparatorComponent={this.separator}
+                    showsVerticalScrollIndicator={false}
+                    stickySectionHeadersEnabled={true}
+                    initialNumToRender={10}/>
                 <KeyboardSpacer/>
             </View>
         )
