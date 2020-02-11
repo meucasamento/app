@@ -1,23 +1,33 @@
 import Guest from "../../models/guest.model";
-import api from './../../utils/api'
+import api from '../../services/api'
 import Pagination from "../../models/response/pagination.response";
+import sessionMananger, { Session } from "../../utils/sessionMananger";
 
 export interface GuestRepositoryInterface {
     guests(page: number): Promise<Pagination<Guest>>
 }
 
-export default new class GuestRepository implements GuestRepositoryInterface {
+class GuestRepository implements GuestRepositoryInterface {
     
-    async guests(page: number = 1): Promise<Pagination<Guest>> {
+    private session: Session
+
+    constructor(session: Session = sessionMananger) {
+        this.session = session
+    }
+
+    guests = async (page: number = 1): Promise<Pagination<Guest>> => {
         const params = {
+            page,
             limit: 100
         }
 
         const headers = {
-            Authorization: "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZTE5ZDYxMzY4Y2IyODAwMzkyODdkMWIiLCJpYXQiOjE1ODExODQ5NTgsImV4cCI6MTU4MTE4ODU1OH0.weEclvcXveW4p3ZYL7-C2RdqOr4lVz3a1yLDKcuftTKKJYjp_Hdj91CV74fF66eIAqOsI0GdFoKcJXR4fiuc6g"
+            authorization: await this.session.getToken()
         }
 
-        return api.request<Pagination<Guest>>("guests", "get", { params, headers })
+        return await api.request<Pagination<Guest>>("guests", "get", { params, headers })
     }
 
 }
+
+export default new GuestRepository

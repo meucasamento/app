@@ -6,15 +6,16 @@ import {
 } from './guest.types'
 
 import Guest from '../../../models/guest.model'
+import Pagination from '../../../models/response/pagination.response'
 
 export const search = (query: string): GuestActionsTypes => ({
     type: SEARCH,
     payload: query
 })
 
-export const searchSuccess = (guests: Guest[]): GuestActionsTypes => ({
+export const searchSuccess = (result: Pagination<Guest>): GuestActionsTypes => ({
     type: SEARCH_SUCCESS,
-    payload: guests
+    payload: result
 })
 
 export const searchFailure = (error: Error): GuestActionsTypes => ({

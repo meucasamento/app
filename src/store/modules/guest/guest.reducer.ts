@@ -38,9 +38,9 @@ export default function reducer(
             return {
                 ...state,
                 loading: false,
-                guests: action.payload,
+                guests: action.payload.items,
                 sections: [
-                    { title: "Convidados", data: action.payload }
+                    { title: "Convidados", data: action.payload.items }
                 ]
             }
         case SEARCH_FAILURE:
@@ -67,7 +67,7 @@ export default function reducer(
         case REMOVE:
             return {
                 ...state,
-                guests: state.guests.filter(guest => guest.id != action.payload.id)
+                // guests: state.guests.filter(guest => guest.id != action.payload.id)
             }
         default:
             return state

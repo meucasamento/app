@@ -15,21 +15,14 @@ import {
     searchFailure
 } from './guest.actions'
 
-import Guest from '../../../models/guest.model'
-import GuestRepository from './../../../repositories/guest/guest.repository'
-import sessionRepository from '../../../repositories/session/session.repository'
+import guestRepository from './../../../repositories/guest/guest.repository'
 
-const fetchData = async (): Promise<Guest[]> => {
-    return await GuestRepository.guests()
-    .then(response => response.items)
-}
-
-function* search(data: GuestActionsTypes) {
+function* search() {
     try {
-        const response = yield call(fetchData)
-        yield put(searchSuccess(response as Guest[]))
-    } catch(e) {
-        yield put(searchFailure(e))
+        const response = yield call(guestRepository.guests)
+        yield put(searchSuccess(response))
+    } catch(err) {
+        yield put(searchFailure(err))
     }
 }
 

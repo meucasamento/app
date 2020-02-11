@@ -2,6 +2,7 @@ import { SectionListData } from "react-native"
 
 import Guest from "../../../models/guest.model"
 import GuestReport from "../../../models/guestReport.model"
+import Pagination from "../../../models/response/pagination.response"
 
 export const SEARCH = '@guest/SEARCH'
 export const SEARCH_SUCCESS = '@guest/SEARCH_SUCCESS'
@@ -33,7 +34,7 @@ interface Search {
 
 interface SearchSuccess {
     type: typeof SEARCH_SUCCESS
-    payload: Guest[]
+    payload: Pagination<Guest>
 }
 
 interface SearchFailure {

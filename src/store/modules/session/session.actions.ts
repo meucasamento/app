@@ -6,7 +6,9 @@ import {
     AUTHENTICATION,
     AUTHENTICATION_SUCCESS,
     AUTHENTICATION_FAILURE,
-    LOGOUT
+    LOGOUT,
+    LOGOUT_SUCCESS,
+    LOGOUT_FAILURE
 } from './session.types'
 
 export const authentication = (auth: Authorization): SessionActionTypes => ({
@@ -19,11 +21,20 @@ export const authenticationSuccess = (token: Token): SessionActionTypes => ({
     payload: token
 })
 
-export const authenticationFailed = (error: Error): SessionActionTypes => ({
+export const authenticationFailure = (error: Error): SessionActionTypes => ({
     type: AUTHENTICATION_FAILURE,
     payload: error
 })
 
 export const logout = (): SessionActionTypes => ({
     type: LOGOUT
+})
+
+export const logoutSuccess = (): SessionActionTypes => ({
+    type: LOGOUT_SUCCESS
+})
+
+export const logoutFailure = (error: Error): SessionActionTypes => ({
+    type: LOGOUT_FAILURE,
+    payload: error
 })

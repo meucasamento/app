@@ -1,6 +1,6 @@
 import Token from "../../models/token.model"
 import Authorization from "../../models/authorization.model"
-import api from "../../utils/api"
+import api from "../../services/api"
 
 export interface SessionRepositoryInterface {
     authentication(auth: Authorization): Promise<Token>
