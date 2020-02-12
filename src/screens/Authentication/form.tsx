@@ -32,7 +32,7 @@ class SignupForm extends Component<Props, State> {
                     onChangeText={email => this.setState({email})}
                 />
                 <TextInputForm 
-                    label="Password"
+                    label="Senha"
                     placeholder="Insira sua senha"
                     onChangeText={password => this.setState({password})}
                 />
