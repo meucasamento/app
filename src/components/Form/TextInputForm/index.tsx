@@ -30,7 +30,7 @@ class TextInputForm extends Component<Props, State> {
 
         return(
             <View style={styles.row}>
-                {label && <Text>{label}</Text>}
+                {label && <Text style={styles.label}>{label}</Text>}
                 <TextInput 
                     style={styles.input}
                     value={this.state?.value}

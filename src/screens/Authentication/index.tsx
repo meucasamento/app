@@ -22,10 +22,7 @@ type Props = {
     authentication(auth: Authorization): void
 }
 
-type State = {
-    email?: string,
-    password?: string
-}
+type State = {}
 
 class AuthenticationScreen extends Component<Props, State> {
 
@@ -37,8 +34,7 @@ class AuthenticationScreen extends Component<Props, State> {
         }
     }
 
-    private login() {
-        const { email, password } = this.state
+    private login(email?: string, password?: string) {
         this.props.authentication({ email, password })
     }
 
@@ -48,7 +44,9 @@ class AuthenticationScreen extends Component<Props, State> {
                 behavior="padding"
                 style={styles.container}>
                 <SignupForm
-                    onSubmit={data => console.log(data)} />
+                    onSubmit={data => {
+                        this.login(data?.email, data?.password)
+                    }} />
             </KeyboardAvoidingView>
         )
     }

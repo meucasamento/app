@@ -1,7 +1,9 @@
 import { StyleSheet } from 'react-native'
 
 export default StyleSheet.create({
-    label: {},
+    label: {
+        color: "black"
+    },
     error: {
         color: "red",
         marginTop: 2

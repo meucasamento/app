@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 import {
-    TouchableHighlight
+    TouchableOpacity
 } from 'react-native'
 
 import Text from './../../Text'
@@ -17,12 +17,11 @@ class ButtonForm extends Component<Props> {
     render() {
         return(
             <>
-                <TouchableHighlight 
+                <TouchableOpacity 
                     style={styles.button}
-                    underlayColor="none"
                     onPress={() => this.props.onPress()}>
                     <Text style={styles.text}>{this.props.text}</Text>
-                </TouchableHighlight>
+                </TouchableOpacity>
             </>
         )
     }
