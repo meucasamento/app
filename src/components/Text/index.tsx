@@ -21,7 +21,8 @@ export default class Text extends Component<Props, State> {
 
         return(
             <RNText style={{
-                ...style
+                ...style,
+                fontSize: 17
                 }}>
                 {children}
             </RNText>

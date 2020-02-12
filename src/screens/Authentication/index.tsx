@@ -15,6 +15,7 @@ import Authorization from '../../models/authorization.model'
 
 import Text from '../../components/Text'
 import styles from './style'
+import SignupForm from './form'
 
 type Props = {
     session: SessionState,
@@ -46,30 +47,8 @@ class AuthenticationScreen extends Component<Props, State> {
             <KeyboardAvoidingView 
                 behavior="padding"
                 style={styles.container}>
-                <View style={styles.loginForm}>
-                    <View style={styles.row}>
-                        <Text style={styles.label}>Email</Text>
-                        <TextInput 
-                            style={styles.input}
-                            value={this.state?.email}
-                            keyboardType="email-address"
-                            autoCapitalize="none"
-                            onChangeText={email => this.setState({email})}
-                            placeholder="Insira seu email" />
-                    </View>
-                    <View style={styles.row}>
-                        <Text style={styles.label}>Senha</Text>
-                        <TextInput 
-                            style={styles.input}
-                            value={this.state?.password}
-                            onChangeText={password => this.setState({password})}
-                            secureTextEntry={true}
-                            placeholder="Sua senha" />
-                    </View>
-                    <Button 
-                        title="Fazer login"
-                        onPress={() => this.login()}/>
-                </View>
+                <SignupForm
+                    onSubmit={data => console.log(data)} />
             </KeyboardAvoidingView>
         )
     }
