@@ -1,18 +1,22 @@
 import { StyleSheet } from 'react-native'
 
 export default StyleSheet.create({
+    container: {
+        width: "100%"
+    },
+    tappedArea: {
+        alignSelf: "stretch"
+    },
     button: {
-        display: "flex",
-        flexDirection: "column",
+        minHeight: 54,
         backgroundColor: "#0197F6",
-        padding: 16,
-        alignItems: "center",
         justifyContent: "center",
-        borderRadius: 6,
+        alignItems: "center",
+        borderRadius: 8,
         shadowColor: 'black',
         shadowOpacity: 0.2,
         shadowOffset: { height: 4, width: 0 },
-        shadowRadius: 8,
+        shadowRadius: 8
     },
     text: {
         color: "white",

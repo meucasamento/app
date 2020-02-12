@@ -5,8 +5,8 @@ import {
 } from 'react-native'
 
 import styles from './style'
-import TextInputForm from '../../components/Form/TextInputForm'
-import ButtonForm from '../../components/Form/ButtonForm'
+import TextInputForm from '../../components/Form/TextFieldForm'
+import ButtonForm from '../../components/Form/ButtonField'
 
 type FormSubmitedData = {
     email?: string,
@@ -26,7 +26,7 @@ type State = {
 class SignupForm extends Component<Props, State> {
 
     private submit() {
-        this.props?.onSubmit({ email: this.state?.email, password: this.state?.password })
+        this.props?.onSubmit(this.state)
     }
 
     render() {

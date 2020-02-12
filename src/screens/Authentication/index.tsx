@@ -39,8 +39,6 @@ class AuthenticationScreen extends Component<Props, State> {
     }
 
     render() {
-        console.log(this.props.session)
-
         return(
             <KeyboardAvoidingView 
                 behavior="padding"
