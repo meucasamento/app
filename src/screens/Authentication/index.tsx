@@ -39,11 +39,14 @@ class AuthenticationScreen extends Component<Props, State> {
     }
 
     render() {
+        console.log(this.props.session)
+
         return(
             <KeyboardAvoidingView 
                 behavior="padding"
                 style={styles.container}>
                 <SignupForm
+                    isLoading={this.props.session.loading}
                     onSubmit={data => {
                         this.login(data?.email, data?.password)
                     }} />

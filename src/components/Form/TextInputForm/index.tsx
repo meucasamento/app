@@ -34,7 +34,7 @@ class TextInputForm extends Component<Props, State> {
                 <TextInput 
                     style={styles.input}
                     value={this.state?.value}
-                    editable={this.props.isEnabled}
+                    editable={this.props.isEnabled ?? true}
                     autoCapitalize="none"
                     onChangeText={value => this.props.onChangeText(value)}
                     placeholder={this.props.placeholder} />

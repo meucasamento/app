@@ -36,6 +36,7 @@ export default function redurce(
             case AUTHENTICATION_FAILURE:
                 return {
                     ...state,
+                    loading: false,
                     userIsLogged: false,
                     error: action.payload
                 }

@@ -2,11 +2,13 @@ import { StyleSheet } from 'react-native'
 
 export default StyleSheet.create({
     button: {
+        display: "flex",
+        flexDirection: "column",
         backgroundColor: "#0197F6",
         padding: 16,
         alignItems: "center",
         justifyContent: "center",
-        borderRadius: 8,
+        borderRadius: 6,
         shadowColor: 'black',
         shadowOpacity: 0.2,
         shadowOffset: { height: 4, width: 0 },
