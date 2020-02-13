@@ -7,7 +7,8 @@ export default StyleSheet.create({
     },
     error: {
         color: "red",
-        marginTop: 2
+        marginTop: 2,
+        fontSize: 15
     },
     row: {
         marginBottom: 16,
