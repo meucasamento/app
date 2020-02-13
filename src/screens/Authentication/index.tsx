@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 import { Dispatch } from 'redux'
 
@@ -11,6 +11,7 @@ import { authentication } from './../../store/modules/session/session.actions'
 import Authorization from '../../models/authorization.model'
 
 import SignupForm, { SignupFormData } from './form'
+
 import styles from './style'
 
 type Props = {
@@ -27,16 +28,12 @@ const AuthenticationScreen = (props: Props) => {
         })
     }
 
-    const {
-        loading,
-    } = props.session
-
     return(
         <KeyboardAvoidingView 
             behavior="padding"
             style={styles.container}>
             <SignupForm
-                isLoading={loading}
+                isLoading={props.session.loading}
                 onSubmit={data => login(data)} />
         </KeyboardAvoidingView>
     )
