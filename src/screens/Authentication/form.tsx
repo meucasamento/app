@@ -1,8 +1,13 @@
-import React, { useEffect } from 'react'
-import { useForm } from 'react-hook-form'
+import React from 'react'
+import * as Yup from 'yup'
+import { 
+    withFormik, 
+    FormikProps,
+    Formik
+} from 'formik'
 
 import { 
-    View, 
+    View
 } from 'react-native'
 
 import {
@@ -12,58 +17,74 @@ import {
 
 import styles from './style'
 
-export type SignupFormData = {
+export type FormValues = {
     email?: string,
+    password?: string
+}
+
+type FormProps = {
+    email?: string
     password?: string
 }
 
 type Props = {
     isLoading?: boolean,
-    onSubmit(result: SignupFormData): void
+    onSubmit(result: FormValues): void
 }
 
-const SignupForm = (props: Props) => {
+const validationSchema = Yup.object().shape({
+    email: Yup.string()
+        .email("Informe um email válido"),
+    password: Yup.string()
+        .min(4, "A senha deve ter no mínimo 4 caracteres")
+        .required("Campo obrigatório")
+})
 
-    const {
-        isLoading,
-        onSubmit
-    } = props
-
-    const {
-        register,
-        handleSubmit,
-        setValue
-    } = useForm()
-
-    useEffect(() => {
-        register('email'),
-        register('password')
-    }, [register])
-
-    return(
-        <View style={styles.loginForm}>
-            <TextField 
-                label="Email"
-                keyboardType="email-address"
-                isEnabled={!isLoading}
-                placeholder="Insira seu email"
-                onChangeText={email => setValue("email", email)}
-            />
-            <TextField 
-                label="Senha"
-                keyboardType="visible-password"
-                isEnabled={!isLoading}
-                isSecure={true}
-                placeholder="Insira sua senha"
-                onChangeText={password => setValue("password", password)}
-            />
-            <ButtonField
-                text="Fazer Login"
-                isLoading={isLoading}
-                onPress={handleSubmit(onSubmit)}/>
-        </View>
+const SignupForm = (props: Props & FormikProps<FormValues>) => {
+    return (
+        <Formik
+            initialValues={{ email: '', password: '' }}
+            onSubmit={props.onSubmit}
+            validationSchema={validationSchema}
+            validateOnChange={true}
+            >
+            {({ 
+                handleSubmit, 
+                setFieldValue,
+                setFieldTouched,
+                touched,
+                errors,
+                values
+             }) => (
+                <View style={styles.loginForm}>
+                    <TextField 
+                        label="Email"
+                        value={values.email}
+                        error={touched.email && errors.email}
+                        keyboardType="email-address"
+                        isEnabled={!props.isLoading}
+                        placeholder="Insira seu email"
+                        onChangeText={email => setFieldValue("email", email)}
+                        />
+                    <TextField 
+                        label="Senha"
+                        value={values.password}
+                        error={touched.password && errors.password}
+                        keyboardType="visible-password"
+                        isEnabled={!props.isLoading}
+                        isSecure={true}
+                        placeholder="Insira sua senha"
+                        onChangeText={password => setFieldValue("password", password)}
+                        />
+                    <ButtonField
+                        text="Fazer Login"
+                        isLoading={props.isLoading}
+                        onPress={handleSubmit}
+                        />
+                </View>
+            )}
+        </Formik>
     )
-
 }
 
 export default SignupForm

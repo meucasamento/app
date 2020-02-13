@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react'
+import React, { useState, useEffect } from 'react'
 
 import {
     TextInput,
@@ -14,50 +14,36 @@ import styles from './style'
 type Props = {
     label?: string,
     value?: string,
-    error?: Error,
+    error?: string,
     placeholder?: string,
     isEnabled?: boolean,
     isSecure?: boolean,
     keyboardType?: KeyboardTypeOptions,
     returnKeyType?: ReturnKeyTypeOptions,
     onChangeText?(value?: string): void,
+    onBlur?(): void,
 }
 
-type State = {}
+const TextField = (props: Props) => {
 
-class TextField extends PureComponent<Props, State> {
-
-    render() {
-        const { 
-            label,
-            isEnabled,
-            isSecure,
-            keyboardType,
-            returnKeyType,
-            value,
-            placeholder,
-            onChangeText,
-            error
-        } = this.props
-
-        return(
-            <View style={styles.row}>
-                {label && <Text style={styles.label}>{label}</Text>}
-                <TextInput 
-                    style={styles.input}
-                    value={value}
-                    editable={isEnabled}
-                    secureTextEntry={isSecure}
-                    clearButtonMode="while-editing"
-                    keyboardType={keyboardType}
-                    returnKeyType={returnKeyType}
-                    autoCapitalize="none"
-                    onChangeText={onChangeText}
-                    placeholder={placeholder} />
-                {error && <Text style={styles.error}>{error.message}</Text>}
-            </View>
-        )
-    }
+    return(
+        <View style={styles.row}>
+            {props.label && <Text style={styles.label}>{props.label}</Text>}
+            <TextInput 
+                style={styles.input}
+                value={props.value}
+                editable={props.isEnabled}
+                secureTextEntry={props.isSecure}
+                clearButtonMode="while-editing"
+                keyboardType={props.keyboardType}
+                returnKeyType={props.returnKeyType}
+                autoCapitalize="none"
+                onBlur={props.onBlur}
+                onChangeText={props.onChangeText}
+                placeholder={props.placeholder} />
+            {props.error && <Text style={styles.error}>{props.error}</Text>}
+        </View>
+    )
     
 }
 
