@@ -16,6 +16,7 @@ import {
 } from '../../components/Form/Fields'
 
 import styles from './style'
+import { format } from 'date-fns'
 
 export type FormValues = {
     email?: string,
@@ -29,12 +30,14 @@ type FormProps = {
 
 type Props = {
     isLoading?: boolean,
+    formProps?: FormProps,
     onSubmit(result: FormValues): void
 }
 
 const validationSchema = Yup.object().shape({
     email: Yup.string()
-        .email("Informe um email válido"),
+        .email("Informe um email válido")
+        .required("Campo obrigatório"),
     password: Yup.string()
         .min(4, "A senha deve ter no mínimo 4 caracteres")
         .required("Campo obrigatório")
@@ -43,15 +46,16 @@ const validationSchema = Yup.object().shape({
 const SignupForm = (props: Props & FormikProps<FormValues>) => {
     return (
         <Formik
-            initialValues={{ email: '', password: '' }}
+            initialValues={{ 
+                email: props.formProps?.email, 
+                password: props.formProps?.password
+             }}
             onSubmit={props.onSubmit}
             validationSchema={validationSchema}
-            validateOnChange={true}
             >
             {({ 
                 handleSubmit, 
                 setFieldValue,
-                setFieldTouched,
                 touched,
                 errors,
                 values
