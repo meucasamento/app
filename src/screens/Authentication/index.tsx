@@ -45,9 +45,7 @@ class AuthenticationScreen extends Component<Props, State> {
                 style={styles.container}>
                 <SignupForm
                     isLoading={this.props.session.loading}
-                    onSubmit={data => {
-                        this.login(data?.email, data?.password)
-                    }} />
+                    onSubmit={data => console.log(data)} />
             </KeyboardAvoidingView>
         )
     }

@@ -1,16 +1,16 @@
-import React, { Component } from 'react'
+import React, { useEffect } from 'react'
+import { useForm } from 'react-hook-form'
 
 import { 
     View, 
 } from 'react-native'
 
 import styles from './style'
-import TextInputForm from '../../components/Form/Fields/TextFieldForm'
-import ButtonForm from '../../components/Form/Fields/ButtonField'
 
-import { 
-    RequiredRule, EmailRule
-} from '../../components/Form/Rules'
+import {
+    ButtonField,
+    TextField
+} from '../../components/Form/Fields'
 
 type FormSubmitedData = {
     email?: string,
@@ -22,53 +22,48 @@ type Props = {
     onSubmit(result: FormSubmitedData): void
 }
 
-type State = {
-    email?: string,
-    password?: string
-}
+// class SignupForm extends Component<Props, State> {
+const SignupForm = (props: Props) => {
 
-class SignupForm extends Component<Props, State> {
+    const {
+        isLoading,
+        onSubmit
+    } = props
 
-    private submit() {
-        this.props?.onSubmit(this.state)
-    }
+    const {
+        register,
+        handleSubmit,
+        setValue
+    } = useForm()
 
-    render() {
-        const {
-            isLoading
-        } = this.props
+    useEffect(() => {
+        register('email'),
+        register('password')
+    }, [register])
 
-        return(
-            <View style={styles.loginForm}>
-                <TextInputForm 
-                    label="Email"
-                    keyboardType="email-address"
-                    isEnabled={!isLoading}
-                    placeholder="Insira seu email"
-                    onChangeText={email => this.setState({email})}
-                    rules={[
-                        new RequiredRule(),
-                        new EmailRule()
-                    ]}
-                />
-                <TextInputForm 
-                    label="Senha"
-                    keyboardType="visible-password"
-                    isEnabled={!isLoading}
-                    isSecure={true}
-                    placeholder="Insira sua senha"
-                    onChangeText={password => this.setState({password})}
-                    rules={[
-                        new RequiredRule()
-                    ]}
-                />
-                <ButtonForm
-                    text="Fazer Login"
-                    isLoading={isLoading}
-                    onPress={() => this.submit()}/>
-            </View>
-        )
-    }
+    return(
+        <View style={styles.loginForm}>
+            <TextField 
+                label="Email"
+                keyboardType="email-address"
+                isEnabled={!isLoading}
+                placeholder="Insira seu email"
+                onChangeText={email => setValue("email", email)}
+            />
+            <TextField 
+                label="Senha"
+                keyboardType="visible-password"
+                isEnabled={!isLoading}
+                isSecure={true}
+                placeholder="Insira sua senha"
+                onChangeText={password => setValue("password", password)}
+            />
+            <ButtonField
+                text="Fazer Login"
+                isLoading={isLoading}
+                onPress={handleSubmit(onSubmit)}/>
+        </View>
+    )
 
 }
 

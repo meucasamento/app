@@ -25,7 +25,7 @@ type Props = {
 
 type State = {}
 
-class TextInputForm extends PureComponent<Props, State> {
+class TextField extends PureComponent<Props, State> {
 
     render() {
         const { 
@@ -61,4 +61,4 @@ class TextInputForm extends PureComponent<Props, State> {
     
 }
 
-export default TextInputForm
+export default TextField
