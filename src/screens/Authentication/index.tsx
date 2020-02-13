@@ -3,9 +3,6 @@ import { connect } from 'react-redux'
 import { Dispatch } from 'redux'
 
 import {
-    View,
-    TextInput,
-    Button,
     KeyboardAvoidingView
 } from 'react-native'
 
@@ -13,42 +10,36 @@ import { SessionState } from '../../store/modules/session/session.types'
 import { authentication } from './../../store/modules/session/session.actions'
 import Authorization from '../../models/authorization.model'
 
-import Text from '../../components/Text'
+import SignupForm, { SignupFormData } from './form'
 import styles from './style'
-import SignupForm from './form'
 
 type Props = {
     session: SessionState,
     authentication(auth: Authorization): void
 }
 
-type State = {}
+const AuthenticationScreen = (props: Props) => {
 
-class AuthenticationScreen extends Component<Props, State> {
-
-    constructor(props: Props) {
-        super(props)
-        this.state = {
-            email: null,
-            password: null
-        }
+    const login = (data: SignupFormData) => {
+        props.authentication({ 
+            email: data.email, 
+            password: data.password
+        })
     }
 
-    private login(email?: string, password?: string) {
-        this.props.authentication({ email, password })
-    }
+    const {
+        loading,
+    } = props.session
 
-    render() {
-        return(
-            <KeyboardAvoidingView 
-                behavior="padding"
-                style={styles.container}>
-                <SignupForm
-                    isLoading={this.props.session.loading}
-                    onSubmit={data => console.log(data)} />
-            </KeyboardAvoidingView>
-        )
-    }
+    return(
+        <KeyboardAvoidingView 
+            behavior="padding"
+            style={styles.container}>
+            <SignupForm
+                isLoading={loading}
+                onSubmit={data => login(data)} />
+        </KeyboardAvoidingView>
+    )
 
 }
 

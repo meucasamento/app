@@ -5,24 +5,23 @@ import {
     View, 
 } from 'react-native'
 
-import styles from './style'
-
 import {
     ButtonField,
     TextField
 } from '../../components/Form/Fields'
 
-type FormSubmitedData = {
+import styles from './style'
+
+export type SignupFormData = {
     email?: string,
     password?: string
 }
 
 type Props = {
     isLoading?: boolean,
-    onSubmit(result: FormSubmitedData): void
+    onSubmit(result: SignupFormData): void
 }
 
-// class SignupForm extends Component<Props, State> {
 const SignupForm = (props: Props) => {
 
     const {
