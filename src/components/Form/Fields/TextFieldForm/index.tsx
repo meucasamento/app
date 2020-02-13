@@ -1,4 +1,4 @@
-import React, { Component, useEffect } from 'react'
+import React, { PureComponent } from 'react'
 
 import {
     TextInput,
@@ -10,34 +10,22 @@ import {
 import Text from '../../../Text'
 
 import styles from './style'
-import Rule from '../../Rules/rule.interface'
 
 type Props = {
     label?: string,
     value?: string,
+    error?: Error,
     placeholder?: string,
     isEnabled?: boolean,
     isSecure?: boolean,
     keyboardType?: KeyboardTypeOptions,
     returnKeyType?: ReturnKeyTypeOptions,
-    rules?: Rule[]
-    onChangeText?(value?: string): void
+    onChangeText?(value?: string): void,
 }
 
-type State = {
-    error?: Error
-}
+type State = {}
 
-class TextInputForm extends Component<Props, State> {
-    
-    private updateValue = (text: string) => {
-        const rules: Rule[] = this.props.rules ?? []
-        const promises = rules.map(rule => rule.validate(text))
-
-        Promise.all(promises)
-            .then(() => this.setState({error: null}))
-            .catch(error => this.setState({error}))
-    }
+class TextInputForm extends PureComponent<Props, State> {
 
     render() {
         const { 
@@ -47,10 +35,10 @@ class TextInputForm extends Component<Props, State> {
             keyboardType,
             returnKeyType,
             value,
-            placeholder
+            placeholder,
+            onChangeText,
+            error
         } = this.props
-
-        const error = this.state?.error
 
         return(
             <View style={styles.row}>
@@ -64,7 +52,7 @@ class TextInputForm extends Component<Props, State> {
                     keyboardType={keyboardType}
                     returnKeyType={returnKeyType}
                     autoCapitalize="none"
-                    onChangeText={this.updateValue}
+                    onChangeText={onChangeText}
                     placeholder={placeholder} />
                 {error && <Text style={styles.error}>{error.message}</Text>}
             </View>
