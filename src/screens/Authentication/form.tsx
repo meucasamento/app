@@ -1,10 +1,6 @@
 import React from 'react'
 import * as Yup from 'yup'
-import { 
-    withFormik, 
-    FormikProps,
-    Formik
-} from 'formik'
+import { Formik } from 'formik'
 
 import { 
     View
@@ -16,7 +12,6 @@ import {
 } from '../../components/Form/Fields'
 
 import styles from './style'
-import { format } from 'date-fns'
 
 export type FormValues = {
     email?: string,
@@ -43,7 +38,7 @@ const validationSchema = Yup.object().shape({
         .required("Campo obrigatório")
 })
 
-const SignupForm = (props: Props & FormikProps<FormValues>) => {
+const SignupForm = (props: Props) => {
     return (
         <Formik
             initialValues={{ 
@@ -67,7 +62,8 @@ const SignupForm = (props: Props & FormikProps<FormValues>) => {
                         error={touched.email && errors.email}
                         keyboardType="email-address"
                         isEnabled={!props.isLoading}
-                        placeholder="Insira seu email"
+                        placeholder="Informe seu email"
+                        returnKeyType="next"
                         onChangeText={email => setFieldValue("email", email)}
                         />
                     <TextField 
@@ -78,7 +74,9 @@ const SignupForm = (props: Props & FormikProps<FormValues>) => {
                         isEnabled={!props.isLoading}
                         isSecure={true}
                         placeholder="Insira sua senha"
+                        returnKeyType="done"
                         onChangeText={password => setFieldValue("password", password)}
+                        onSubmitEditing={handleSubmit}
                         />
                     <ButtonField
                         text="Fazer Login"

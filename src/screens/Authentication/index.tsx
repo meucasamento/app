@@ -10,7 +10,7 @@ import { SessionState } from '../../store/modules/session/session.types'
 import { authentication } from './../../store/modules/session/session.actions'
 import Authorization from '../../models/authorization.model'
 
-import SignupForm, { SignupFormData } from './form'
+import SignupForm, { FormValues } from './form'
 
 import styles from './style'
 
@@ -21,7 +21,7 @@ type Props = {
 
 const AuthenticationScreen = (props: Props) => {
 
-    const login = (data: SignupFormData) => {
+    const login = (data: FormValues) => {
         props.authentication({ 
             email: data.email, 
             password: data.password

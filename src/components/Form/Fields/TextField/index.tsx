@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 
 import {
-    TextInput,
     View,
+    TextInput,
     KeyboardTypeOptions,
     ReturnKeyTypeOptions
 } from 'react-native'
@@ -22,6 +22,7 @@ type Props = {
     returnKeyType?: ReturnKeyTypeOptions,
     onChangeText?(value?: string): void,
     onBlur?(): void,
+    onSubmitEditing?(): void
 }
 
 const TextField = (props: Props) => {
@@ -32,6 +33,7 @@ const TextField = (props: Props) => {
             <TextInput 
                 style={styles.input}
                 value={props.value}
+                placeholder={props.placeholder}
                 editable={props.isEnabled}
                 secureTextEntry={props.isSecure}
                 clearButtonMode="while-editing"
@@ -39,8 +41,8 @@ const TextField = (props: Props) => {
                 returnKeyType={props.returnKeyType}
                 autoCapitalize="none"
                 onBlur={props.onBlur}
-                onChangeText={props.onChangeText}
-                placeholder={props.placeholder} />
+                onChangeText={props.onChangeText} 
+                onSubmitEditing={props.onSubmitEditing}/>
             {props.error && <Text style={styles.error}>{props.error}</Text>}
         </View>
     )

@@ -22,6 +22,7 @@ import sessionRepository from '../../../repositories/session/session.repository'
 import { navigate } from '../../../services/navigation.service'
 import session from '../../../utils/sessionMananger'
 import Token from '../../../models/token.model'
+import { Alert } from 'react-native'
 
 function* authentication(action: Authentication) {
     try {
@@ -33,6 +34,7 @@ function* authentication(action: Authentication) {
 
         navigate("App")
     } catch(err) {
+        Alert.alert("Erro", err.message)
         yield put(authenticationFailure(err))
     }
 }

@@ -1,5 +1,7 @@
 import { StyleSheet } from 'react-native'
 
+const buttonHeight = 54
+
 export default StyleSheet.create({
     container: {
         width: "100%"
@@ -8,11 +10,11 @@ export default StyleSheet.create({
         alignSelf: "stretch"
     },
     button: {
-        minHeight: 54,
+        minHeight: buttonHeight,
         backgroundColor: "#0197F6",
         justifyContent: "center",
         alignItems: "center",
-        borderRadius: 8,
+        borderRadius: buttonHeight/2,
         shadowColor: 'black',
         shadowOpacity: 0.2,
         shadowOffset: { height: 4, width: 0 },
@@ -20,6 +22,7 @@ export default StyleSheet.create({
     },
     text: {
         color: "white",
-        fontWeight: "700"
+        fontWeight: "700",
+        textTransform: "uppercase"
     }
 })
