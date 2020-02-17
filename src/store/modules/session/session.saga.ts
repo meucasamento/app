@@ -34,7 +34,6 @@ function* authentication(action: Authentication) {
 
         navigate("App")
     } catch(err) {
-        Alert.alert("Erro", err.message)
         yield put(authenticationFailure(err))
     }
 }
