@@ -6,26 +6,30 @@ import {
 } from 'redux-saga/effects'
 
 import { 
-    SEARCH, 
-    GuestActionsTypes
+    GuestActionsTypes,
+    FETCH,
+    Fetch
 } from './guest.types'
 
 import { 
-    searchSuccess, 
-    searchFailure
+    fetchFailure,
+    fetchSuccess
 } from './guest.actions'
 
 import guestRepository from './../../../repositories/guest/guest.repository'
+import Pagination from '../../../models/response/pagination.response'
+import Guest from '../../../models/guest.model'
 
-function* search() {
+function* fetch(action: Fetch) {
     try {
-        const response = yield call(guestRepository.guests)
-        yield put(searchSuccess(response))
+        const { page, limit } = action.payload
+        const response: Pagination<Guest> = yield call(guestRepository.guests, page, limit)
+        yield put(fetchSuccess(response))
     } catch(err) {
-        yield put(searchFailure(err))
+        yield put(fetchFailure(err))
     }
 }
 
 export default all([
-    takeLatest<GuestActionsTypes>(SEARCH, search),
+    takeLatest<GuestActionsTypes>(FETCH, fetch)
 ])

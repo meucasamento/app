@@ -4,7 +4,7 @@ import Pagination from "../../models/response/pagination.response";
 import sessionMananger, { Session } from "../../utils/sessionMananger";
 
 export interface GuestRepositoryInterface {
-    guests(page: number): Promise<Pagination<Guest>>
+    guests(page: number, limit: number): Promise<Pagination<Guest>>
 }
 
 class GuestRepository implements GuestRepositoryInterface {
@@ -15,10 +15,10 @@ class GuestRepository implements GuestRepositoryInterface {
         this.session = session
     }
 
-    guests = async (page: number = 1): Promise<Pagination<Guest>> => {
+    guests = async (page: number = 1, limit: number): Promise<Pagination<Guest>> => {
         const params = {
             page,
-            limit: 100
+            limit
         }
 
         const headers = {

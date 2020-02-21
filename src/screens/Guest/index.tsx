@@ -4,10 +4,8 @@ import { Dispatch } from 'redux'
 
 import { 
     View, 
-    Switch, 
     SafeAreaView,
     SectionList,
-    TouchableHighlight,
     SectionListData
 } from 'react-native';
 
@@ -16,17 +14,17 @@ import KeyboardSpacer from 'react-native-keyboard-spacer'
 import Guest from '../../models/guest.model';
 
 import { GuestState } from '../../store/modules/guest/guest.types'
-import { search } from '../../store/modules/guest/guest.actions'
+import { fetch } from '../../store/modules/guest/guest.actions'
 
 import Text from '../../components/Text'
 import Search from '../../components/Search';
 
 import styles from './style'
+import { GuestRow } from '../../components/GuestRow';
 
 type Props = {
     guest: GuestState,
-    search(query: string): void,
-    // update(guest: Guest, status: boolean): void
+    fetch(page: number): void
 }
 
 type State = {}
@@ -37,7 +35,7 @@ class GuestScreen extends Component<Props, State> {
     }
 
     componentDidMount() {
-        this.props.search("sdfsdf")
+        this.props.fetch(3)
     }
 
     private addGuest = () => {
@@ -54,25 +52,6 @@ class GuestScreen extends Component<Props, State> {
                 <Text style={styles.sectionText}> {section.title}</Text>
             </SafeAreaView>
         </View>
-    )
-
-    private rowView = (guest: Guest) => (
-        <SafeAreaView>
-            <TouchableHighlight
-                onPress={() => this.toggleGuestConfirmation(guest, !guest.isConfirmed)}
-                underlayColor="gray">
-                <View style={styles.row}>
-                    <View style={styles.leftContainer}>
-                        <Text>{guest.name}</Text>
-                    </View>
-                    <View style={styles.rightContainer}>
-                        <Switch
-                            value={guest.isConfirmed }
-                            onValueChange={status => this.toggleGuestConfirmation(guest, status)}/>
-                    </View>
-                </View>
-            </TouchableHighlight>
-        </SafeAreaView>
     )
 
     private emptyRow = () => (
@@ -92,13 +71,13 @@ class GuestScreen extends Component<Props, State> {
             <View style={{ flex: 1 }}>
                 <Search 
                     placeholder="Pesquisar por um convidado"
-                    onChangedText={text => this.props.search(text)}/>
+                    onChangedText={text => {}}/>
                 <SectionList
                     style={styles.list}
                     sections={sections}
                     renderSectionHeader={({section}) => this.sectionView(section)}
                     keyExtractor={item => item._id}
-                    renderItem={({item}) => this.rowView(item)}
+                    renderItem={({item}) => <GuestRow guest={item} />}
                     ListEmptyComponent={this.emptyRow}
                     ItemSeparatorComponent={this.separator}
                     showsVerticalScrollIndicator={false}
@@ -114,7 +93,7 @@ class GuestScreen extends Component<Props, State> {
 const mapStateToProps = (state: Props) => state
 
 const mapDipatchToProps = (dispatch: Dispatch) => ({
-    search: (query: string) => dispatch(search(query))
+    fetch: (page: number) => dispatch(fetch(page))
 })
 
 export default connect(
