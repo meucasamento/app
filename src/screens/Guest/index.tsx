@@ -7,7 +7,8 @@ import {
     SectionList,
     RefreshControl,
     ActivityIndicator,
-    SectionListData
+    SectionListData,
+    Alert
 } from 'react-native';
 
 import KeyboardSpacer from 'react-native-keyboard-spacer'
@@ -54,7 +55,10 @@ const GuestScreen = (props: Props) => {
     )
 
     const renderGuestRow = (guest: Guest) => (
-        <GuestRow guest={guest} />
+        <GuestRow 
+            guest={guest}
+            onPress={guest => Alert.alert(guest.name, "Nome do convidado")}
+            onValueChange={(status, guest) => console.log(status)}/>
     )
 
     const renderEmptyRow = () => (

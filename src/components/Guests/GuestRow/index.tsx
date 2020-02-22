@@ -12,13 +12,15 @@ import Text from './../../../components/Text'
 import styles from './styles'
 
 type Props = {
-    guest: Guest
+    guest: Guest,
+    onPress?(guest: Guest): void,
+    onValueChange?(status: boolean, guest: Guest): void
 }
 
 const GuestRow = (props: Props) => (
     <SafeAreaView>
         <TouchableHighlight
-            onPress={() => console.log("Pressed")}
+            onPress={() => props.onPress && props.onPress(props.guest)}
             underlayColor="gray">
             <View style={styles.row}>
                 <View style={styles.leftContainer}>
@@ -27,7 +29,7 @@ const GuestRow = (props: Props) => (
                 <View style={styles.rightContainer}>
                     <Switch
                         value={props.guest.isConfirmed }
-                        onValueChange={status => console.log(status)}/>
+                        onValueChange={status => props.onValueChange && props.onValueChange(status, props.guest)}/>
                 </View>
             </View>
         </TouchableHighlight>
