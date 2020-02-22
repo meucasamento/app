@@ -1,10 +1,4 @@
 import {
-    STORE,
-    REMOVE,
-    UPDATE,
-    SEARCH,
-    SEARCH_SUCCESS,
-    SEARCH_FAILURE,
     GuestState,
     GuestActionsTypes,
     FETCH,
@@ -18,6 +12,12 @@ const initialState: GuestState = {
     guests: [],
     loading: false,
     sections: [],
+    pagination: {
+        limit: 1,
+        page: 1,
+        pages: 1,
+        total: 1
+    },
     report: {
         total: 0,
         confirmed: 0,
@@ -37,13 +37,27 @@ export default function reducer(
                 loading: true
             }
         case FETCH_SUCCESS:
+            const payload = action.payload
+            
+            const { 
+                page,
+                pages
+            } = payload.pagination
+
+            if (page > pages) {
+                return {
+                    ...state,
+                    loading: false
+                }
+            }
+
+            const guests = page == 1 ? payload.items : [...state.guests, ...payload.items]
+
             return {
                 ...state,
                 loading: false,
-                guests: action.payload.items,
-                sections: [
-                    { title: "Convidados", data: action.payload.items }
-                ]
+                guests,
+                pagination: payload.pagination
             }
         case FETCH_FAILURE:
             return {
@@ -51,26 +65,6 @@ export default function reducer(
                 loading: false,
                 error: action.payload
             }
-        // case SEARCH:
-        //     return {
-        //         ...state,
-        //         loading: true
-        //     }
-        // case SEARCH_SUCCESS:
-        //     return {
-        //         ...state,
-        //         loading: false,
-        //         guests: action.payload.items,
-        //         sections: [
-        //             { title: "Convidados", data: action.payload.items }
-        //         ]
-        //     }
-        // case SEARCH_FAILURE:
-        //     return {
-        //         ...state,
-        //         loading: false,
-        //         error: action.payload
-        //     }
         default:
             return state
     }

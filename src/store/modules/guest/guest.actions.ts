@@ -9,7 +9,7 @@ import {
 } from './guest.types'
 
 import Guest from '../../../models/guest.model'
-import Pagination from '../../../models/response/pagination.response'
+import { PaginationResult } from '../../../models/response/pagination.response'
 
 // SEARCH
 
@@ -35,7 +35,7 @@ export const fetch = (page: number, limit: number = 10): GuestActionsTypes => ({
     payload: { page, limit }
 })
 
-export const fetchSuccess = (result: Pagination<Guest>): GuestActionsTypes => ({
+export const fetchSuccess = (result: PaginationResult<Guest>): GuestActionsTypes => ({
     type: FETCH_SUCCESS,
     payload: result
 })

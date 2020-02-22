@@ -1,29 +1,29 @@
 export default class Logger {
 
     request = (data: any) => {
-        console.log(' ')
-        console.log(`######### REQUEST #########`)
-        console.log(`DATE: ${Date().toString()}`)
-        {data.status && console.log(`STATUS: ${data.status}`)}
-        console.log(`URL: ${data.baseURL}`)
-        console.log(`METHOD: ${data.method}`)
-        console.log(`HEADERS: ${JSON.stringify(data.headers)}`)
-        {data.data && console.log(`DATA: ${JSON.stringify(data.data)}`)}
-        console.log(`###########################`)
-        console.log(' ')
+        // console.log(' ')
+        // console.log(`######### REQUEST #########`)
+        // console.log(`DATE: ${Date().toString()}`)
+        // {data.status && console.log(`STATUS: ${data.status}`)}
+        // console.log(`URL: ${data.baseURL}`)
+        // console.log(`METHOD: ${data.method}`)
+        // console.log(`HEADERS: ${JSON.stringify(data.headers)}`)
+        // {data.data && console.log(`DATA: ${JSON.stringify(data.data)}`)}
+        // console.log(`###########################`)
+        // console.log(' ')
     }
 
     response = (data: any) => {
-        console.log(' ')
-        console.log(`######### RESPONSE #########`)
-        console.log(`DATE: ${Date().toString()}`)
-        {data.status && console.log(`STATUS: ${data.status}`)}
-        console.log(`URL: ${data.config.baseURL}`)
-        console.log(`METHOD: ${data.config.method}`)
-        console.log(`HEADERS: ${JSON.stringify(data.headers)}`)
-        {data.data && console.log(`DATA: ${JSON.stringify(data.data)}`)}
-        console.log(`###########################`)
-        console.log(' ')
+        // console.log(' ')
+        // console.log(`######### RESPONSE #########`)
+        // console.log(`DATE: ${Date().toString()}`)
+        // {data.status && console.log(`STATUS: ${data.status}`)}
+        // console.log(`URL: ${data.config.baseURL}`)
+        // console.log(`METHOD: ${data.config.method}`)
+        // console.log(`HEADERS: ${JSON.stringify(data.headers)}`)
+        // {data.data && console.log(`DATA: ${JSON.stringify(data.data)}`)}
+        // console.log(`###########################`)
+        // console.log(' ')
     }
 
     error = (error: any, type: "request" | "response") => {

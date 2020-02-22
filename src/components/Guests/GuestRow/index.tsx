@@ -7,7 +7,7 @@ import {
     Switch
 } from 'react-native'
 
-import Guest from '../../models/guest.model'
+import Guest from '../../../models/guest.model'
 
 import styles from './styles'
 
@@ -15,7 +15,7 @@ type Props = {
     guest: Guest
 }
 
-export const GuestRow = (props: Props) => (
+const GuestRow = (props: Props) => (
     <SafeAreaView>
         <TouchableHighlight
             onPress={() => this.toggleGuestConfirmation(props.guest, !props.guest.isConfirmed)}
@@ -33,3 +33,5 @@ export const GuestRow = (props: Props) => (
         </TouchableHighlight>
     </SafeAreaView>
 )
+
+export default GuestRow

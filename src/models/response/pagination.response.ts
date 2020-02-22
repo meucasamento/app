@@ -1,9 +1,11 @@
-export default interface Pagination<T> {
+export interface Pagination {
+    limit: number,
+    page: number,
+    pages: number,
+    total: number
+}
+
+export interface PaginationResult<T> {
     items: T[],
-    pagination: {
-        limit: number,
-        page: number,
-        pages: number,
-        total: number
-    }
+    pagination: Pagination
 }

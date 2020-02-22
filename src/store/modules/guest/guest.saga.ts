@@ -2,13 +2,15 @@ import {
     put,
     all,
     call,
-    takeLatest
+    takeLatest,
+    select
 } from 'redux-saga/effects'
 
 import { 
     GuestActionsTypes,
     FETCH,
-    Fetch
+    Fetch,
+    GuestState
 } from './guest.types'
 
 import { 
@@ -17,13 +19,19 @@ import {
 } from './guest.actions'
 
 import guestRepository from './../../../repositories/guest/guest.repository'
-import Pagination from '../../../models/response/pagination.response'
+import { PaginationResult } from '../../../models/response/pagination.response'
 import Guest from '../../../models/guest.model'
 
 function* fetch(action: Fetch) {
+    const store = yield select()
+
+    const {
+        page,
+        limit
+    } = action.payload
+
     try {
-        const { page, limit } = action.payload
-        const response: Pagination<Guest> = yield call(guestRepository.guests, page, limit)
+        const response: PaginationResult<Guest> = yield call(guestRepository.guests, page, limit)
         yield put(fetchSuccess(response))
     } catch(err) {
         yield put(fetchFailure(err))
