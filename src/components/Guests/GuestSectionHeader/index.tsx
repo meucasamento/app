@@ -5,7 +5,7 @@ import {
     SafeAreaView
 } from 'react-native'
 
-import Text from './../../../components/Text'
+import Text from '../../Text'
 
 import { SectionListData } from 'react-native'
 import Guest from '../../../models/guest.model'
@@ -15,7 +15,7 @@ type Props = {
     section: SectionListData<Guest>
 }
 
-const GuestSection = (props: Props) => {
+const GuestSectionHeader = (props: Props) => {
     return (
         <View style={styles.section}>
             <SafeAreaView>
@@ -25,4 +25,4 @@ const GuestSection = (props: Props) => {
     )
 }
 
-export default GuestSection
+export default GuestSectionHeader

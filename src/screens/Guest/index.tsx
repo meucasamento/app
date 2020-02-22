@@ -7,7 +7,8 @@ import {
     SectionList,
     FlatList,
     RefreshControl,
-    ActivityIndicator
+    ActivityIndicator,
+    SectionListData
 } from 'react-native';
 
 import KeyboardSpacer from 'react-native-keyboard-spacer'
@@ -23,7 +24,7 @@ import Search from '../../components/Search';
 import styles from './style'
 
 import GuestRow from '../../components/Guests/GuestRow';
-import GuestSection from '../../components/Guests/GuestSection'
+import GuestSectionHeader from '../../components/Guests/GuestSectionHeader'
 
 type Props = {
     guest: GuestState,
@@ -48,6 +49,10 @@ const GuestScreen = (props: Props) => {
 
         props.fetch(nextPage)
     }
+
+    const renderGuestSectionHeader = (section: SectionListData<Guest>) => (
+        <GuestSectionHeader section={section}/>
+    )
 
     const renderGuestRow = (guest: Guest) => (
         <GuestRow guest={guest} />
@@ -87,7 +92,7 @@ const GuestScreen = (props: Props) => {
     }
 
     const { 
-        guests
+        sections
     } = props.guest
 
     return(
@@ -95,9 +100,10 @@ const GuestScreen = (props: Props) => {
             <Search 
                 placeholder="Pesquisar por um convidado"
                 onChangedText={text => {}}/>
-            <FlatList<Guest>
+            <SectionList<Guest>
                 style={styles.list}
-                data={guests}
+                renderSectionHeader={({section}) => renderGuestSectionHeader(section)}
+                sections={sections}
                 keyExtractor={item => item._id}
                 renderItem={({item}) => renderGuestRow(item)}
                 refreshControl={renderRefreshControl()}

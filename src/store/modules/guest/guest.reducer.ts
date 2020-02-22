@@ -4,6 +4,7 @@ import {
     FETCH,
     FETCH_SUCCESS,
     FETCH_FAILURE,
+    GuestSection,
 } from './guest.types'
 
 import Guest from '../../../models/guest.model'
@@ -55,6 +56,7 @@ export default function reducer(
                 ...state,
                 loading: false,
                 guests,
+                sections: organizeSections(guests),
                 pagination: payload.pagination
             }
         case FETCH_FAILURE:
@@ -66,4 +68,16 @@ export default function reducer(
         default:
             return state
     }
+}
+
+// Private Methods
+
+const organizeSections = (guests: Guest[]): GuestSection[] => {
+    const godfathers = guests.filter(guest => guest.isGodfather)
+    const others = guests.filter(guest => !guest.isGodfather)
+
+    return [
+        { title: `Padrinhos`, data: godfathers },
+        { title: `Convidados`, data: others }
+    ]
 }
