@@ -33,6 +33,7 @@ const AuthenticationScreen = (props: Props) => {
             behavior="padding"
             style={styles.container}>
             <SignupForm
+                formProps={{email: "adrianosouzacostaios@gmail.com", password: "12345678"}}
                 isLoading={props.session.loading}
                 onSubmit={data => login(data)} />
         </KeyboardAvoidingView>

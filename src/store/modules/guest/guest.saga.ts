@@ -23,8 +23,6 @@ import { PaginationResult } from '../../../models/response/pagination.response'
 import Guest from '../../../models/guest.model'
 
 function* fetch(action: Fetch) {
-    const store = yield select()
-
     const {
         page,
         limit

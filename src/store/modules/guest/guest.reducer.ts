@@ -38,17 +38,15 @@ export default function reducer(
             }
         case FETCH_SUCCESS:
             const payload = action.payload
-            
-            const { 
-                page,
-                pages
-            } = payload.pagination
+            const page = payload.pagination.page
 
-            if (page > pages) {
-                return {
-                    ...state,
-                    loading: false
-                }
+            const totalPages = state.pagination.pages
+            const currentPage = state.pagination.page
+
+            if (page > 1) {
+                const response = {...state, loading: false}
+                if (page > totalPages) return response
+                if (page < currentPage) return response
             }
 
             const guests = page == 1 ? payload.items : [...state.guests, ...payload.items]

@@ -32,21 +32,17 @@ type Props = {
 
 const GuestScreen = (props: Props) => {
 
-    const [page, setPage] = useState(1)
-
-    useEffect(() => {
-        props.fetch(page)
-    }, [page])
-
     const onRefresh = () => {
-        setPage(1)
+        props.fetch(1)
     }
 
     const nextPage = () => { 
         if (props.guest.loading) return
+
         const page = props.guest.pagination.page
         const nextPage = page + 1
-        setPage(nextPage)
+
+        props.fetch(nextPage)
     }
 
     const renderGuestRow = (guest: Guest) => (
@@ -61,18 +57,30 @@ const GuestScreen = (props: Props) => {
         <View style={ styles.separator }></View>
     )
 
-    const renderRefreshControl = () => (
-        <RefreshControl 
-        refreshing={false} 
-        onRefresh={() => onRefresh()} />
-    )
+    const renderRefreshControl = () => {
+        const {
+            page
+        } = props.guest.pagination
 
-    const renderFooter = () => (
-        <ActivityIndicator 
-            style={{ margin: 20 }}
-            animating={props.guest.loading && props.guest.guests.length > 1}
-            hidesWhenStopped={true}/>
-    )
+        return (
+            <RefreshControl 
+            refreshing={false} 
+            onRefresh={() => onRefresh()} />
+        )
+    }
+
+    const renderFooter = () => {
+        const {
+            page,
+            pages
+        } = props.guest.pagination
+
+        return (
+            <ActivityIndicator 
+                animating={page < pages}
+                hidesWhenStopped={true}/>
+        )
+    }
 
     const { 
         guests
