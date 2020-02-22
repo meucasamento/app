@@ -2,15 +2,13 @@ import {
     put,
     all,
     call,
-    takeLatest,
-    select
+    takeLatest
 } from 'redux-saga/effects'
 
 import { 
     GuestActionsTypes,
     FETCH,
     Fetch,
-    GuestState
 } from './guest.types'
 
 import { 

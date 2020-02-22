@@ -32,6 +32,10 @@ type Props = {
 
 const GuestScreen = (props: Props) => {
 
+    useEffect(() => {
+        onRefresh()
+    }, [])
+
     const onRefresh = () => {
         props.fetch(1)
     }
