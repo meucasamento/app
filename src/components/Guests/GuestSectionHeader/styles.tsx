@@ -9,7 +9,7 @@ export default StyleSheet.create({
         backgroundColor: 'white'
     },
     sectionText: {
-        fontSize: 18,
+        fontSize: 22,
         fontWeight: "bold"
     }
 })

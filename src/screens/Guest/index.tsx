@@ -5,7 +5,6 @@ import { Dispatch } from 'redux'
 import { 
     View, 
     SectionList,
-    FlatList,
     RefreshControl,
     ActivityIndicator,
     SectionListData
@@ -102,8 +101,8 @@ const GuestScreen = (props: Props) => {
                 onChangedText={text => {}}/>
             <SectionList<Guest>
                 style={styles.list}
-                renderSectionHeader={({section}) => renderGuestSectionHeader(section)}
                 sections={sections}
+                renderSectionHeader={({section}) => renderGuestSectionHeader(section)}
                 keyExtractor={item => item._id}
                 renderItem={({item}) => renderGuestRow(item)}
                 refreshControl={renderRefreshControl()}

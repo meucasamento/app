@@ -3,12 +3,12 @@ import {
     SafeAreaView,
     TouchableHighlight,
     View,
-    Text,
     Switch
 } from 'react-native'
 
 import Guest from '../../../models/guest.model'
 
+import Text from './../../../components/Text'
 import styles from './styles'
 
 type Props = {
@@ -18,7 +18,7 @@ type Props = {
 const GuestRow = (props: Props) => (
     <SafeAreaView>
         <TouchableHighlight
-            onPress={() => this.toggleGuestConfirmation(props.guest, !props.guest.isConfirmed)}
+            onPress={() => console.log("Pressed")}
             underlayColor="gray">
             <View style={styles.row}>
                 <View style={styles.leftContainer}>
@@ -27,7 +27,7 @@ const GuestRow = (props: Props) => (
                 <View style={styles.rightContainer}>
                     <Switch
                         value={props.guest.isConfirmed }
-                        onValueChange={status => this.toggleGuestConfirmation(props.guest, status)}/>
+                        onValueChange={status => console.log(status)}/>
                 </View>
             </View>
         </TouchableHighlight>
