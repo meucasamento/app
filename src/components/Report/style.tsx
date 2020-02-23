@@ -18,9 +18,11 @@ export default StyleSheet.create({
         padding: 16,
         alignItems: "center",
         borderRadius: 8,
-        backgroundColor: "#1CFEBA"
+        backgroundColor: "#EFE7DA"
     },
-    label: {},
+    label: {
+        // color: "#fff"
+    },
     report_content_text: {
         fontWeight: "bold"
     }

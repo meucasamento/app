@@ -29,28 +29,28 @@ class Report extends Component<Props, State> {
                 <View style={styles.report_content_container}>
                     <View style={styles.report_content}>
                         <Text style={styles.label}>Total convidados</Text>
-                        <Text style={styles.report_content_text}>{ report.total }</Text>
+                        <Text style={styles.label}>{ report.total }</Text>
                     </View>
                 </View>
                 
                 <View style={styles.report_content_container}>
                     <View style={styles.report_content}>
                         <Text style={styles.label}>Confirmados</Text>
-                        <Text style={styles.report_content_text}>{ report.confirmed }</Text>
+                        <Text style={styles.label}>{ report.confirmed }</Text>
                     </View>
                 </View>
 
                 <View style={styles.report_content_container}>
                     <View style={styles.report_content}>
                         <Text style={styles.label}>Não confirmados</Text>
-                        <Text style={styles.report_content_text}>{ report.unconfirmed }</Text>
+                        <Text style={styles.label}>{ report.unconfirmed }</Text>
                     </View>
                 </View>
 
                 <View style={styles.report_content_container}>
                     <View style={styles.report_content}>
                         <Text style={styles.label}>Padrinhos</Text>
-                        <Text style={styles.report_content_text}>{ report.godfathers }</Text>
+                        <Text style={styles.label}>{ report.godfathers }</Text>
                     </View>
                 </View>
             </View>

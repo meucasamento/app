@@ -25,6 +25,7 @@ import {
 } from '../../components/Guests/GuestRow';
 
 import GuestSectionHeader from '../../components/Guests/GuestSectionHeader'
+import AddButton from '../../components/Guests/AddButton';
 
 type Props = {
     guest: GuestState,
@@ -55,17 +56,14 @@ const GuestScreen = (props: Props) => {
     )
 
     const renderSectionFooter = (section: SectionListData<Guest>) => {
-        if (section.data.length > 0) return null
+        if (section.data.length > 0) return
         return <EmptyGuestRow message={`Ainda não existem ${section.title.toLowerCase()}`}/>
     }
 
     const renderGuestRow = (guest: Guest) => (
         <GuestRow 
             guest={guest}
-            onPress={guest => Alert.alert(guest.name, "Nome do convidado")}
-            onValueChange={(status, guest) => {
-                guest.isConfirmed = status
-            }}/>
+            onPress={guest => Alert.alert(guest.name, "Nome do convidado")}/>
     )
 
     const renderEmptyRow = () => (
@@ -106,10 +104,13 @@ const GuestScreen = (props: Props) => {
     } = props.guest
 
     return(
-        <View style={{ flex: 1 }}>
+        <View style={styles.container}>
             <Search 
                 placeholder="Pesquisar por um convidado"
                 onChangedText={text => {}}/>
+            <AddButton onPressed={() => console.log("sdfsdf")}>
+                <Text style={styles.add}>+</Text>
+            </AddButton>
             <SectionList<Guest>
                 style={styles.list}
                 sections={sections}

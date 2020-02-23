@@ -2,8 +2,7 @@ import React from 'react'
 import {
     SafeAreaView,
     TouchableHighlight,
-    View,
-    Switch
+    View
 } from 'react-native'
 
 import Guest from '../../../models/guest.model'
@@ -13,8 +12,15 @@ import styles from './styles'
 
 type Props = {
     guest: Guest,
-    onPress?(guest: Guest): void,
-    onValueChange?(status: boolean, guest: Guest): void
+    onPress?(guest: Guest): void
+}
+
+const renderConfirmedTag = (guest: Guest) => {
+    if (guest.isConfirmed) {
+        return <Text style={styles.confirmedTag}>Convite Entregue</Text>
+    } else {
+        return <Text style={styles.noConfirmedTag}>Convite pendente</Text>
+    }
 }
 
 export const GuestRow = (props: Props) => (
@@ -27,9 +33,7 @@ export const GuestRow = (props: Props) => (
                     <Text>{props.guest.name}</Text>
                 </View>
                 <View style={styles.rightContainer}>
-                    <Switch
-                        value={props.guest.isConfirmed}
-                        onValueChange={status => props.onValueChange && props.onValueChange(status, props.guest)}/>
+                    {renderConfirmedTag(props.guest)}
                 </View>
             </View>
         </TouchableHighlight>
