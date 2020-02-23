@@ -28,7 +28,7 @@ export const GuestRow = (props: Props) => (
                 </View>
                 <View style={styles.rightContainer}>
                     <Switch
-                        value={props.guest.isConfirmed }
+                        value={props.guest.isConfirmed}
                         onValueChange={status => props.onValueChange && props.onValueChange(status, props.guest)}/>
                 </View>
             </View>

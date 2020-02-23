@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux'
 import { Dispatch } from 'redux'
-
+import KeyboardSpacer from 'react-native-keyboard-spacer'
 import { 
     View, 
     SectionList,
@@ -11,16 +11,12 @@ import {
     Alert
 } from 'react-native';
 
-import KeyboardSpacer from 'react-native-keyboard-spacer'
-
 import Guest from '../../models/guest.model';
-
 import { GuestState } from '../../store/modules/guest/guest.types'
 import { fetch } from '../../store/modules/guest/guest.actions'
 
 import Text from '../../components/Text'
 import Search from '../../components/Search';
-
 import styles from './style'
 
 import {
@@ -67,7 +63,9 @@ const GuestScreen = (props: Props) => {
         <GuestRow 
             guest={guest}
             onPress={guest => Alert.alert(guest.name, "Nome do convidado")}
-            onValueChange={(status, guest) => console.log(status)}/>
+            onValueChange={(status, guest) => {
+                guest.isConfirmed = status
+            }}/>
     )
 
     const renderEmptyRow = () => (
@@ -125,7 +123,7 @@ const GuestScreen = (props: Props) => {
                 ListFooterComponent={renderFooter}
                 showsVerticalScrollIndicator={false}
                 onEndReached={nextPage}
-                onEndReachedThreshold={0.2}/>
+                onEndReachedThreshold={0.3}/>
             <KeyboardSpacer/>
         </View>
     )
