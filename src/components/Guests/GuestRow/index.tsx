@@ -17,7 +17,7 @@ type Props = {
     onValueChange?(status: boolean, guest: Guest): void
 }
 
-const GuestRow = (props: Props) => (
+export const GuestRow = (props: Props) => (
     <SafeAreaView>
         <TouchableHighlight
             onPress={() => props.onPress && props.onPress(props.guest)}
@@ -36,4 +36,12 @@ const GuestRow = (props: Props) => (
     </SafeAreaView>
 )
 
-export default GuestRow
+type EmptyProps = {
+    message: string
+}
+
+export const EmptyGuestRow = (props: EmptyProps) => (
+    <View style={styles.row}>
+        <Text style={styles.emptyMessage}>{props.message}</Text>
+    </View>
+)

@@ -23,7 +23,11 @@ import Search from '../../components/Search';
 
 import styles from './style'
 
-import GuestRow from '../../components/Guests/GuestRow';
+import {
+    GuestRow,
+    EmptyGuestRow
+} from '../../components/Guests/GuestRow';
+
 import GuestSectionHeader from '../../components/Guests/GuestSectionHeader'
 
 type Props = {
@@ -50,9 +54,14 @@ const GuestScreen = (props: Props) => {
         props.fetch(nextPage)
     }
 
-    const renderGuestSectionHeader = (section: SectionListData<Guest>) => (
+    const renderSectionHeader = (section: SectionListData<Guest>) => (
         <GuestSectionHeader section={section}/>
     )
+
+    const renderSectionFooter = (section: SectionListData<Guest>) => {
+        if (section.data.length > 0) return null
+        return <EmptyGuestRow message={`Ainda não existem ${section.title.toLowerCase()}`}/>
+    }
 
     const renderGuestRow = (guest: Guest) => (
         <GuestRow 
@@ -106,7 +115,8 @@ const GuestScreen = (props: Props) => {
             <SectionList<Guest>
                 style={styles.list}
                 sections={sections}
-                renderSectionHeader={({section}) => renderGuestSectionHeader(section)}
+                renderSectionHeader={({section}) => renderSectionHeader(section)}
+                renderSectionFooter={({section}) => renderSectionFooter(section)}
                 keyExtractor={item => item._id}
                 renderItem={({item}) => renderGuestRow(item)}
                 refreshControl={renderRefreshControl()}

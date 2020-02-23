@@ -16,5 +16,11 @@ export default StyleSheet.create({
     },
     rightContainer: {
         marginLeft: 'auto'
+    },
+    emptyMessage: {
+        fontSize: 14,
+        color: "gray",
+        flex: 1,
+        textAlign: "center"
     }
 })
