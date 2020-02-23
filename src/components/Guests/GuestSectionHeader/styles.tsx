@@ -6,7 +6,7 @@ export default StyleSheet.create({
         paddingLeft: 14,
         paddingRight: 14,
         paddingBottom: 12,
-        backgroundColor: 'white'
+        backgroundColor: '#fff'
     },
     sectionText: {
         fontSize: 22,

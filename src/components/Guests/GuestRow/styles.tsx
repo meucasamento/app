@@ -8,7 +8,7 @@ export default StyleSheet.create({
         paddingTop: 8,
         flexDirection: 'row',
         alignItems: 'center',
-        backgroundColor: 'white'
+        backgroundColor: '#fff'
     },
     leftContainer: {
         flex: 1,
@@ -19,7 +19,7 @@ export default StyleSheet.create({
     },
     emptyMessage: {
         fontSize: 14,
-        color: "gray",
+        color: "#c5c5c5",
         flex: 1,
         textAlign: "center"
     }
