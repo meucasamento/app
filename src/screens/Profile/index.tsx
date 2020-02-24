@@ -3,12 +3,13 @@ import { connect } from 'react-redux'
 import { Dispatch } from 'redux'
 
 import { 
-    View, Button
+    View
 } from 'react-native'
 
 import { logout } from './../../store/modules/session/session.actions'
 
 import styles from './style'
+import Button from '../../components/Button'
 
 type Props = {
     logout(): void
@@ -21,7 +22,7 @@ class ProfileScreen extends Component<Props, State> {
         return(
             <View style={styles.container}>
                 <Button 
-                title="Logout"
+                text="Logout"
                 onPress={() => this.props.logout()}/>
             </View>
         )

@@ -16,7 +16,8 @@ const AddButton = (props: Props) => {
 
     const handlePressIn = () => {
         Animated.spring(animatedValue, {
-            toValue: .8       
+            toValue: .8,
+            useNativeDriver: true  
         }).start()
     }
 
@@ -24,7 +25,8 @@ const AddButton = (props: Props) => {
         Animated.spring(animatedValue, {
             toValue: 1,
             friction: 3,
-            tension: 40
+            tension: 40,
+            useNativeDriver: true
         }).start()
     }
 
