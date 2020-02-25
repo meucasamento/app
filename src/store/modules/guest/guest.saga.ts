@@ -27,7 +27,7 @@ function* fetch(action: Fetch) {
     } = action.payload
 
     try {
-        const response: PaginationResult<Guest> = yield call(guestRepository.guests, page, limit)
+        const response: PaginationResult<Guest> = yield call(guestRepository.fetch, page, limit)
         yield put(fetchSuccess(response))
     } catch(err) {
         yield put(fetchFailure(err))

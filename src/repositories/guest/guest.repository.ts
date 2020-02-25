@@ -4,7 +4,7 @@ import { PaginationResult } from "../../models/response/pagination.response";
 import sessionMananger, { Session } from "../../utils/sessionMananger";
 
 export interface GuestRepositoryInterface {
-    guests(page: number, limit: number): Promise<PaginationResult<Guest>>
+    fetch(page: number, limit: number): Promise<PaginationResult<Guest>>
     store(guest: Guest): Promise<Guest>
     update(guest: Guest): Promise<Guest>
     delete(guest: Guest): Promise<void>
@@ -18,7 +18,7 @@ class GuestRepository implements GuestRepositoryInterface {
         this.session = session
     }
 
-    guests = async (page: number = 1, limit: number = 10): Promise<PaginationResult<Guest>> => {
+    fetch = async (page: number = 1, limit: number = 10): Promise<PaginationResult<Guest>> => {
         const params = {
             page,
             limit

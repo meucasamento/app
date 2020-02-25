@@ -4,10 +4,6 @@ import Guest from "../../../models/guest.model"
 import GuestReport from "../../../models/guestReport.model"
 import { Pagination, PaginationResult } from "../../../models/response/pagination.response" 
 
-export const SEARCH = '@guest/SEARCH'
-export const SEARCH_SUCCESS = '@guest/SEARCH_SUCCESS'
-export const SEARCH_FAILURE = '@guest/SEARCH_FAILURE'
-
 export const FETCH = '@guest/FETCH'
 export const FETCH_SUCCESS = '@guest/FETCH_SUCCESS'
 export const FETCH_FAILURE = '@guest/FETCH_FAILURE'
@@ -36,25 +32,6 @@ export interface GuestState {
     pagination: Pagination
     report: GuestReport
 }
-
-// Search Types
-
-interface Search {
-    type: typeof SEARCH,
-    payload: string
-}
-
-interface SearchSuccess {
-    type: typeof SEARCH_SUCCESS
-    payload: PaginationResult<Guest>
-}
-
-interface SearchFailure {
-    type: typeof SEARCH_FAILURE
-    payload: Error
-}
-
-export type SearchTypes = Search | SearchSuccess | SearchFailure
 
 // Fetch Types
 
@@ -137,4 +114,4 @@ export type DeleteTypes = Delete | DeleteSuccess | DeleteFailure
 
 // All Types
 
-export type GuestActionsTypes = SearchTypes | FetchTypes | StoreTypes | UpdateTypes | DeleteTypes
+export type GuestActionsTypes = FetchTypes | StoreTypes | UpdateTypes | DeleteTypes
