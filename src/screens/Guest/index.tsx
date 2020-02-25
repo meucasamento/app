@@ -35,21 +35,8 @@ type Props = {
 const GuestScreen = (props: Props) => {
 
     useEffect(() => {
-        onRefresh()
+        handlerOnRefresh()
     }, [])
-
-    const onRefresh = () => {
-        props.fetch(1)
-    }
-
-    const nextPage = () => { 
-        if (props.guest.loading) return
-
-        const page = props.guest.pagination.page
-        const nextPage = page + 1
-
-        props.fetch(nextPage)
-    }
 
     const renderSectionHeader = (section: SectionListData<Guest>) => (
         <GuestSectionHeader section={section}/>
@@ -82,7 +69,7 @@ const GuestScreen = (props: Props) => {
         return (
             <RefreshControl 
             refreshing={false} 
-            onRefresh={() => onRefresh()} />
+            onRefresh={handlerOnRefresh} />
         )
     }
 
@@ -110,6 +97,23 @@ const GuestScreen = (props: Props) => {
         ]
     }
 
+    const handlerOnPressedAddButton = () => {
+
+    }
+
+    const handlerOnRefresh = () => {
+        props.fetch(1)
+    }
+
+    const handlerNextPage = () => { 
+        if (props.guest.loading) return
+
+        const page = props.guest.pagination.page
+        const nextPage = page + 1
+
+        props.fetch(nextPage)
+    }
+
     const { 
     } = props.guest
 
@@ -118,7 +122,7 @@ const GuestScreen = (props: Props) => {
             <Search 
                 placeholder="Pesquisar por um convidado"
                 onChangedText={text => {}}/>
-            <AddButton onPressed={() => console.log("sdfsdf")}>
+            <AddButton onPressed={handlerOnPressedAddButton}>
                 <Text style={styles.add}>+</Text>
             </AddButton>
             <SectionList<Guest>
@@ -133,7 +137,7 @@ const GuestScreen = (props: Props) => {
                 ItemSeparatorComponent={renderSeparator}
                 ListFooterComponent={renderFooter}
                 showsVerticalScrollIndicator={false}
-                onEndReached={nextPage}
+                onEndReached={handlerNextPage}
                 onEndReachedThreshold={0.3}/>
             <KeyboardSpacer/>
         </View>
