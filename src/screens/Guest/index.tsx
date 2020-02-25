@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux'
 import { Dispatch } from 'redux'
 import KeyboardSpacer from 'react-native-keyboard-spacer'
+
 import { 
     View, 
     SectionList,
@@ -25,7 +26,8 @@ import {
 } from '../../components/Guests/GuestRow';
 
 import GuestSectionHeader from '../../components/Guests/GuestSectionHeader'
-import AddButton from '../../components/Guests/AddButton';
+import AddButton from '../../components/AddButton';
+import GuestModal from '../../components/Guests/GuestModal';
 
 type Props = {
     guest: GuestState,
@@ -118,29 +120,32 @@ const GuestScreen = (props: Props) => {
     } = props.guest
 
     return(
-        <View style={styles.container}>
-            <Search 
-                placeholder="Pesquisar por um convidado"
-                onChangedText={text => {}}/>
-            <AddButton onPressed={handlerOnPressedAddButton}>
-                <Text style={styles.add}>+</Text>
-            </AddButton>
-            <SectionList<Guest>
-                style={styles.list}
-                sections={organizeSections()}
-                renderSectionHeader={({section}) => renderSectionHeader(section)}
-                renderSectionFooter={({section}) => renderSectionFooter(section)}
-                keyExtractor={item => item._id}
-                renderItem={({item}) => renderGuestRow(item)}
-                refreshControl={renderRefreshControl()}
-                ListEmptyComponent={renderEmptyRow}
-                ItemSeparatorComponent={renderSeparator}
-                ListFooterComponent={renderFooter}
-                showsVerticalScrollIndicator={false}
-                onEndReached={handlerNextPage}
-                onEndReachedThreshold={0.3}/>
-            <KeyboardSpacer/>
-        </View>
+        <>
+            <GuestModal />
+            <View style={styles.container}>
+                <Search 
+                    placeholder="Pesquisar por um convidado"
+                    onChangedText={text => {}}/>
+                <AddButton onPressed={handlerOnPressedAddButton}>
+                    <Text style={styles.add}>+</Text>
+                </AddButton>
+                <SectionList<Guest>
+                    style={styles.list}
+                    sections={organizeSections()}
+                    renderSectionHeader={({section}) => renderSectionHeader(section)}
+                    renderSectionFooter={({section}) => renderSectionFooter(section)}
+                    keyExtractor={item => item._id}
+                    renderItem={({item}) => renderGuestRow(item)}
+                    refreshControl={renderRefreshControl()}
+                    ListEmptyComponent={renderEmptyRow}
+                    ItemSeparatorComponent={renderSeparator}
+                    ListFooterComponent={renderFooter}
+                    showsVerticalScrollIndicator={false}
+                    onEndReached={handlerNextPage}
+                    onEndReachedThreshold={0.3}/>
+                <KeyboardSpacer/>
+            </View>
+        </>
     )
 
 }
