@@ -13,8 +13,16 @@ export const FETCH_SUCCESS = '@guest/FETCH_SUCCESS'
 export const FETCH_FAILURE = '@guest/FETCH_FAILURE'
 
 export const STORE = '@guest/STORE'
+export const STORE_SUCCESS = '@guest/STORE_SUCCESS'
+export const STORE_FAILURE = '@guest/STORE_FAILURE'
+
 export const UPDATE = '@guest/UPDATE'
-export const REMOVE = '@guest/REMOVE'
+export const UPDATE_SUCCESS = '@guest/UPDATE_SUCCESS'
+export const UPDATE_FAILURE = '@guest/UPDATE_FAILURE'
+
+export const DELETE = '@guest/DELETE'
+export const DELETE_SUCCESS = '@guest/DELETE_SUCCESS'
+export const DELETE_FAILURE = '@guest/DELETE_FAILURE'
 
 export interface GuestSection extends SectionListData<Guest> {
     title: string,
@@ -26,7 +34,6 @@ export interface GuestState {
     loading: boolean,
     guests: Guest[],
     pagination: Pagination
-    sections: GuestSection[],
     report: GuestReport
 }
 
@@ -71,6 +78,63 @@ interface FetchhFailure {
 
 export type FetchTypes = Fetch | FetchSuccess | FetchhFailure
 
+// Store Types
+
+export interface Store {
+    type: typeof STORE,
+    payload: Guest
+}
+
+export interface StoreSuccess {
+    type: typeof STORE_SUCCESS,
+    payload: Guest
+}
+
+export interface StoreFailure {
+    type: typeof STORE_FAILURE,
+    payload: Error
+}
+
+export type StoreTypes = Store | StoreSuccess | StoreFailure
+
+// Update Types
+
+export interface Update {
+    type: typeof UPDATE,
+    payload: Guest
+}
+
+export interface UpdateSuccess {
+    type: typeof UPDATE_SUCCESS,
+    payload: Guest
+}
+
+export interface UpdateFailure {
+    type: typeof UPDATE_FAILURE,
+    payload: Error
+}
+
+export type UpdateTypes = Update | UpdateSuccess | UpdateFailure
+
+// Remove Types
+
+export interface Delete {
+    type: typeof DELETE,
+    payload: Guest
+}
+
+export interface DeleteSuccess {
+    type: typeof DELETE_SUCCESS,
+    payload: Guest
+}
+
+export interface DeleteFailure {
+    type: typeof DELETE_FAILURE,
+    payload: Error
+}
+
+export type DeleteTypes = Delete | DeleteSuccess | DeleteFailure
+
 // All Types
 
-export type GuestActionsTypes = SearchTypes | FetchTypes
+export type GuestActionsTypes = SearchTypes | FetchTypes | StoreTypes | UpdateTypes | DeleteTypes

@@ -12,7 +12,7 @@ import {
 } from 'react-native';
 
 import Guest from '../../models/guest.model';
-import { GuestState } from '../../store/modules/guest/guest.types'
+import { GuestState, GuestSection } from '../../store/modules/guest/guest.types'
 import { fetch } from '../../store/modules/guest/guest.actions'
 
 import Text from '../../components/Text'
@@ -99,8 +99,18 @@ const GuestScreen = (props: Props) => {
         )
     }
 
+    const organizeSections = (): GuestSection[] => {
+        const guests = props.guest.guests
+        const godfathers = guests.filter(guest => guest.isGodfather)
+        const others = guests.filter(guest => !guest.isGodfather)
+    
+        return [
+            { title: `Padrinhos`, data: godfathers },
+            { title: `Convidados`, data: others }
+        ]
+    }
+
     const { 
-        sections
     } = props.guest
 
     return(
@@ -113,7 +123,7 @@ const GuestScreen = (props: Props) => {
             </AddButton>
             <SectionList<Guest>
                 style={styles.list}
-                sections={sections}
+                sections={organizeSections()}
                 renderSectionHeader={({section}) => renderSectionHeader(section)}
                 renderSectionFooter={({section}) => renderSectionFooter(section)}
                 keyExtractor={item => item._id}
