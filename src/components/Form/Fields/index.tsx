@@ -1,4 +1,4 @@
-import ButtonField from '../../Button'
+import ButtonField from './Button'
 import TextField from './TextField'
 
 export {

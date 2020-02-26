@@ -7,6 +7,7 @@ import Icon from 'react-native-vector-icons/FontAwesome5'
 import AuthenticationScreen from '../screens/Authentication'
 import HomeScreeen from '../screens/Home'
 import GuestsScreen from '../screens/Guest'
+import NewGuestScreen from '../screens/NewGuest'
 import ProfileScreen from '../screens/Profile'
 
 const iconSize = 22
@@ -32,7 +33,8 @@ const HomeStack = createStackNavigator({
 })
 
 const GuestStack = createStackNavigator({
-  Guests: GuestsScreen
+  Guests: GuestsScreen,
+  NewGuest: NewGuestScreen
 }, {
   navigationOptions: {
     tabBarLabel: "Convidados",

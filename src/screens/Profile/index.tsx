@@ -9,7 +9,7 @@ import {
 import { logout } from './../../store/modules/session/session.actions'
 
 import styles from './style'
-import Button from '../../components/Button'
+import Button from '../../components/Form/Fields/Button'
 
 type Props = {
     logout(): void

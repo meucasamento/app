@@ -8,8 +8,7 @@ import {
     SectionList,
     RefreshControl,
     ActivityIndicator,
-    SectionListData,
-    Alert
+    SectionListData
 } from 'react-native';
 
 import Guest from '../../models/guest.model';
@@ -27,7 +26,7 @@ import {
 
 import GuestSectionHeader from '../../components/Guests/GuestSectionHeader'
 import AddButton from '../../components/AddButton';
-import GuestModal from '../../components/Guests/GuestModal';
+import { navigate } from './../../services/navigation.service'
 
 type Props = {
     guest: GuestState,
@@ -52,7 +51,7 @@ const GuestScreen = (props: Props) => {
     const renderGuestRow = (guest: Guest) => (
         <GuestRow 
             guest={guest}
-            onPress={guest => Alert.alert(guest.name, "Nome do convidado")}/>
+            onPress={handlerOnPressNewGuest}/>
     )
 
     const renderEmptyRow = () => (
@@ -99,8 +98,8 @@ const GuestScreen = (props: Props) => {
         ]
     }
 
-    const handlerOnPressedAddButton = () => {
-
+    const handlerOnPressNewGuest = (guest?: Guest) => {
+        navigate("NewGuest", { guest })
     }
 
     const handlerOnRefresh = () => {
@@ -120,32 +119,29 @@ const GuestScreen = (props: Props) => {
     } = props.guest
 
     return(
-        <>
-            <GuestModal />
-            <View style={styles.container}>
-                <Search 
-                    placeholder="Pesquisar por um convidado"
-                    onChangedText={text => {}}/>
-                <AddButton onPressed={handlerOnPressedAddButton}>
-                    <Text style={styles.add}>+</Text>
-                </AddButton>
-                <SectionList<Guest>
-                    style={styles.list}
-                    sections={organizeSections()}
-                    renderSectionHeader={({section}) => renderSectionHeader(section)}
-                    renderSectionFooter={({section}) => renderSectionFooter(section)}
-                    keyExtractor={item => item._id}
-                    renderItem={({item}) => renderGuestRow(item)}
-                    refreshControl={renderRefreshControl()}
-                    ListEmptyComponent={renderEmptyRow}
-                    ItemSeparatorComponent={renderSeparator}
-                    ListFooterComponent={renderFooter}
-                    showsVerticalScrollIndicator={false}
-                    onEndReached={handlerNextPage}
-                    onEndReachedThreshold={0.3}/>
-                <KeyboardSpacer/>
-            </View>
-        </>
+        <View style={styles.container}>
+            <Search 
+                placeholder="Pesquisar por um convidado"
+                onChangedText={text => {}}/>
+            <AddButton onPressed={handlerOnPressNewGuest}>
+                <Text style={styles.add}>+</Text>
+            </AddButton>
+            <SectionList<Guest>
+                style={styles.list}
+                sections={organizeSections()}
+                renderSectionHeader={({section}) => renderSectionHeader(section)}
+                renderSectionFooter={({section}) => renderSectionFooter(section)}
+                keyExtractor={item => item._id}
+                renderItem={({item}) => renderGuestRow(item)}
+                refreshControl={renderRefreshControl()}
+                ListEmptyComponent={renderEmptyRow}
+                ItemSeparatorComponent={renderSeparator}
+                ListFooterComponent={renderFooter}
+                showsVerticalScrollIndicator={false}
+                onEndReached={handlerNextPage}
+                onEndReachedThreshold={0.3}/>
+            <KeyboardSpacer/>
+        </View>
     )
 
 }

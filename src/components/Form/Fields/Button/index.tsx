@@ -7,13 +7,14 @@ import {
     Animated
 } from 'react-native'
 
-import Text from '../Text'
+import Text from '../../../Text'
 
 import styles from './style'
 
 type Props = {
     text: string,
     isLoading?: boolean,
+    style?: any,
     onPress(): void
 }
 
@@ -46,7 +47,8 @@ const Button = (props: Props) => {
     }
 
     return(
-        <Animated.View style={[styles.container, animatedStyle]} >
+        <Animated.View 
+            style={[styles.container, animatedStyle]} >
             <TouchableOpacity 
                 style={styles.tappedArea}
                 disabled={props.isLoading}

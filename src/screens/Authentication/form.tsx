@@ -39,15 +39,16 @@ const validationSchema = Yup.object().shape({
 })
 
 const SignupForm = (props: Props) => {
+    const initialValues = { 
+        email: props.formProps?.email, 
+        password: props.formProps?.password
+    }
+
     return (
         <Formik
-            initialValues={{ 
-                email: props.formProps?.email, 
-                password: props.formProps?.password
-             }}
+            initialValues={initialValues}
             onSubmit={props.onSubmit}
-            validationSchema={validationSchema}
-            >
+            validationSchema={validationSchema}>
             {({ 
                 handleSubmit, 
                 setFieldValue,
