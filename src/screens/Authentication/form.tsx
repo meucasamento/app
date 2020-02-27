@@ -18,14 +18,9 @@ export type FormValues = {
     password?: string
 }
 
-type FormProps = {
-    email?: string
-    password?: string
-}
-
 type Props = {
     isLoading?: boolean,
-    formProps?: FormProps,
+    formValues?: FormValues,
     onSubmit(result: FormValues): void
 }
 
@@ -39,14 +34,9 @@ const validationSchema = Yup.object().shape({
 })
 
 const SignupForm = (props: Props) => {
-    const initialValues = { 
-        email: props.formProps?.email, 
-        password: props.formProps?.password
-    }
-
     return (
         <Formik
-            initialValues={initialValues}
+            initialValues={props.formValues}
             onSubmit={props.onSubmit}
             validationSchema={validationSchema}>
             {({ 
