@@ -14,11 +14,11 @@ type Props = {
 
 const NewGuestScreen = (props: Props) => {
 
-    const { guest } = props.navigation.state.params
+    const guest = props.navigation.state.params?.guest
 
     return <NewGuestForm 
-                formValues={{ name: "sdfsdf" }}
-                onSubmit={result => {}}
+                guest={guest}
+                onSubmit={guest => {}}
                 onCancel={() => {}} />
 }
 

@@ -13,14 +13,10 @@ import {
 
 import styles from './styles'
 
-type FormValues = {
-    name?: string,
-}
-
 type Props = {
     isLoading?: boolean,
-    formValues?: FormValues,
-    onSubmit(result: FormValues): void,
+    guest?: Guest,
+    onSubmit(guest: Guest): void,
     onCancel(): void,
     onDelete?(guest: Guest): void
 }
@@ -28,7 +24,9 @@ type Props = {
 const NewGuestForm = (props: Props) => {
     return (
         <Formik 
-            initialValues={props.formValues}
+            initialValues={{
+                name: props.guest?.name
+            }}
             onSubmit={() => {}}>
                 {({ 
                 handleSubmit, 
@@ -46,22 +44,22 @@ const NewGuestForm = (props: Props) => {
                         isEnabled={!props.isLoading}
                         placeholder="Informe seu email"
                         returnKeyType="next"
-                        onChangeText={email => setFieldValue("email", email)}
+                        onChangeText={name => setFieldValue("name", name)}
                         />
                     <ButtonField
                         text="Salvar"
                         isLoading={props.isLoading}
                         onPress={handleSubmit}
                         />
-                    <ButtonField
+                    {props.guest && <ButtonField
                         text="Apagar"
                         isLoading={props.isLoading}
-                        onPress={handleSubmit}
-                        />
+                        onPress={() => props.onDelete(props.guest)}
+                        />}
                     <ButtonField
                         text="Cancel"
                         isLoading={props.isLoading}
-                        onPress={handleSubmit}
+                        onPress={props.onCancel}
                         />
                 </View>
             )}

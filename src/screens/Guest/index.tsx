@@ -123,7 +123,7 @@ const GuestScreen = (props: Props) => {
             <Search 
                 placeholder="Pesquisar por um convidado"
                 onChangedText={text => {}}/>
-            <AddButton onPressed={handlerOnPressNewGuest}>
+            <AddButton onPressed={() => handlerOnPressNewGuest()}>
                 <Text style={styles.add}>+</Text>
             </AddButton>
             <SectionList<Guest>
