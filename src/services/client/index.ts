@@ -1,7 +1,8 @@
 import axios, { AxiosInstance, AxiosStatic } from 'axios'
 
 export type Data = {
-    headers?: any;
+    headers?: any
+    body?: any
     params?: any
 }
 
@@ -28,16 +29,12 @@ export class Client implements ClientInterface {
     }
 
     async request<T>(url: string, method: Method, data?: Data): Promise<T> {
-        const headers = data.headers
-        const params = method === ("get" || "delete") ? data.params : null
-        const body = method === ("post" || "put" || "patch") ? data.params : null
-        
         return this.instance.request<T>({
             url,
             method,
-            headers,
-            params,
-            data: body,
+            headers: data.headers,
+            params: data.params,
+            data: data.body,
             responseType: "json"
         }).then(response => {
             return response.data as T

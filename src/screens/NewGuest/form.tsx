@@ -27,7 +27,9 @@ const NewGuestForm = (props: Props) => {
     return (
         <Formik 
             initialValues={{
-                name: props.guest?.name
+                name: props.guest?.name,
+                isConfirmed: props.guest?.isConfirmed,
+                isGodfather: props.guest?.isGodfather
             }}
             onSubmit={() => {}}>
                 {({ 
@@ -47,21 +49,22 @@ const NewGuestForm = (props: Props) => {
                             isEnabled={!props.isLoading}
                             placeholder="Nome do convidado"
                             returnKeyType="done"
-                            onChangeText={name => setFieldValue("name", name)}
-                            />
+                            onChangeText={name => setFieldValue("name", name)}/>
                         <SwitchField 
                             label="É um padrinho(a)"
-                            onChangeText={value => {}}/>
+                            value={values.isGodfather}
+                            onValueChange={value => setFieldValue("isGodfather", value)}/>
                         <SwitchField 
                             label="Convite entregue"
-                            onChangeText={value => {}}/>
+                            value={values.isConfirmed}
+                            onValueChange={value => setFieldValue("isConfirmed", value)}/>
                     </View>
                     <View>
                         <ButtonField
                             text="Salvar"
                             isLoading={props.isLoading}
                             onPress={handleSubmit}/>
-                        {props.onDelete && 
+                        {props.onDelete && props.guest && 
                         <>
                         <Space/>
                         <Button 

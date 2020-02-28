@@ -9,7 +9,7 @@ export interface SessionRepositoryInterface {
 export default new class SessionRepository implements SessionRepositoryInterface {
 
     async authentication(auth: Authorization): Promise<Token> {
-        return await api.request<Token>("session/authentication", "post", { params: auth })
+        return await api.request<Token>("session/authentication", "post", { body: auth })
     }
     
 }

@@ -36,7 +36,7 @@ class GuestRepository implements GuestRepositoryInterface {
             authorization: await this.session.getToken()
         }
 
-        return await api.request<Guest>("guest", "post", { params: guest, headers })
+        return await api.request<Guest>("guests", "post", { body: guest, headers })
     }
     
     update = async (guest: Guest): Promise<Guest> => {
@@ -44,7 +44,7 @@ class GuestRepository implements GuestRepositoryInterface {
             authorization: await this.session.getToken()
         }
 
-        return await api.request<Guest>("guest", "patch", { params: guest, headers })
+        return await api.request<Guest>("guests", "patch", { body: guest, headers })
     }
 
     delete = async (guest: Guest): Promise<void> => {
@@ -52,7 +52,7 @@ class GuestRepository implements GuestRepositoryInterface {
             authorization: await this.session.getToken()
         }
 
-        return await api.request("guest", "delete", { params: { id: guest._id }, headers })
+        return await api.request(`guests/${guest._id}`, "delete", { headers })
     }
 
 }

@@ -5,6 +5,10 @@ import {
 
 let navigator: NavigationContainerComponent
 
+export function back() {
+    navigator.dispatch(NavigationActions.back())
+}
+
 export function setTopLevelNavigator(navigatorRef: NavigationContainerComponent) {
     navigator = navigatorRef
 }
