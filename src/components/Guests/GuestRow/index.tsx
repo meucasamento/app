@@ -16,11 +16,10 @@ type Props = {
 }
 
 const renderConfirmedTag = (guest: Guest) => {
-    if (guest.isConfirmed) {
-        return <Text style={styles.confirmedTag}>Convite Entregue</Text>
-    } else {
-        return <Text style={styles.noConfirmedTag}>Convite pendente</Text>
-    }
+    const status = guest.invitationDelivered
+    const text = status ? "Convite entregue" : "Convite não entregue"
+    const style = status ? styles.confirmedTag : styles.unConfirmedTag
+    return <Text style={style}>{text}</Text>
 }
 
 export const GuestRow = (props: Props) => (

@@ -1,6 +1,6 @@
 export default interface Guest {
     _id: string
     name: string
-    isConfirmed?: boolean
+    invitationDelivered?: boolean
     isGodfather?: boolean
 }

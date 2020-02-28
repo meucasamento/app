@@ -31,7 +31,7 @@ export default StyleSheet.create({
         borderRadius: 4,
         overflow: "hidden"
     },
-    noConfirmedTag: {
+    unConfirmedTag: {
         fontSize: 12,
         color: "gray",
         backgroundColor: "#f4f4f4",

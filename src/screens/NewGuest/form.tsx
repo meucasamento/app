@@ -28,7 +28,7 @@ const NewGuestForm = (props: Props) => {
         <Formik 
             initialValues={{
                 name: props.guest?.name,
-                isConfirmed: props.guest?.isConfirmed,
+                invitationDelivered: props.guest?.invitationDelivered,
                 isGodfather: props.guest?.isGodfather
             }}
             onSubmit={() => {}}>
@@ -56,8 +56,8 @@ const NewGuestForm = (props: Props) => {
                             onValueChange={value => setFieldValue("isGodfather", value)}/>
                         <SwitchField 
                             label="Convite entregue"
-                            value={values.isConfirmed}
-                            onValueChange={value => setFieldValue("isConfirmed", value)}/>
+                            value={values.invitationDelivered}
+                            onValueChange={value => setFieldValue("invitationDelivered", value)}/>
                     </View>
                     <View>
                         <ButtonField
