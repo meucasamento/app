@@ -22,6 +22,6 @@ export default StyleSheet.create({
         textAlign: "center",
         color: "white",
         fontWeight: "700",
-        textTransform: "uppercase"
+        fontSize: 17
     }
 })

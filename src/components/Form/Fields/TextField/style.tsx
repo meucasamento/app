@@ -11,10 +11,11 @@ export default StyleSheet.create({
         fontSize: 15
     },
     row: {
-        marginBottom: 16,
+        marginBottom: 8,
         paddingBottom: 8,
+        paddingTop: 8,
         borderBottomWidth: 1,
-        borderBottomColor: "#f4f4f4"
+        borderBottomColor: "#f4f4f4",
     },
     input: {
         paddingTop: 8,

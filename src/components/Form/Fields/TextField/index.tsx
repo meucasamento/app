@@ -20,6 +20,7 @@ type Props = {
     isSecure?: boolean,
     keyboardType?: KeyboardTypeOptions,
     returnKeyType?: ReturnKeyTypeOptions,
+    autoFocus?: boolean,
     onChangeText?(value?: string): void,
     onBlur?(): void,
     onSubmitEditing?(): void
@@ -36,6 +37,7 @@ const TextField = (props: Props) => {
                 placeholder={props.placeholder}
                 editable={props.isEnabled}
                 secureTextEntry={props.isSecure}
+                autoFocus={props.autoFocus}
                 clearButtonMode="while-editing"
                 keyboardType={props.keyboardType}
                 returnKeyType={props.returnKeyType}

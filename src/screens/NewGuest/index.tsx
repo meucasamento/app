@@ -1,5 +1,6 @@
 import React from 'react'
 import { NavigationScreenProp, NavigationState } from 'react-navigation'
+import KeyboardSpacer from 'react-native-keyboard-spacer'
 
 import Guest from '../../models/guest.model'
 import NewGuestForm from './form'
@@ -16,10 +17,15 @@ const NewGuestScreen = (props: Props) => {
 
     const guest = props.navigation.state.params?.guest
 
-    return <NewGuestForm 
+    return (
+        <>
+        <NewGuestForm 
                 guest={guest}
                 onSubmit={guest => {}}
-                onCancel={() => {}} />
+                onDelete={guest => {}}/>
+        <KeyboardSpacer/>
+        </>
+    )
 }
 
 export default NewGuestScreen

@@ -5,14 +5,12 @@ export default StyleSheet.create({
         flex: 1,
         justifyContent: "center"
     },
-    loginForm: {
+    form: {
+        flex: 1,
+        justifyContent: "space-between",
         margin: 20,
-        paddingTop: 16,
-        paddingLeft: 16,
-        paddingRight: 16,
-        borderRadius: 8
-    },
-    deleteButton: {
-        marginBottom: 26
+        marginTop: 16,
+        marginLeft: 16,
+        marginRight: 16
     }
 })
