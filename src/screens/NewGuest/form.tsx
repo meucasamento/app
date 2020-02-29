@@ -60,11 +60,12 @@ const NewGuestForm = (props: Props) => {
                             label="Nome"
                             value={values.name}
                             error={touched.name && errors.name}
-                            autoFocus={!values.name}
+                            autoFocus={true}
                             isEnabled={!props.isLoading}
                             placeholder="Nome do convidado"
                             returnKeyType="done"
-                            onChangeText={name => setFieldValue("name", name)}/>
+                            onChangeText={name => setFieldValue("name", name)}
+                            onSubmitEditing={() => handleSubmit()}/>
                         <SwitchField 
                             label="É um padrinho(a)"
                             value={values.isGodfather}
