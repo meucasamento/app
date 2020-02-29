@@ -19,6 +19,7 @@ const renderConfirmedTag = (guest: Guest) => {
     const status = guest.invitationDelivered
     const text = status ? "Convite entregue" : "Convite não entregue"
     const style = status ? styles.confirmedTag : styles.unConfirmedTag
+
     return <Text style={style}>{text}</Text>
 }
 

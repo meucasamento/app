@@ -4,7 +4,12 @@ import { Dispatch } from 'redux'
 import { NavigationScreenProp, NavigationState } from 'react-navigation'
 import KeyboardSpacer from 'react-native-keyboard-spacer'
 
-import { remove } from './../../store/modules/guest/guest.actions'
+import { 
+    remove, 
+    store, 
+    update
+} from './../../store/modules/guest/guest.actions'
+
 import Guest from '../../models/guest.model'
 import NewGuestForm from './form'
 
@@ -14,12 +19,17 @@ type NavigationParams = {
 
 type Props = {
     navigation: NavigationScreenProp<NavigationState, NavigationParams>,
+    store(guest: Guest): void
     remove(guest: Guest): void
 }
 
 const NewGuestScreen = (props: Props) => {
 
     const guest = props.navigation.state.params?.guest
+
+    const handleOnSubmit = (guest: Guest) => {
+        props.store(guest)
+    }
 
     const handleOnDelete = (guest: Guest) => {
         props.remove(guest)
@@ -29,7 +39,7 @@ const NewGuestScreen = (props: Props) => {
         <>
         <NewGuestForm 
                 guest={guest}
-                onSubmit={guest => {}}
+                onSubmit={handleOnSubmit}
                 onDelete={handleOnDelete}/>
         <KeyboardSpacer/>
         </>
@@ -39,6 +49,7 @@ const NewGuestScreen = (props: Props) => {
 const mapStateProps = (state: Props) => state
 
 const mapDispatchProps = (dispatch: Dispatch) => ({
+    store: (guest: Guest) => dispatch(store(guest)),
     remove: (guest: Guest) => dispatch(remove(guest))
 })
 

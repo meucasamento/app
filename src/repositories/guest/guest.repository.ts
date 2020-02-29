@@ -44,7 +44,7 @@ class GuestRepository implements GuestRepositoryInterface {
             authorization: await this.session.getToken()
         }
 
-        return await api.request<Guest>("guests", "patch", { body: guest, headers })
+        return await api.request<Guest>(`guests/${guest._id}`, "patch", { body: guest, headers })
     }
 
     delete = async (guest: Guest): Promise<void> => {

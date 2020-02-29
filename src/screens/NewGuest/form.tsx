@@ -31,7 +31,22 @@ const NewGuestForm = (props: Props) => {
                 invitationDelivered: props.guest?.invitationDelivered,
                 isGodfather: props.guest?.isGodfather
             }}
-            onSubmit={() => {}}>
+            onSubmit={data => {
+                let guest = props.guest
+
+                if (guest) {
+                    guest.name = data.name
+                    guest.invitationDelivered = data.invitationDelivered
+                    guest.isGodfather = data.isGodfather
+                } else {
+                    guest = {
+                        ...data,
+                        _id: null
+                    }
+                }
+
+                props.onSubmit(guest)
+            }}>
                 {({ 
                 handleSubmit, 
                 setFieldValue,

@@ -12,6 +12,7 @@ import {
     DELETE_FAILURE,
     UPDATE,
     UPDATE_SUCCESS,
+    UPDATE_FAILURE,
 } from './guest.types'
 
 const initialState: GuestState = {
@@ -111,6 +112,12 @@ export default function reducer(
                 ...state,
                 loading: false,
                 guests: state.guests.map(guest => guest._id === action.payload._id ? action.payload : guest)
+            }
+        case UPDATE_FAILURE:
+            return {
+                ...state,
+                loading: false,
+                error: action.payload
             }
         default:
             return state

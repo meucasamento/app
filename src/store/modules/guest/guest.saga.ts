@@ -11,13 +11,22 @@ import {
     Fetch,
     DELETE,
     Delete,
+    Store,
+    STORE,
+    UPDATE,
 } from './guest.types'
 
 import { 
+    fetch,
+    update,
     fetchFailure,
     fetchSuccess,
     removeSuccess,
-    removeFailure
+    removeFailure,
+    storeFailure,
+    storeSuccess,
+    updateSuccess,
+    updateFailure
 } from './guest.actions'
 
 import guestRepository from './../../../repositories/guest/guest.repository'
@@ -25,7 +34,7 @@ import { PaginationResult } from '../../../models/response/pagination.response'
 import Guest from '../../../models/guest.model'
 import { back } from './../../../services/navigation.service'
             
-function* fetch(action: Fetch) {
+function* fetchGuests(action: Fetch) {
     const {
         page,
         limit
@@ -39,7 +48,34 @@ function* fetch(action: Fetch) {
     }
 }
 
-function* remove(action: Delete) {
+function* storeGuest(action: Store) {
+    const guest = action.payload
+
+    if (guest._id) {
+        yield call(update, guest)
+        return back()
+    }
+
+    try {
+        const newGuest: Guest = yield call(guestRepository.store, guest)
+        yield put(storeSuccess(newGuest))
+        yield call(fetch, 1)
+        back()
+    } catch(err) {
+        yield put(storeFailure(err))
+    }
+}
+
+function* updateGuest(action: Store) {
+    try {
+        const guest: Guest = yield call(guestRepository.update, action.payload)
+        yield put(updateSuccess(guest))
+    } catch(err) {
+        yield put(updateFailure(err))
+    }
+}
+
+function* removeGuest(action: Delete) {
     try {
         const guest = action.payload
         yield call(guestRepository.delete, guest)
@@ -51,6 +87,8 @@ function* remove(action: Delete) {
 }
 
 export default all([
-    takeLatest<GuestActionsTypes>(FETCH, fetch),
-    takeLatest<GuestActionsTypes>(DELETE, remove)
+    takeLatest<GuestActionsTypes>(FETCH, fetchGuests),
+    takeLatest<GuestActionsTypes>(DELETE, removeGuest),
+    takeLatest<GuestActionsTypes>(STORE, storeGuest),
+    takeLatest<GuestActionsTypes>(UPDATE, updateGuest)
 ])
