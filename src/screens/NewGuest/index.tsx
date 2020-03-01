@@ -6,12 +6,13 @@ import KeyboardSpacer from 'react-native-keyboard-spacer'
 
 import { 
     remove, 
-    store, 
-    update
+    store
 } from './../../store/modules/guest/guest.actions'
 
 import Guest from '../../models/guest.model'
 import NewGuestForm from './form'
+import { GuestState } from '../../store/modules/guest/guest.types'
+import { Alert } from 'react-native'
 
 type NavigationParams = {
     guest?: Guest
@@ -19,6 +20,7 @@ type NavigationParams = {
 
 type Props = {
     navigation: NavigationScreenProp<NavigationState, NavigationParams>,
+    guest: GuestState,
     store(guest: Guest): void
     remove(guest: Guest): void
 }
@@ -28,20 +30,26 @@ const NewGuestScreen = (props: Props) => {
     const guest = props.navigation.state.params?.guest
 
     const handleOnSubmit = (guest: Guest) => {
-        props.store(guest)
+        // props.store(guest)
     }
 
     const handleOnDelete = (guest: Guest) => {
-        props.remove(guest)
+        Alert.alert("Apaagar", "Tem certeza que deseja apagar esse convidado?", [
+            {text: "Apagar", style: "destructive", onPress: () => {
+                props.remove(guest)
+            }},
+            {text: "Cancelar", style: "cancel"}
+        ])
     }
 
     return (
         <>
         <NewGuestForm 
                 guest={guest}
+                isLoading={props.guest.loading}
                 onSubmit={handleOnSubmit}
                 onDelete={handleOnDelete}/>
-        <KeyboardSpacer/>
+        {/* <KeyboardSpacer/> */}
         </>
     )
 }

@@ -24,12 +24,16 @@ type Props = {
 }
 
 const NewGuestForm = (props: Props) => {
+    console.log(props.isLoading)
+
     return (
         <Formik 
             initialValues={{
                 name: props.guest?.name,
                 invitationDelivered: props.guest?.invitationDelivered,
-                isGodfather: props.guest?.isGodfather
+                isGodfather: props.guest?.isGodfather,
+                godfatherCompanion: "",
+                peopleCount: 1
             }}
             onSubmit={data => {
                 let guest = props.guest
@@ -45,7 +49,7 @@ const NewGuestForm = (props: Props) => {
                     }
                 }
 
-                props.onSubmit(guest)
+                // props.onSubmit(guest)
             }}>
                 {({ 
                 handleSubmit, 
@@ -64,21 +68,36 @@ const NewGuestForm = (props: Props) => {
                             isEnabled={!props.isLoading}
                             placeholder="Nome do convidado"
                             returnKeyType="done"
-                            onChangeText={name => setFieldValue("name", name)}
-                            onSubmitEditing={() => handleSubmit()}/>
-                        <SwitchField 
-                            label="É um padrinho(a)"
-                            value={values.isGodfather}
-                            onValueChange={value => setFieldValue("isGodfather", value)}/>
+                            onChangeText={name => setFieldValue("name", name)}/>
                         <SwitchField 
                             label="Convite entregue"
                             value={values.invitationDelivered}
+                            isEnabled={!props.isLoading}
                             onValueChange={value => setFieldValue("invitationDelivered", value)}/>
+                        <SwitchField 
+                            label="É um padrinho(a)"
+                            value={values.isGodfather}
+                            isEnabled={!props.isLoading}
+                            onValueChange={value => setFieldValue("isGodfather", value)}/>
+                        {/* <TextField 
+                            label="Companheiro(a) do padrinho"
+                            value={values.godfatherCompanion}
+                            error={touched.name && errors.name}
+                            // autoFocus={true}
+                            isEnabled={!props.isLoading}
+                            isVisible={values.isGodfather}
+                            placeholder="Nome do companheiro(a) do padrinho"/>
+                        <TextField 
+                            label="Quantidade de pessoas"
+                            value={values.godfatherCompanion}
+                            error={touched.name && errors.name}
+                            isEnabled={!props.isLoading}
+                            placeholder="Quantidade"/> */}
                     </View>
                     <View>
                         <ButtonField
                             text="Salvar"
-                            isLoading={props.isLoading}
+                            // isLoading={props.isLoading}
                             onPress={handleSubmit}/>
                         {props.onDelete && props.guest && 
                         <>
@@ -86,6 +105,7 @@ const NewGuestForm = (props: Props) => {
                         <Button 
                             title="Apagar convidado"
                             color="red"
+                            disabled={props.isLoading}
                             onPress={() => props.onDelete(props.guest)}/>
                         </>
                         }

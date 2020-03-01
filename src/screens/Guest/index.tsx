@@ -140,7 +140,7 @@ const GuestScreen = (props: Props) => {
                 showsVerticalScrollIndicator={false}
                 onEndReached={handlerNextPage}
                 onEndReachedThreshold={0.3}/>
-            <KeyboardSpacer/>
+            {/* <KeyboardSpacer/> */}
         </View>
     )
 

@@ -4,6 +4,7 @@ import {
     call,
     takeLatest
 } from 'redux-saga/effects'
+import { Dispatch } from 'redux'
 
 import { 
     GuestActionsTypes,
@@ -12,21 +13,19 @@ import {
     DELETE,
     Delete,
     Store,
-    STORE,
-    UPDATE,
+    STORE
 } from './guest.types'
 
 import { 
     fetch,
-    update,
     fetchFailure,
     fetchSuccess,
-    removeSuccess,
-    removeFailure,
     storeFailure,
     storeSuccess,
     updateSuccess,
-    updateFailure
+    updateFailure,
+    removeSuccess,
+    removeFailure
 } from './guest.actions'
 
 import guestRepository from './../../../repositories/guest/guest.repository'
@@ -55,6 +54,7 @@ function* storeGuest(action: Store) {
         try {
             const updatedGuest: Guest = yield call(guestRepository.update, guest)
             yield put(updateSuccess(updatedGuest))
+            back()
         } catch(err) {
             yield put(updateFailure(err))
         }
@@ -62,13 +62,12 @@ function* storeGuest(action: Store) {
         try {
             const newGuest: Guest = yield call(guestRepository.store, guest)
             yield put(storeSuccess(newGuest))
-            yield call(fetch, 1)
+            yield put(fetch(1))
+            back()
         } catch(err) {
             yield put(storeFailure(err))
         }
     }
-
-    back()
 }
 
 function* removeGuest(action: Delete) {

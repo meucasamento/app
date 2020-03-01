@@ -17,6 +17,7 @@ type Props = {
     error?: string,
     placeholder?: string,
     isEnabled?: boolean,
+    isVisible?: boolean,
     isSecure?: boolean,
     keyboardType?: KeyboardTypeOptions,
     returnKeyType?: ReturnKeyTypeOptions,
@@ -26,29 +27,29 @@ type Props = {
     onSubmitEditing?(): void
 }
 
-const TextField = (props: Props) => {
-
-    return(
-        <View style={styles.row}>
-            {props.label && <Text style={styles.label}>{props.label}</Text>}
-            <TextInput 
-                style={styles.input}
-                value={props.value}
-                placeholder={props.placeholder}
-                editable={props.isEnabled}
-                secureTextEntry={props.isSecure}
-                autoFocus={props.autoFocus}
-                clearButtonMode="while-editing"
-                keyboardType={props.keyboardType}
-                returnKeyType={props.returnKeyType}
-                autoCapitalize="none"
-                onBlur={props.onBlur}
-                onChangeText={props.onChangeText} 
-                onSubmitEditing={props.onSubmitEditing}/>
-            {props.error && <Text style={styles.error}>{props.error}</Text>}
-        </View>
-    )
-    
-}
+const TextField = (props: Props) => (
+    <>
+    {/* { (props.isVisible ?? true) && */}
+    <View style={styles.row}>
+    {props.label && <Text style={styles.label}>{props.label}</Text>}
+    <TextInput 
+        style={styles.input}
+        value={props.value}
+        placeholder={props.placeholder}
+        editable={props.isEnabled}
+        secureTextEntry={props.isSecure}
+        autoFocus={props.autoFocus}
+        clearButtonMode="while-editing"
+        keyboardType={props.keyboardType}
+        returnKeyType={props.returnKeyType}
+        autoCapitalize="none"
+        onBlur={props.onBlur}
+        onChangeText={props.onChangeText} 
+        onSubmitEditing={props.onSubmitEditing}/>
+        {props.error && <Text style={styles.error}>{props.error}</Text>}
+    </View>
+    {/* } */}
+    </>
+)
 
 export default TextField
