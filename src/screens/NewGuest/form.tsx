@@ -66,7 +66,8 @@ const NewGuestForm = (props: Props) => {
                             isEnabled={!props.isLoading}
                             placeholder="Nome do convidado"
                             returnKeyType="done"
-                            onChangeText={name => setFieldValue("name", name)}/>
+                            onChangeText={name => setFieldValue("name", name)}
+                            onSubmitEditing={handleSubmit}/>
                         <SwitchField 
                             label="Convite entregue"
                             value={values.invitationDelivered}

@@ -107,9 +107,11 @@ const GuestScreen = (props: Props) => {
     }
 
     const handlerNextPage = () => { 
-        const page = props.guest.pagination.page
+        const {page, pages} = props.guest.pagination
         const isLoading = props.guest.loading
-        if (isLoading || page == 1) return
+
+        if (isLoading || (page >= pages)) return
+
         props.fetch(page + 1)
     }
 
