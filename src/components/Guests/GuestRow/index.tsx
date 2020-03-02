@@ -30,7 +30,7 @@ export const GuestRow = (props: Props) => (
             underlayColor="gray">
             <View style={styles.row}>
                 <View style={styles.leftContainer}>
-                    <Text>{props.guest.name}</Text>
+                    <Text>{props.guest.name} {props.guest.isFamily && " & Família"}</Text>
                 </View>
                 <View style={styles.rightContainer}>
                     {renderConfirmedTag(props.guest)}

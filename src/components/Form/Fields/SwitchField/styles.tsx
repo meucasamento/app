@@ -12,7 +12,7 @@ export default StyleSheet.create({
     },
     label: {
         flex: 1,
-        color: "gray",
+        color: "#3f4a4e",
         marginRight: 16,
     },
     error: {

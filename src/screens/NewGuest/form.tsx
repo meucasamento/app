@@ -31,7 +31,8 @@ const NewGuestForm = (props: Props) => {
                 invitationDelivered: props.guest?.invitationDelivered,
                 isGodfather: props.guest?.isGodfather,
                 godfatherCompanion: "",
-                peopleCount: 1
+                peopleCount: props.guest.peopleCount,
+                isFamily: props.guest.isFamily
             }}
             onSubmit={data => {
                 let guest = props.guest
@@ -40,6 +41,7 @@ const NewGuestForm = (props: Props) => {
                     guest.name = data.name
                     guest.invitationDelivered = data.invitationDelivered
                     guest.isGodfather = data.isGodfather
+                    guest.isFamily = data.isFamily
                 } else {
                     guest = {
                         ...data,
@@ -69,15 +71,20 @@ const NewGuestForm = (props: Props) => {
                             onChangeText={name => setFieldValue("name", name)}
                             onSubmitEditing={handleSubmit}/>
                         <SwitchField 
-                            label="Convite entregue"
-                            value={values.invitationDelivered}
-                            isEnabled={!props.isLoading}
-                            onValueChange={value => setFieldValue("invitationDelivered", value)}/>
-                        <SwitchField 
                             label="É um padrinho(a)"
                             value={values.isGodfather}
                             isEnabled={!props.isLoading}
                             onValueChange={value => setFieldValue("isGodfather", value)}/>
+                        <SwitchField 
+                            label="É uma família?"
+                            value={values.isFamily}
+                            isEnabled={!props.isLoading}
+                            onValueChange={value => setFieldValue("isFamily", value)}/>
+                        <SwitchField 
+                            label="Convite entregue"
+                            value={values.invitationDelivered}
+                            isEnabled={!props.isLoading}
+                            onValueChange={value => setFieldValue("invitationDelivered", value)}/>
                         {/* <TextField 
                             label="Companheiro(a) do padrinho"
                             value={values.godfatherCompanion}

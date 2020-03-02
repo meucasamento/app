@@ -1,5 +1,5 @@
 import { AxiosInstance } from 'axios'
-import ClientInterceptor from "../../services/client";
+import ClientInterceptor from "../../services/api/client";
 import Logger from '../../utils/Logger';
 
 export class ClientLogger implements ClientInterceptor {
