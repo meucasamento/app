@@ -4,7 +4,7 @@ import {
     Switch
 } from 'react-native'
 
-import Text from '../../../Text'
+import Text from '../../../../Text'
 import styles from './styles'
 
 type Props = {

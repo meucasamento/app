@@ -2,7 +2,8 @@ import React from 'react'
 import { Formik } from 'formik'
 import {
     View,
-    Button
+    Button,
+    ScrollView
 } from 'react-native'
 
 import Guest from '../../models/guest.model'
@@ -31,8 +32,8 @@ const NewGuestForm = (props: Props) => {
                 invitationDelivered: props.guest?.invitationDelivered,
                 isGodfather: props.guest?.isGodfather,
                 godfatherCompanion: "",
-                peopleCount: props.guest.peopleCount,
-                isFamily: props.guest.isFamily
+                peopleCount: props.guest?.peopleCount,
+                includeFamily: props.guest?.includeFamily
             }}
             onSubmit={data => {
                 let guest = props.guest
@@ -41,7 +42,7 @@ const NewGuestForm = (props: Props) => {
                     guest.name = data.name
                     guest.invitationDelivered = data.invitationDelivered
                     guest.isGodfather = data.isGodfather
-                    guest.isFamily = data.isFamily
+                    guest.includeFamily = data.includeFamily
                 } else {
                     guest = {
                         ...data,
@@ -59,12 +60,12 @@ const NewGuestForm = (props: Props) => {
                 values
              }) => (
                 <View style={styles.form}>
-                    <View>
+                    <ScrollView style={styles.formScroll} keyboardDismissMode="on-drag">
                         <TextField 
                             label="Nome"
                             value={values.name}
                             error={touched.name && errors.name}
-                            autoFocus={true}
+                            autoFocus={!values.name}
                             isEnabled={!props.isLoading}
                             placeholder="Nome do convidado"
                             returnKeyType="done"
@@ -76,10 +77,10 @@ const NewGuestForm = (props: Props) => {
                             isEnabled={!props.isLoading}
                             onValueChange={value => setFieldValue("isGodfather", value)}/>
                         <SwitchField 
-                            label="É uma família?"
-                            value={values.isFamily}
+                            label="Incluir família?"
+                            value={values.includeFamily}
                             isEnabled={!props.isLoading}
-                            onValueChange={value => setFieldValue("isFamily", value)}/>
+                            onValueChange={value => setFieldValue("includeFamily", value)}/>
                         <SwitchField 
                             label="Convite entregue"
                             value={values.invitationDelivered}
@@ -99,8 +100,8 @@ const NewGuestForm = (props: Props) => {
                             error={touched.name && errors.name}
                             isEnabled={!props.isLoading}
                             placeholder="Quantidade"/> */}
-                    </View>
-                    <View>
+                    </ScrollView>
+                    <View style={styles.actionBox}>
                         <ButtonField
                             text="Salvar"
                             isLoading={props.isLoading}

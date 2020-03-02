@@ -8,9 +8,15 @@ export default StyleSheet.create({
     form: {
         flex: 1,
         justifyContent: "space-between",
-        margin: 20,
-        marginTop: 16,
         marginLeft: 16,
-        marginRight: 16
+        marginRight: 16,
+        marginBottom: 16
+    },
+    formScroll: {
+        paddingTop: 16,
+        paddingBottom: 16
+    },
+    actionBox: {
+        paddingTop: 16
     }
 })

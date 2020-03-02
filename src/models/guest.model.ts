@@ -3,6 +3,6 @@ export default interface Guest {
     name: string
     invitationDelivered?: boolean
     isGodfather?: boolean
-    isFamily?: boolean
+    includeFamily?: boolean
     peopleCount?: number
 }
