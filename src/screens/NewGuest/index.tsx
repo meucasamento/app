@@ -30,7 +30,7 @@ const NewGuestScreen = (props: Props) => {
     const guest = props.navigation.state.params?.guest
 
     const handleOnSubmit = (guest: Guest) => {
-        // props.store(guest)
+        props.store(guest)
     }
 
     const handleOnDelete = (guest: Guest) => {
@@ -49,7 +49,7 @@ const NewGuestScreen = (props: Props) => {
                 isLoading={props.guest.loading}
                 onSubmit={handleOnSubmit}
                 onDelete={handleOnDelete}/>
-        {/* <KeyboardSpacer/> */}
+        <KeyboardSpacer/>
         </>
     )
 }

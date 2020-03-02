@@ -4,7 +4,6 @@ import {
     call,
     takeLatest
 } from 'redux-saga/effects'
-import { Dispatch } from 'redux'
 
 import { 
     GuestActionsTypes,

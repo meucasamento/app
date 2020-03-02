@@ -107,12 +107,10 @@ const GuestScreen = (props: Props) => {
     }
 
     const handlerNextPage = () => { 
-        if (props.guest.loading) return
-
         const page = props.guest.pagination.page
-        const nextPage = page + 1
-
-        props.fetch(nextPage)
+        const isLoading = props.guest.loading
+        if (isLoading || page == 1) return
+        props.fetch(page + 1)
     }
 
     const { 
@@ -140,7 +138,7 @@ const GuestScreen = (props: Props) => {
                 showsVerticalScrollIndicator={false}
                 onEndReached={handlerNextPage}
                 onEndReachedThreshold={0.3}/>
-            {/* <KeyboardSpacer/> */}
+            <KeyboardSpacer/>
         </View>
     )
 

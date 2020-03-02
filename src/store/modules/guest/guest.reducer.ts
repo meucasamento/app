@@ -76,7 +76,6 @@ export default function reducer(
         case STORE_SUCCESS:
             return {
                 ...state,
-                // guests: [...state.guests, action.payload],
                 loading: false
             }
         case STORE_FAILURE:

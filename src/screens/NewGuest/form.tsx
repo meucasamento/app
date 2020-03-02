@@ -24,8 +24,6 @@ type Props = {
 }
 
 const NewGuestForm = (props: Props) => {
-    console.log(props.isLoading)
-
     return (
         <Formik 
             initialValues={{
@@ -49,7 +47,7 @@ const NewGuestForm = (props: Props) => {
                     }
                 }
 
-                // props.onSubmit(guest)
+                props.onSubmit(guest)
             }}>
                 {({ 
                 handleSubmit, 
@@ -83,7 +81,7 @@ const NewGuestForm = (props: Props) => {
                             label="Companheiro(a) do padrinho"
                             value={values.godfatherCompanion}
                             error={touched.name && errors.name}
-                            // autoFocus={true}
+                            autoFocus={true}
                             isEnabled={!props.isLoading}
                             isVisible={values.isGodfather}
                             placeholder="Nome do companheiro(a) do padrinho"/>
@@ -97,7 +95,7 @@ const NewGuestForm = (props: Props) => {
                     <View>
                         <ButtonField
                             text="Salvar"
-                            // isLoading={props.isLoading}
+                            isLoading={props.isLoading}
                             onPress={handleSubmit}/>
                         {props.onDelete && props.guest && 
                         <>

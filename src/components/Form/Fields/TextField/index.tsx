@@ -29,7 +29,7 @@ type Props = {
 
 const TextField = (props: Props) => (
     <>
-    {/* { (props.isVisible ?? true) && */}
+    { (props.isVisible ?? true) &&
     <View style={styles.row}>
     {props.label && <Text style={styles.label}>{props.label}</Text>}
     <TextInput 
@@ -48,7 +48,7 @@ const TextField = (props: Props) => (
         onSubmitEditing={props.onSubmitEditing}/>
         {props.error && <Text style={styles.error}>{props.error}</Text>}
     </View>
-    {/* } */}
+    }
     </>
 )
 
