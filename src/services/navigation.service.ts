@@ -5,7 +5,7 @@ import {
 
 let navigator: NavigationContainerComponent
 
-type Routes = "App" | "Auth"
+type Routes = "App" | "Auth" | "NewGuest"
 
 export function back() {
     navigator.dispatch(NavigationActions.back())

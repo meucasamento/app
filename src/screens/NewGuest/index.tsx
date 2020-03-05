@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { Dispatch } from 'redux'
 import { NavigationScreenProp, NavigationState } from 'react-navigation'
@@ -20,21 +20,32 @@ type NavigationParams = {
 type Props = {
     navigation: NavigationScreenProp<NavigationState, NavigationParams>,
     guest: GuestState,
-    store(guest: Guest): void
-    remove(guest: Guest): void
+    store(guest: Guest, completion: (response: Promise<void>) => void): void
+    remove(guest: Guest, completion: (response: Promise<void>) => void): void
 }
 
 const NewGuestScreen = (props: Props) => {
+
+    const [isLoading, setIsLoading] = useState(false)
+
     const guest = props.navigation.state.params?.guest
 
     const handleOnSubmit = (guest: Guest) => {
-        props.store(guest)
+        setIsLoading(true)
+        props.store(guest, response => 
+            response.finally(() => setIsLoading(false))
+            .catch(err => {})
+        )
     }
 
     const handleOnDelete = (guest: Guest) => {
-        Alert.alert("Apaagar", "Tem certeza que deseja apagar esse convidado?", [
+        Alert.alert("Remover convidado", "Tem certeza que deseja apagar esse convidado?", [
             {text: "Apagar", style: "destructive", onPress: () => {
-                props.remove(guest)
+                setIsLoading(true)
+                props.remove(guest, response => 
+                    response.finally(() => setIsLoading(false))
+                    .catch(err => {})
+                )
             }},
             {text: "Cancelar", style: "cancel"}
         ])
@@ -43,17 +54,18 @@ const NewGuestScreen = (props: Props) => {
     return (
         <NewGuestForm 
             guest={guest}
-            isLoading={props.guest.loading}
+            isLoading={isLoading}
             onSubmit={handleOnSubmit}
             onDelete={handleOnDelete}/>
     )
+
 }
 
 const mapStateProps = (state: Props) => state
 
 const mapDispatchProps = (dispatch: Dispatch) => ({
-    store: (guest: Guest) => dispatch(store(guest)),
-    remove: (guest: Guest) => dispatch(remove(guest))
+    store: (guest: Guest, completion: (response: Promise<void>) => void) => dispatch(store(guest, completion)),
+    remove: (guest: Guest, completion: (response: Promise<void>) => void) => dispatch(remove(guest, completion))
 })
 
 export default connect(

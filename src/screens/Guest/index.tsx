@@ -53,7 +53,7 @@ const GuestScreen = (props: Props) => {
     const renderGuestRow = (guest: Guest) => (
         <GuestRow 
             guest={guest}
-            onPress={handlerOnPressNewGuest}/>
+            onPress={handleOnPressNewGuest}/>
     )
 
     const renderEmptyRow = () => (
@@ -91,8 +91,8 @@ const GuestScreen = (props: Props) => {
         ]
     }
 
-    const handlerOnPressNewGuest = (guest?: Guest) => {
-        // navigate("NewGuest", { guest })
+    const handleOnPressNewGuest = (guest?: Guest) => {
+        navigateTo("NewGuest", { guest })
     }
 
     const loadPage = (page: number) => {
@@ -103,10 +103,10 @@ const GuestScreen = (props: Props) => {
         )
     }
 
-    const handlerNextPage = () => { 
+    const handleNextPage = () => { 
         if (isLoading) return
-        const page = props.guest.pagination.page
-        loadPage(page + 1)
+        const currentPage = props.guest.pagination.page
+        loadPage(currentPage + 1)
     }
 
     return(
@@ -114,7 +114,7 @@ const GuestScreen = (props: Props) => {
             <Search 
                 placeholder="Pesquisar por um convidado"
                 onChangedText={text => {}}/>
-            <AddButton onPressed={() => handlerOnPressNewGuest()}>
+            <AddButton onPressed={() => handleOnPressNewGuest()}>
                 <Text style={styles.add}>+</Text>
             </AddButton>
             <SectionList<Guest>
@@ -129,7 +129,7 @@ const GuestScreen = (props: Props) => {
                 ItemSeparatorComponent={renderSeparator}
                 ListFooterComponent={renderFooter}
                 showsVerticalScrollIndicator={false}
-                onEndReached={handlerNextPage}
+                onEndReached={handleNextPage}
                 onEndReachedThreshold={0.3}/>
             <KeyboardSpacer/>
         </View>
