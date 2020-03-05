@@ -1,6 +1,6 @@
 import ButtonField from './Button'
 import TextField from './TextField'
-import SwitchField from './Button/SwitchField'
+import SwitchField from './SwitchField'
 
 export {
     ButtonField,

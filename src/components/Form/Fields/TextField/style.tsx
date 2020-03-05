@@ -2,7 +2,7 @@ import { StyleSheet } from 'react-native'
 
 export default StyleSheet.create({
     label: {
-        color: "gray",
+        color: "#3f4a4e",
         fontSize: 15
     },
     error: {
