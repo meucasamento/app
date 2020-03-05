@@ -17,22 +17,17 @@ import {
 
 import { 
     fetch,
-    fetchFailure,
     fetchSuccess,
-    storeFailure,
     storeSuccess,
     updateSuccess,
-    updateFailure,
-    removeSuccess,
-    removeFailure
+    removeSuccess
 } from './guest.actions'
 
 import guestRepository from './../../../repositories/guest/guest.repository'
 import { PaginationResult } from '../../../models/response/pagination.response'
 import Guest from '../../../models/guest.model'
-import { back } from './../../../services/navigation.service'
             
-function* fetchGuests(action: Fetch) {
+function* fetchSaga(action: Fetch) {
     const {
         page,
         limit
@@ -41,47 +36,48 @@ function* fetchGuests(action: Fetch) {
     try {
         const response: PaginationResult<Guest> = yield call(guestRepository.fetch, page, limit)
         yield put(fetchSuccess(response))
+        action.completion(Promise.resolve())
     } catch(err) {
-        yield put(fetchFailure(err))
+        action.completion(Promise.reject(err))
     }
 }
 
-function* storeGuest(action: Store) {
+function* storeSaga(action: Store) {
     const guest = action.payload
 
     if (guest._id) {
         try {
             const updatedGuest: Guest = yield call(guestRepository.update, guest)
             yield put(updateSuccess(updatedGuest))
-            back()
+            action.completion(Promise.resolve())
         } catch(err) {
-            yield put(updateFailure(err))
+            action.completion(Promise.reject(err))
         }
     } else {
         try {
             const newGuest: Guest = yield call(guestRepository.store, guest)
             yield put(storeSuccess(newGuest))
             yield put(fetch(1))
-            back()
+            action.completion(Promise.resolve())
         } catch(err) {
-            yield put(storeFailure(err))
+            action.completion(Promise.reject(err))
         }
     }
 }
 
-function* removeGuest(action: Delete) {
+function* removeSaga(action: Delete) {
     try {
         const guest = action.payload
         yield call(guestRepository.delete, guest)
         yield put(removeSuccess(action.payload))
-        back()
+        action.completion(Promise.resolve())
     } catch(err) {
-        yield put(removeFailure(err))
+        action.completion(Promise.reject(err))
     }
 }
 
 export default all([
-    takeLatest<GuestActionsTypes>(FETCH, fetchGuests),
-    takeLatest<GuestActionsTypes>(DELETE, removeGuest),
-    takeLatest<GuestActionsTypes>(STORE, storeGuest)
+    takeLatest<GuestActionsTypes>(FETCH, fetchSaga),
+    takeLatest<GuestActionsTypes>(DELETE, removeSaga),
+    takeLatest<GuestActionsTypes>(STORE, storeSaga)
 ])

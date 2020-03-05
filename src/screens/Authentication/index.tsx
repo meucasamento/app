@@ -16,7 +16,7 @@ import { navigateTo } from '../../services/navigation.service'
 
 type Props = {
     session: SessionState,
-    authentication(credentials: Credentials, responseHandler: (response: Promise<void>) => void) : void
+    authentication(credentials: Credentials, completion: (response: Promise<void>) => void) : void
 }
 
 const AuthenticationScreen = (props: Props) => {
@@ -49,7 +49,7 @@ const AuthenticationScreen = (props: Props) => {
 const mapStateToProps = (state: Props) => state
 
 const mapDipatchToProps = (dispatch: Dispatch) => ({
-    authentication: (credentials: Credentials, responseHandler: (response: Promise<void>) => void) => dispatch(authentication(credentials, responseHandler))
+    authentication: (credentials: Credentials, completion: (response: Promise<void>) => void) => dispatch(authentication(credentials, completion))
 })
 
 export default connect(

@@ -11,12 +11,12 @@ export type Credentials = {
 export type AuthenticationActionType = {
     type: typeof AUTHENTICATION,
     payload: Credentials,
-    responseHandler: (response: Promise<void>) => void
+    completion: (response: Promise<void>) => void
 }
 
 export type LogoutActionType = {
     type: typeof LOGOUT,
-    responseHandler: (response: Promise<void>) => void
+    completion: (response: Promise<void>) => void
 }
 
 export type SessionActionTypes = AuthenticationActionType | LogoutActionType

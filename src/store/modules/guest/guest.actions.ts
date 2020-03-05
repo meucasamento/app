@@ -1,16 +1,12 @@
 import {
     FETCH,
     FETCH_SUCCESS,
-    FETCH_FAILURE,
     DELETE,
     DELETE_SUCCESS,
-    DELETE_FAILURE,
     STORE,
     STORE_SUCCESS,
-    STORE_FAILURE,
     UPDATE,
     UPDATE_SUCCESS,
-    UPDATE_FAILURE,
     GuestActionsTypes,
 } from './guest.types'
 
@@ -19,9 +15,10 @@ import { PaginationResult } from '../../../models/response/pagination.response'
 
 // FETCH
 
-export const fetch = (page: number, limit: number = 10): GuestActionsTypes => ({
+export const fetch = (page: number, limit: number = 10, completion?: (response: Promise<void>) => void): GuestActionsTypes => ({
     type: FETCH,
-    payload: { page, limit }
+    payload: { page, limit },
+    completion
 })
 
 export const fetchSuccess = (result: PaginationResult<Guest>): GuestActionsTypes => ({
@@ -29,16 +26,12 @@ export const fetchSuccess = (result: PaginationResult<Guest>): GuestActionsTypes
     payload: result
 })
 
-export const fetchFailure = (error: Error): GuestActionsTypes => ({
-    type: FETCH_FAILURE,
-    payload: error
-})
-
 // STORE
 
-export const store = (guest: Guest): GuestActionsTypes => ({
+export const store = (guest: Guest, completion: (response: Promise<void>) => void): GuestActionsTypes => ({
     type: STORE,
-    payload: guest
+    payload: guest,
+    completion
 })
 
 export const storeSuccess = (guest: Guest): GuestActionsTypes => ({
@@ -46,16 +39,12 @@ export const storeSuccess = (guest: Guest): GuestActionsTypes => ({
     payload: guest
 })
 
-export const storeFailure = (error: Error): GuestActionsTypes => ({
-    type: STORE_FAILURE,
-    payload: error
-})
-
 // UPDATE
 
-export const update = (guest: Guest): GuestActionsTypes => ({
+export const update = (guest: Guest, completion: (response: Promise<void>) => void): GuestActionsTypes => ({
     type: UPDATE,
-    payload: guest
+    payload: guest,
+    completion
 })
 
 export const updateSuccess = (guest: Guest): GuestActionsTypes => ({
@@ -63,24 +52,15 @@ export const updateSuccess = (guest: Guest): GuestActionsTypes => ({
     payload: guest
 })
 
-export const updateFailure = (error: Error): GuestActionsTypes => ({
-    type: UPDATE_FAILURE,
-    payload: error
-})
-
 // DELETE
 
-export const remove = (guest: Guest): GuestActionsTypes => ({
+export const remove = (guest: Guest, completion: (response: Promise<void>) => void): GuestActionsTypes => ({
     type: DELETE,
-    payload: guest
+    payload: guest,
+    completion
 })
 
 export const removeSuccess = (guest: Guest): GuestActionsTypes => ({
     type: DELETE_SUCCESS,
     payload: guest
-})
-
-export const removeFailure = (error: Error): GuestActionsTypes => ({
-    type: DELETE_FAILURE,
-    payload: error
 })

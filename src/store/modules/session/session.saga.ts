@@ -21,18 +21,18 @@ function* authenticationSaga(action: AuthenticationActionType) {
         const credentials = action.payload
         const token: Token = yield call(sessionRepository.authentication, credentials)
         yield call(session.start, credentials, token.token)
-        action.responseHandler(Promise.resolve())
+        action.completion(Promise.resolve())
     } catch(err) {
-        action.responseHandler(Promise.reject(err))
+        action.completion(Promise.reject(err))
     }
 }
 
 function* logoutSaga(action: LogoutActionType) {
     try {
         yield call(session.destroy)
-        action.responseHandler(Promise.resolve())
+        action.completion(Promise.resolve())
     } catch(err) {
-        action.responseHandler(Promise.reject(err))
+        action.completion(Promise.reject(err))
     }
 }
 

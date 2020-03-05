@@ -5,13 +5,13 @@ import {
     Credentials
 } from './session.types'
 
-export const authentication = (credentials: Credentials, responseHandler: (response: Promise<void>) => void): SessionActionTypes => ({
+export const authentication = (credentials: Credentials, completion: (response: Promise<void>) => void): SessionActionTypes => ({
     type: AUTHENTICATION,
     payload: credentials,
-    responseHandler
+    completion
 })
 
-export const logout = (responseHandler: (response: Promise<void>) => void): SessionActionTypes => ({
+export const logout = (completion: (response: Promise<void>) => void): SessionActionTypes => ({
     type: LOGOUT,
-    responseHandler
+    completion
 })

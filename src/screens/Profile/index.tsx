@@ -13,7 +13,7 @@ import Button from '../../components/Form/Fields/Button'
 import { navigateTo } from '../../services/navigation.service'
 
 type Props = {
-    logout(responseHandler: (response: Promise<void>) => void): void
+    logout(completion: (response: Promise<void>) => void): void
 }
 
 type State = {}
@@ -46,7 +46,7 @@ const ProfileScreen = (props: Props) => {
 const mapStateProps = (state: Props) => state
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-    logout: (responseHandler: (response: Promise<void>) => void) => dispatch(logout(responseHandler))
+    logout: (completion: (response: Promise<void>) => void) => dispatch(logout(completion))
 })
 
 export default connect(
