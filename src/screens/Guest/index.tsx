@@ -30,7 +30,7 @@ import { navigateTo } from './../../services/navigation.service'
 
 type Props = {
     guest: GuestState,
-    fetch(page: number, limit?: number, completion?: (response: Promise<void>) => void): void
+    fetch(page: number, completion: (response: Promise<void>) => void): void
 }
 
 const GuestScreen = (props: Props) => {
@@ -97,7 +97,7 @@ const GuestScreen = (props: Props) => {
 
     const loadPage = (page: number) => {
         setIsLoading(true)
-        props.fetch(page, null, response => 
+        props.fetch(page, response => 
             response.finally(() => setIsLoading(false))
             .catch(err => console.log(err))
         )
@@ -140,7 +140,7 @@ const GuestScreen = (props: Props) => {
 const mapStateToProps = (state: Props) => state
 
 const mapDipatchToProps = (dispatch: Dispatch) => ({
-    fetch: (page: number, limit?: number, completion?: (response: Promise<void>) => void) => dispatch(fetch(page, limit, completion))
+    fetch: (page: number, completion: (response: Promise<void>) => void) => dispatch(fetch(page, completion))
 })
 
 export default connect(

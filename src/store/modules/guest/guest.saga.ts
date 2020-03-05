@@ -26,7 +26,6 @@ import {
 } from './guest.actions'
 
 import guestRepository from './../../../repositories/guest/guest.repository'
-import { PaginationResult } from '../../../models/response/pagination.response'
 import Guest from '../../../models/guest.model'
             
 function* fetchSaga(action: Fetch) {
@@ -34,14 +33,11 @@ function* fetchSaga(action: Fetch) {
     const guestState: GuestState = store.guest
     const currentPages = guestState.pagination.pages
 
-    const {
-        page,
-        limit
-    } = action.payload
+    const page =  action.payload
 
     try {
         if (page <= currentPages) {
-            yield put(fetchSuccess(yield call(guestRepository.fetch, page, limit)))
+            yield put(fetchSuccess(yield call(guestRepository.fetch, page)))
         }
         
         action.completion(Promise.resolve())
@@ -65,8 +61,7 @@ function* storeSaga(action: Store) {
         try {
             const newGuest: Guest = yield call(guestRepository.store, guest)
             yield put(storeSuccess(newGuest))
-            yield put(fetch(1))
-            action.completion(Promise.resolve())
+            yield put(yield fetch(1, () => action.completion(Promise.resolve())))
         } catch(err) {
             action.completion(Promise.reject(err))
         }

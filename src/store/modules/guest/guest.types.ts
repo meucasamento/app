@@ -31,10 +31,7 @@ export interface GuestState {
 
 export interface Fetch {
     type: typeof FETCH,
-    payload: {
-        page: number,
-        limit: number
-    },
+    payload: number,
     completion: (response: Promise<void>) => void
 }
 

@@ -15,9 +15,9 @@ import { PaginationResult } from '../../../models/response/pagination.response'
 
 // FETCH
 
-export const fetch = (page: number, limit: number = 10, completion?: (response: Promise<void>) => void): GuestActionsTypes => ({
+export const fetch = (page: number, completion: (response: Promise<void>) => void): GuestActionsTypes => ({
     type: FETCH,
-    payload: { page, limit },
+    payload: page,
     completion
 })
 

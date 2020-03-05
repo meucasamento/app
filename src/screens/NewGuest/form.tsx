@@ -61,7 +61,9 @@ const NewGuestForm = (props: Props) => {
                 errors,
                 values
              }) => (
-                <ScrollView style={styles.formScroll} keyboardDismissMode="on-drag">
+                <ScrollView 
+                    style={styles.formScroll} 
+                    keyboardDismissMode="interactive">
                     <View style={styles.form}>
                         <View style={styles.fieldsBox}>
                             <TextField 
