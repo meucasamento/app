@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, useState } from 'react'
 import { connect } from 'react-redux'
 import { Dispatch } from 'redux'
 
@@ -20,9 +20,15 @@ type State = {}
 
 const ProfileScreen = (props: Props) => {
 
+    const [isLoading, setIsLoading] = useState(false)
+
     const onPressHandler = () => {
+        setIsLoading(true)
+
         props.logout(response => {
-            response.finally(() => navigateTo("Auth"))
+            response.finally(() => setIsLoading(false))
+            .then(() => navigateTo("Auth"))
+            .catch(err => console.log(err))
         })
     }
 
@@ -30,9 +36,11 @@ const ProfileScreen = (props: Props) => {
         <View style={styles.container}>
             <Button 
             text="Logout"
+            isLoading={isLoading}
             onPress={() => onPressHandler()}/>
         </View>
     )
+
 }
 
 const mapStateProps = (state: Props) => state

@@ -14,8 +14,8 @@ import {
 import styles from './style'
 
 export type FormValues = {
-    email?: string,
-    password?: string
+    email: string,
+    password: string
 }
 
 type Props = {

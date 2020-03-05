@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { Dispatch } from 'redux'
 
 import {
-    KeyboardAvoidingView
+    KeyboardAvoidingView, Alert
 } from 'react-native'
 
 import { SessionState, Credentials } from '../../store/modules/session/session.types'
@@ -26,12 +26,11 @@ const AuthenticationScreen = (props: Props) => {
     const onSubmitHandler = (data: FormValues) => {
         setIsLoading(true)
 
-        props.authentication({
-            email: data.email,
-            password: data.password
-        }, response => response.finally(() => setIsLoading(false))
+        props.authentication(data, response => 
+        response.finally(() => setIsLoading(false))
         .then(() => navigateTo("App"))
-        .catch(err => console.log(err)))
+        .catch(() => Alert.alert("Login inválido", "Email ou senha incorretos, por favor revise os dados e tente novamente.")
+        ))
     }
 
     return(
@@ -41,7 +40,7 @@ const AuthenticationScreen = (props: Props) => {
             <SignupForm
                 formValues={{email: "adrianosouzacostaios@gmail.com", password: "12345678"}}
                 isLoading={isLoading}
-                onSubmit={onSubmitHandler} />
+                onSubmit={onSubmitHandler}/>
         </KeyboardAvoidingView>
     )
 
