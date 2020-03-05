@@ -2,7 +2,8 @@ import {
     put,
     all,
     call,
-    takeLatest
+    takeLatest,
+    select
 } from 'redux-saga/effects'
 
 import { 
@@ -12,7 +13,8 @@ import {
     DELETE,
     Delete,
     Store,
-    STORE
+    STORE,
+    GuestState
 } from './guest.types'
 
 import { 
@@ -28,14 +30,20 @@ import { PaginationResult } from '../../../models/response/pagination.response'
 import Guest from '../../../models/guest.model'
             
 function* fetchSaga(action: Fetch) {
+    const store = yield select()
+    const guestState: GuestState = store.guest
+    const currentPages = guestState.pagination.pages
+
     const {
         page,
         limit
     } = action.payload
 
     try {
-        const response: PaginationResult<Guest> = yield call(guestRepository.fetch, page, limit)
-        yield put(fetchSuccess(response))
+        if (page <= currentPages) {
+            yield put(fetchSuccess(yield call(guestRepository.fetch, page, limit)))
+        }
+        
         action.completion(Promise.resolve())
     } catch(err) {
         action.completion(Promise.reject(err))

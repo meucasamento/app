@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux'
 import { Dispatch } from 'redux'
 import KeyboardSpacer from 'react-native-keyboard-spacer'
@@ -26,17 +26,19 @@ import {
 
 import GuestSectionHeader from '../../components/Guests/GuestSectionHeader'
 import AddButton from '../../components/AddButton';
-import { navigate } from './../../services/navigation.service'
+import { navigateTo } from './../../services/navigation.service'
 
 type Props = {
     guest: GuestState,
-    fetch(page: number): void
+    fetch(page: number, limit?: number, completion?: (response: Promise<void>) => void): void
 }
 
 const GuestScreen = (props: Props) => {
 
+    const [isLoading, setIsLoading] = useState(false)
+
     useEffect(() => {
-        handlerOnRefresh()
+        loadPage(1)
     }, [])
 
     const renderSectionHeader = (section: SectionListData<Guest>) => (
@@ -63,26 +65,17 @@ const GuestScreen = (props: Props) => {
     )
 
     const renderRefreshControl = () => {
-        const {
-            page
-        } = props.guest.pagination
-
         return (
             <RefreshControl 
             refreshing={false} 
-            onRefresh={handlerOnRefresh} />
+            onRefresh={() => loadPage(1)} />
         )
     }
 
     const renderFooter = () => {
-        const {
-            page,
-            pages
-        } = props.guest.pagination
-
         return (
             <ActivityIndicator 
-                animating={page < pages}
+                animating={isLoading}
                 hidesWhenStopped={true}/>
         )
     }
@@ -99,24 +92,22 @@ const GuestScreen = (props: Props) => {
     }
 
     const handlerOnPressNewGuest = (guest?: Guest) => {
-        navigate("NewGuest", { guest })
+        // navigate("NewGuest", { guest })
     }
 
-    const handlerOnRefresh = () => {
-        props.fetch(1)
+    const loadPage = (page: number) => {
+        setIsLoading(true)
+        props.fetch(page, null, response => 
+            response.finally(() => setIsLoading(false))
+            .catch(err => console.log(err))
+        )
     }
 
     const handlerNextPage = () => { 
-        const {page, pages} = props.guest.pagination
-        const isLoading = props.guest.loading
-
-        if (isLoading || (page >= pages)) return
-
-        props.fetch(page + 1)
+        if (isLoading) return
+        const page = props.guest.pagination.page
+        loadPage(page + 1)
     }
-
-    const { 
-    } = props.guest
 
     return(
         <View style={styles.container}>
@@ -149,7 +140,7 @@ const GuestScreen = (props: Props) => {
 const mapStateToProps = (state: Props) => state
 
 const mapDipatchToProps = (dispatch: Dispatch) => ({
-    fetch: (page: number) => dispatch(fetch(page))
+    fetch: (page: number, limit?: number, completion?: (response: Promise<void>) => void) => dispatch(fetch(page, limit, completion))
 })
 
 export default connect(
