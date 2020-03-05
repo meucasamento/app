@@ -37,9 +37,9 @@ const NewGuestScreen = (props: Props) => {
             response.finally(() => setIsLoading(false))
             .then(() => back())
             .catch(_err => {
-                const message = `Não é culpa sua mas não foi possível ${!guest._id ? "atualizar" : "salvar"} o convidado. O que você gostaria de fazer agora?`
+                const message = `Não é culpa sua mas não foi possível ${guest._id ? "atualizar" : "salvar"} o convidado. O que você gostaria de fazer?`
                 Alert.alert("Não foi dessa vez", `${message}`, [
-                    { text: "Tentar novamente", onPress: () => handleOnDelete(guest) },
+                    { text: "Tentar novamente", onPress: () => handleOnSubmit(guest) },
                     { text: "Cancelar", style: "cancel", onPress: () => back() },
                     { text: "Continuar" }
                 ])
@@ -55,7 +55,7 @@ const NewGuestScreen = (props: Props) => {
                     response.finally(() => setIsLoading(false))
                     .then(() => back())
                     .catch(_err => {
-                        Alert.alert("Não foi dessa vez", `Não foi culpa sua mas não foi possível apagar o convidado. O que você gostaria de fazer agora?`, [
+                        Alert.alert("Não foi dessa vez", `Não foi culpa sua mas não foi possível apagar o convidado. O que você gostaria de fazer?`, [
                             { text: "Tentar novamente", onPress: () => handleOnDelete(guest) },
                             { text: "Cancelar", style: "cancel", onPress: () => back() },
                             { text: "Continuar" }
