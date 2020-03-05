@@ -33,7 +33,9 @@ const NewGuestForm = (props: Props) => {
                 isGodfather: props.guest?.isGodfather,
                 godfatherCompanion: "",
                 peopleCount: props.guest?.peopleCount,
-                includeFamily: props.guest?.includeFamily
+                includeFamily: props.guest?.includeFamily ?? false,
+                hasCompanion: false,
+                companion: null
             }}
             onSubmit={data => {
                 let guest = props.guest
@@ -72,34 +74,52 @@ const NewGuestForm = (props: Props) => {
                             onChangeText={name => setFieldValue("name", name)}
                             onSubmitEditing={handleSubmit}/>
                         <SwitchField 
-                            label="É um padrinho(a)"
+                            label="Tem acompanhante?"
+                            value={values.hasCompanion}
+                            isEnabled={!props.isLoading}
+                            onValueChange={value => setFieldValue("hasCompanion", value)}/>
+                        <TextField 
+                            label="Acompanhante"
+                            value={values.companion}
+                            error={touched.name && errors.name}
+                            autoFocus={!values.companion}
+                            isVisible={values.hasCompanion}
+                            isEnabled={!props.isLoading}
+                            placeholder="Nome do acompanhante"
+                            returnKeyType="done"
+                            onChangeText={value => setFieldValue("companion", value)}/>
+                        <SwitchField 
+                            label="E um padrinho ou madrinha?"
                             value={values.isGodfather}
                             isEnabled={!props.isLoading}
-                            onValueChange={value => setFieldValue("isGodfather", value)}/>
+                            onValueChange={value => {
+                                setFieldValue("isGodfather", value)
+                                setFieldValue("includeFamily", false)
+                            }}/>
                         <SwitchField 
                             label="Incluir família?"
+                            isVisible={!values.isGodfather}
                             value={values.includeFamily}
                             isEnabled={!props.isLoading}
-                            onValueChange={value => setFieldValue("includeFamily", value)}/>
+                            onValueChange={value => {
+                                setFieldValue("includeFamily", value)
+                                setFieldValue("peopleCount", null)
+                            }}/>
+                        <TextField 
+                            label="Quantidade de pessoas"
+                            autoFocus={!values.peopleCount}
+                            isVisible={values.includeFamily}
+                            value={values.peopleCount && `${values.peopleCount}`}
+                            error={touched.name && errors.name}
+                            isEnabled={!props.isLoading}
+                            placeholder="Quantidade"
+                            keyboardType="numeric"
+                            onChangeText={value => setFieldValue("peopleCount", value)}/>
                         <SwitchField 
                             label="Convite entregue"
                             value={values.invitationDelivered}
                             isEnabled={!props.isLoading}
                             onValueChange={value => setFieldValue("invitationDelivered", value)}/>
-                        {/* <TextField 
-                            label="Companheiro(a) do padrinho"
-                            value={values.godfatherCompanion}
-                            error={touched.name && errors.name}
-                            autoFocus={true}
-                            isEnabled={!props.isLoading}
-                            isVisible={values.isGodfather}
-                            placeholder="Nome do companheiro(a) do padrinho"/>
-                        <TextField 
-                            label="Quantidade de pessoas"
-                            value={values.godfatherCompanion}
-                            error={touched.name && errors.name}
-                            isEnabled={!props.isLoading}
-                            placeholder="Quantidade"/> */}
                     </ScrollView>
                     <View style={styles.actionBox}>
                         <ButtonField

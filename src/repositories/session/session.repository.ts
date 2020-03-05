@@ -1,15 +1,19 @@
 import Token from "../../models/token.model"
-import Authorization from "../../models/authorization.model"
 import api from "../../services/api"
+import { Credentials } from "../../store/modules/session/session.types"
 
 export interface SessionRepositoryInterface {
-    authentication(auth: Authorization): Promise<Token>
+    authentication(credentials: Credentials): Promise<Token>
 }
 
 export default new class SessionRepository implements SessionRepositoryInterface {
 
-    async authentication(auth: Authorization): Promise<Token> {
-        return await api.request<Token>("session/authentication", "post", { body: auth })
+    async authentication(credentials: Credentials): Promise<Token> {
+        const endpoint = "session/authentication"
+        const method = "post"
+        const data = { body: credentials }
+        const request = api.request<Token>(endpoint, method, data)
+        return await request
     }
     
 }

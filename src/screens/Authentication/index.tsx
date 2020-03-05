@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { Dispatch } from 'redux'
 
@@ -6,26 +6,32 @@ import {
     KeyboardAvoidingView
 } from 'react-native'
 
-import { SessionState } from '../../store/modules/session/session.types'
+import { SessionState, Credentials } from '../../store/modules/session/session.types'
 import { authentication } from './../../store/modules/session/session.actions'
-import Authorization from '../../models/authorization.model'
 
 import SignupForm, { FormValues } from './form'
 
 import styles from './style'
+import { navigateTo } from '../../services/navigation.service'
 
 type Props = {
     session: SessionState,
-    authentication(auth: Authorization): void
+    authentication(credentials: Credentials, responseHandler: (response: Promise<void>) => void) : void
 }
 
 const AuthenticationScreen = (props: Props) => {
 
-    const login = (data: FormValues) => {
-        props.authentication({ 
-            email: data.email, 
+    const [isLoading, setIsLoading] = useState(false)
+
+    const onSubmitHandler = (data: FormValues) => {
+        setIsLoading(true)
+
+        props.authentication({
+            email: data.email,
             password: data.password
-        })
+        }, response => response.finally(() => setIsLoading(false))
+        .then(() => navigateTo("App"))
+        .catch(err => console.log(err)))
     }
 
     return(
@@ -34,8 +40,8 @@ const AuthenticationScreen = (props: Props) => {
             style={styles.container}>
             <SignupForm
                 formValues={{email: "adrianosouzacostaios@gmail.com", password: "12345678"}}
-                isLoading={props.session.loading}
-                onSubmit={data => login(data)} />
+                isLoading={isLoading}
+                onSubmit={onSubmitHandler} />
         </KeyboardAvoidingView>
     )
 
@@ -44,7 +50,7 @@ const AuthenticationScreen = (props: Props) => {
 const mapStateToProps = (state: Props) => state
 
 const mapDipatchToProps = (dispatch: Dispatch) => ({
-    authentication: (auth: Authorization) => dispatch(authentication(auth))
+    authentication: (credentials: Credentials, responseHandler: (response: Promise<void>) => void) => dispatch(authentication(credentials, responseHandler))
 })
 
 export default connect(

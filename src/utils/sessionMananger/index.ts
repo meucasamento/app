@@ -1,14 +1,13 @@
 import * as SecureStore from 'expo-secure-store'
-
-import Authorization from '../../models/authorization.model'
+import { Credentials } from '../../store/modules/session/session.types'
 
 export interface Session {
-    start(auth: Authorization, token: string): Promise<void>
+    start(credentials: Credentials, token: string): Promise<void>
     updateToken(token: string): Promise<void>
-    updateAuth(auth: Authorization): Promise<void>
+    updateAuth(credentials: Credentials): Promise<void>
     sessionIsValid(): Promise<boolean>
     getToken(): Promise<string>
-    getAuthorization(): Promise<Authorization>
+    getAuthorization(): Promise<Credentials>
     destroy(): Promise<void>
 }
 
@@ -16,18 +15,18 @@ class SessionManager implements Session {
     
     private TOKEN_KEY = "token_key"
     private AUTH_KEY = "auth_key"
-    
-    start = async (auth: Authorization, token: string): Promise<void> => {
+
+    start = async (credentials: Credentials, token: string): Promise<void> => {
         await SecureStore.setItemAsync(this.TOKEN_KEY, token)
-        await SecureStore.setItemAsync(this.AUTH_KEY, JSON.stringify(auth))
+        await SecureStore.setItemAsync(this.AUTH_KEY, JSON.stringify(credentials))
     }
 
     updateToken = async (token: string): Promise<void> => {
         await SecureStore.setItemAsync(this.TOKEN_KEY, token)
     }
 
-    updateAuth = async (auth: Authorization): Promise<void> => {
-        await SecureStore.setItemAsync(this.AUTH_KEY, JSON.stringify(auth))
+    updateAuth = async (credentials: Credentials): Promise<void> => {
+        await SecureStore.setItemAsync(this.AUTH_KEY, JSON.stringify(credentials))
     }
     
     sessionIsValid = async (): Promise<boolean> => {
@@ -38,7 +37,7 @@ class SessionManager implements Session {
         return SecureStore.getItemAsync(this.TOKEN_KEY)
     }
 
-    getAuthorization = async (): Promise<Authorization> => {
+    getAuthorization = async (): Promise<Credentials> => {
         const data = await SecureStore.getItemAsync(this.AUTH_KEY)
         return JSON.parse(data)
     }

@@ -1,40 +1,17 @@
-import Authorization from '../../../models/authorization.model'
-import Token from '../../../models/token.model'
-
 import { 
-    SessionActionTypes, 
     AUTHENTICATION,
-    AUTHENTICATION_SUCCESS,
-    AUTHENTICATION_FAILURE,
     LOGOUT,
-    LOGOUT_SUCCESS,
-    LOGOUT_FAILURE
+    SessionActionTypes,
+    Credentials
 } from './session.types'
 
-export const authentication = (auth: Authorization): SessionActionTypes => ({
+export const authentication = (credentials: Credentials, responseHandler: (response: Promise<void>) => void): SessionActionTypes => ({
     type: AUTHENTICATION,
-    payload: auth
+    payload: credentials,
+    responseHandler
 })
 
-export const authenticationSuccess = (token: Token): SessionActionTypes => ({
-    type: AUTHENTICATION_SUCCESS,
-    payload: token
-})
-
-export const authenticationFailure = (error: Error): SessionActionTypes => ({
-    type: AUTHENTICATION_FAILURE,
-    payload: error
-})
-
-export const logout = (): SessionActionTypes => ({
-    type: LOGOUT
-})
-
-export const logoutSuccess = (): SessionActionTypes => ({
-    type: LOGOUT_SUCCESS
-})
-
-export const logoutFailure = (error: Error): SessionActionTypes => ({
-    type: LOGOUT_FAILURE,
-    payload: error
+export const logout = (responseHandler: (response: Promise<void>) => void): SessionActionTypes => ({
+    type: LOGOUT,
+    responseHandler
 })
