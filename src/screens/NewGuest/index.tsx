@@ -12,6 +12,7 @@ import Guest from '../../models/guest.model'
 import NewGuestForm from './form'
 import { GuestState } from '../../store/modules/guest/guest.types'
 import { Alert } from 'react-native'
+import { back } from '../../services/navigation.service'
 
 type NavigationParams = {
     guest?: Guest
@@ -34,7 +35,15 @@ const NewGuestScreen = (props: Props) => {
         setIsLoading(true)
         props.store(guest, response => 
             response.finally(() => setIsLoading(false))
-            .catch(err => {})
+            .then(() => back())
+            .catch(_err => {
+                const message = `Não é culpa sua mas não foi possível ${!guest._id ? "atualizar" : "salvar"} o convidado. O que você gostaria de fazer agora?`
+                Alert.alert("Não foi dessa vez", `${message}`, [
+                    { text: "Tentar novamente", onPress: () => handleOnDelete(guest) },
+                    { text: "Cancelar", style: "cancel", onPress: () => back() },
+                    { text: "Continuar" }
+                ])
+            })
         )
     }
 
@@ -44,7 +53,14 @@ const NewGuestScreen = (props: Props) => {
                 setIsLoading(true)
                 props.remove(guest, response => 
                     response.finally(() => setIsLoading(false))
-                    .catch(err => {})
+                    .then(() => back())
+                    .catch(_err => {
+                        Alert.alert("Não foi dessa vez", `Não foi culpa sua mas não foi possível apagar o convidado. O que você gostaria de fazer agora?`, [
+                            { text: "Tentar novamente", onPress: () => handleOnDelete(guest) },
+                            { text: "Cancelar", style: "cancel", onPress: () => back() },
+                            { text: "Continuar" }
+                        ])
+                    })
                 )
             }},
             {text: "Cancelar", style: "cancel"}
