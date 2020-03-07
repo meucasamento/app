@@ -3,7 +3,8 @@ import { Formik } from 'formik'
 import {
     View,
     Button,
-    ScrollView
+    ScrollView,
+    KeyboardAvoidingView
 } from 'react-native'
 
 import Guest from '../../models/guest.model'
@@ -11,7 +12,8 @@ import Guest from '../../models/guest.model'
 import {
     ButtonField,
     TextField,
-    SwitchField
+    SwitchField,
+    StepperField
 } from '../../components/Form/Fields'
 
 import styles from './styles'
@@ -31,11 +33,10 @@ const NewGuestForm = (props: Props) => {
                 name: props.guest?.name,
                 invitationDelivered: props.guest?.invitationDelivered,
                 isGodfather: props.guest?.isGodfather,
-                godfatherCompanion: "",
                 peopleCount: props.guest?.peopleCount,
                 includeFamily: props.guest?.includeFamily ?? false,
-                hasCompanion: false,
-                companion: null
+                hasCompanion: props.guest?.hasCompanion ?? false,
+                companion: props.guest?.companion
             }}
             onSubmit={data => {
                 let guest = props.guest
@@ -45,6 +46,9 @@ const NewGuestForm = (props: Props) => {
                     guest.invitationDelivered = data.invitationDelivered
                     guest.isGodfather = data.isGodfather
                     guest.includeFamily = data.includeFamily
+                    guest.peopleCount = data.peopleCount
+                    guest.hasCompanion = data.hasCompanion
+                    guest.companion = data.companion
                 } else {
                     guest = {
                         ...data,
@@ -77,10 +81,13 @@ const NewGuestForm = (props: Props) => {
                                 onChangeText={name => setFieldValue("name", name)}
                                 onSubmitEditing={handleSubmit}/>
                             <SwitchField 
-                                label="Tem acompanhante?"
+                                label="Tem acompanhante"
                                 value={values.hasCompanion}
                                 isEnabled={!props.isLoading}
-                                onValueChange={value => setFieldValue("hasCompanion", value)}/>
+                                onValueChange={value => {
+                                    setFieldValue("hasCompanion", value)
+                                    setFieldValue("companion", null)
+                                }}/>
                             <TextField 
                                 label="Acompanhante"
                                 value={values.companion}
@@ -88,36 +95,29 @@ const NewGuestForm = (props: Props) => {
                                 autoFocus={!values.companion}
                                 isVisible={values.hasCompanion}
                                 isEnabled={!props.isLoading}
-                                placeholder="Nome do acompanhante"
+                                placeholder="Nome do(a) acompanhante"
                                 returnKeyType="done"
                                 onChangeText={value => setFieldValue("companion", value)}/>
                             <SwitchField 
-                                label="E um padrinho ou madrinha?"
+                                label="É um padrinho ou madrinha"
                                 value={values.isGodfather}
                                 isEnabled={!props.isLoading}
-                                onValueChange={value => {
-                                    setFieldValue("isGodfather", value)
-                                    setFieldValue("includeFamily", false)
-                                }}/>
+                                onValueChange={value => setFieldValue("isGodfather", value)}/>
                             <SwitchField 
-                                label="Incluir família?"
-                                isVisible={!values.isGodfather}
+                                label="Incluir família"
                                 value={values.includeFamily}
                                 isEnabled={!props.isLoading}
                                 onValueChange={value => {
                                     setFieldValue("includeFamily", value)
-                                    setFieldValue("peopleCount", null)
+                                    setFieldValue("peopleCount", 0)
                                 }}/>
-                            <TextField 
+                            <StepperField
                                 label="Quantidade de pessoas"
-                                autoFocus={!values.peopleCount}
+                                value={values.peopleCount}
+                                minValue={0}
                                 isVisible={values.includeFamily}
-                                value={values.peopleCount && `${values.peopleCount}`}
-                                error={touched.name && errors.name}
                                 isEnabled={!props.isLoading}
-                                placeholder="Quantidade"
-                                keyboardType="numeric"
-                                onChangeText={value => setFieldValue("peopleCount", value)}/>
+                                onChangeValue={value => setFieldValue("peopleCount", value)}/>
                             <SwitchField 
                                 label="Convite entregue"
                                 value={values.invitationDelivered}
@@ -126,7 +126,7 @@ const NewGuestForm = (props: Props) => {
                         </View>
                         <View style={styles.actionsBox}>
                             <ButtonField
-                                text="Salvar"
+                                text={props.guest ? "Atualizar" : "Salvar"}
                                 isLoading={props.isLoading}
                                 onPress={handleSubmit}/>
                             {props.onDelete && props.guest && 

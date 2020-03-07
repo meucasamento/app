@@ -5,4 +5,6 @@ export default interface Guest {
     isGodfather?: boolean
     includeFamily?: boolean
     peopleCount?: number
+    hasCompanion?: boolean
+    companion?: string
 }
