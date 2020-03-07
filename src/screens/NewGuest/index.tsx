@@ -72,6 +72,7 @@ const NewGuestScreen = (props: Props) => {
             style={{ flex: 1 }}
             behavior="padding">
                 <ScrollView 
+                    keyboardShouldPersistTaps="always"
                     keyboardDismissMode="on-drag">
                     <NewGuestForm 
                         guest={guest}
