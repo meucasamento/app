@@ -6,6 +6,8 @@ export default StyleSheet.create({
         justifyContent: "center"
     },
     form: {
+        flexGrow: 1,
+        justifyContent: "space-between",
         marginLeft: 16,
         marginRight: 16,
         marginBottom: 16

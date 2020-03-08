@@ -11,10 +11,8 @@ import {
 import Guest from '../../models/guest.model'
 import NewGuestForm from './form'
 import { GuestState } from '../../store/modules/guest/guest.types'
-import { Alert, KeyboardAvoidingView } from 'react-native'
+import { Alert } from 'react-native'
 import { back } from '../../services/navigation.service'
-import { ScrollView } from 'react-native-gesture-handler'
-import KeyboardSpacer from 'react-native-keyboard-spacer'
 
 type NavigationParams = {
     guest?: Guest
@@ -68,19 +66,11 @@ const NewGuestScreen = (props: Props) => {
     }
 
     return (
-        <KeyboardAvoidingView 
-            style={{ flex: 1 }}
-            behavior="padding">
-                <ScrollView 
-                    keyboardShouldPersistTaps="always"
-                    keyboardDismissMode="on-drag">
-                    <NewGuestForm 
-                        guest={guest}
-                        isLoading={isLoading}
-                        onSubmit={handleOnSubmit}
-                        onDelete={handleOnDelete}/>
-                </ScrollView>
-        </KeyboardAvoidingView>
+        <NewGuestForm 
+            guest={guest}
+            isLoading={isLoading}
+            onSubmit={handleOnSubmit}
+            onDelete={handleOnDelete}/>
     )
 
 }

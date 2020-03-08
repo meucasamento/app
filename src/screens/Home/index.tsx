@@ -1,27 +1,42 @@
-import React, { Component } from 'react'
+import React from 'react'
+import { connect } from 'react-redux'
+import { Dispatch } from 'redux';
 
 import { 
-    View
+    View, 
+    ScrollView
 } from 'react-native'
 
 import Report from '../../components/Report'
 import WeedingBox from '../../components/WeddingBox'
+import { WeddingState } from '../../store/modules/wedding/wedding.types';
 import styles from './style'
 
-const HomePage = () => {
+type Props = {
+    wedding: WeddingState
+}
+
+const HomePage = (props: Props) => {
     
     return(
-        <View style={styles.container}>
-            <View style={styles.header}>
-                <WeedingBox/>
-            </View>
-            
-            <View style={styles.footer}>
+        <ScrollView 
+            contentContainerStyle={styles.scrollView}>
+            <View style={styles.container}>
+                <WeedingBox 
+                    style={styles.header}
+                    wedding={props.wedding} />
                 <Report/>
             </View>
-        </View>
+        </ScrollView>
     )
 
 }
 
-export default HomePage
+const mapStateToProps = (state: Props) => state
+
+const mapDipatchToProps = (dispatch: Dispatch) => ({})
+
+export default connect(
+    mapStateToProps,
+    mapDipatchToProps
+)(HomePage)

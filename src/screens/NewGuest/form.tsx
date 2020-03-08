@@ -18,6 +18,7 @@ import {
 
 import styles from './styles'
 import Space from '../../components/Space'
+import KeyboardSpacer from 'react-native-keyboard-spacer'
 
 type Props = {
     isLoading?: boolean,
@@ -65,79 +66,84 @@ const NewGuestForm = (props: Props) => {
                 errors,
                 values
              }) => (
-                <View style={styles.form}>
-                    <View style={styles.fieldsBox}>
-                        <TextField 
-                            label="Nome"
-                            value={values.name}
-                            error={touched.name && errors.name}
-                            autoFocus={!values.name}
-                            isEnabled={!props.isLoading}
-                            placeholder="Nome do convidado"
-                            returnKeyType="done"
-                            onChangeText={name => setFieldValue("name", name)}
-                            onSubmitEditing={handleSubmit}/>
-                        <SwitchField 
-                            label="Tem acompanhante"
-                            value={values.hasCompanion}
-                            isEnabled={!props.isLoading}
-                            onValueChange={value => {
-                                setFieldValue("hasCompanion", value)
-                                setFieldValue("companion", null)
-                            }}/>
-                        <TextField 
-                            label="Acompanhante"
-                            value={values.companion}
-                            error={touched.name && errors.name}
-                            autoFocus={!values.companion}
-                            isVisible={values.hasCompanion}
-                            isEnabled={!props.isLoading}
-                            placeholder="Nome do(a) acompanhante"
-                            returnKeyType="done"
-                            onChangeText={value => setFieldValue("companion", value)}/>
-                        <SwitchField 
-                            label="É um padrinho ou madrinha"
-                            value={values.isGodfather}
-                            isEnabled={!props.isLoading}
-                            onValueChange={value => setFieldValue("isGodfather", value)}/>
-                        <SwitchField 
-                            label="Incluir família"
-                            value={values.includeFamily}
-                            isEnabled={!props.isLoading}
-                            onValueChange={value => {
-                                setFieldValue("includeFamily", value)
-                                setFieldValue("peopleCount", 0)
-                            }}/>
-                        <StepperField
-                            label="Quantidade de pessoas"
-                            value={values.peopleCount}
-                            minValue={0}
-                            isVisible={values.includeFamily}
-                            isEnabled={!props.isLoading}
-                            onChangeValue={value => setFieldValue("peopleCount", value)}/>
-                        <SwitchField 
-                            label="Convite entregue"
-                            value={values.invitationDelivered}
-                            isEnabled={!props.isLoading}
-                            onValueChange={value => setFieldValue("invitationDelivered", value)}/>
-                    </View>
-                    <View style={styles.actionsBox}>
-                        <ButtonField
-                            text={props.guest ? "Atualizar" : "Salvar"}
-                            isLoading={props.isLoading}
-                            onPress={handleSubmit}/>
-                        {props.onDelete && props.guest && 
-                        <>
-                        <Space/>
-                        <Button 
-                            title="Apagar convidado"
-                            color="red"
-                            disabled={props.isLoading}
-                            onPress={() => props.onDelete(props.guest)}/>
-                        </>
-                        }
-                    </View>
-                </View>
+                <>
+                    <ScrollView 
+                        contentContainerStyle={styles.form}
+                        keyboardShouldPersistTaps="always">
+                            <View style={styles.fieldsBox}>
+                                <TextField 
+                                    label="Nome"
+                                    value={values.name}
+                                    error={touched.name && errors.name}
+                                    autoFocus={!values.name}
+                                    isEnabled={!props.isLoading}
+                                    placeholder="Nome do convidado"
+                                    returnKeyType="done"
+                                    onChangeText={name => setFieldValue("name", name)}
+                                    onSubmitEditing={handleSubmit}/>
+                                <SwitchField 
+                                    label="Tem acompanhante"
+                                    value={values.hasCompanion}
+                                    isEnabled={!props.isLoading}
+                                    onValueChange={value => {
+                                        setFieldValue("hasCompanion", value)
+                                        setFieldValue("companion", null)
+                                    }}/>
+                                <TextField 
+                                    label="Acompanhante"
+                                    value={values.companion}
+                                    error={touched.name && errors.name}
+                                    autoFocus={!values.companion}
+                                    isVisible={values.hasCompanion}
+                                    isEnabled={!props.isLoading}
+                                    placeholder="Nome do(a) acompanhante"
+                                    returnKeyType="done"
+                                    onChangeText={value => setFieldValue("companion", value)}/>
+                                <SwitchField 
+                                    label="É um padrinho ou madrinha"
+                                    value={values.isGodfather}
+                                    isEnabled={!props.isLoading}
+                                    onValueChange={value => setFieldValue("isGodfather", value)}/>
+                                <SwitchField 
+                                    label="Incluir família"
+                                    value={values.includeFamily}
+                                    isEnabled={!props.isLoading}
+                                    onValueChange={value => {
+                                        setFieldValue("includeFamily", value)
+                                        setFieldValue("peopleCount", 0)
+                                    }}/>
+                                <StepperField
+                                    label="Quantidade de pessoas"
+                                    value={values.peopleCount}
+                                    minValue={0}
+                                    isVisible={values.includeFamily}
+                                    isEnabled={!props.isLoading}
+                                    onChangeValue={value => setFieldValue("peopleCount", value)}/>
+                                <SwitchField 
+                                    label="Convite entregue"
+                                    value={values.invitationDelivered}
+                                    isEnabled={!props.isLoading}
+                                    onValueChange={value => setFieldValue("invitationDelivered", value)}/>
+                            </View>
+                            <View style={styles.actionsBox}>
+                                <ButtonField
+                                    text={props.guest ? "Atualizar" : "Salvar"}
+                                    isLoading={props.isLoading}
+                                    onPress={handleSubmit}/>
+                                {props.onDelete && props.guest && 
+                                <>
+                                <Space/>
+                                <Button 
+                                    title="Apagar convidado"
+                                    color="red"
+                                    disabled={props.isLoading}
+                                    onPress={() => props.onDelete(props.guest)}/>
+                                </>
+                                }
+                            </View>
+                    </ScrollView>
+                    <KeyboardSpacer/>
+                </>
             )}
         </Formik>
     )

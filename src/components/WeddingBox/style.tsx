@@ -6,8 +6,6 @@ export default StyleSheet.create({
         alignItems: "center"
     },
     cover: {
-        height: 160,
-        width: "100%",
         marginBottom: 16
     },
     label: {

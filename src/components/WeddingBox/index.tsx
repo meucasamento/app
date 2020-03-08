@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux'
-import { Dispatch } from 'redux';
+import React from 'react';
 
 import { 
     View, 
-    Image
+    Image,
+    StyleProp,
+    ViewStyle
 } from 'react-native';
 
 import { 
@@ -15,40 +15,30 @@ import Text from '../Text'
 import styles from './style';
 
 type Props = {
+    style?: StyleProp<ViewStyle>,
     wedding: WeddingState
 }
 
-type State = {}
+const WeddingBox = (props: Props) => {
+    
+    const {
+        formattedDate,
+        formattedDaysLeft
+    } = props.wedding.wedding
 
-class WeddingBox extends Component<Props, State> {
-    static defaultProps = {}
+    return (
+        <View style={[styles.container, props.style]}>
+            <Image 
+            style={ styles.cover }
+            source={ require('./../../assets/cover.jpg') }
+            resizeMode="contain"/>
+            <Text style={ styles.label }>Data do casamento</Text>
+            <Text style={ styles.date }>{ formattedDate }</Text>
+            <Text style={ styles.label }>Faltam apenas</Text>
+            <Text style={ styles.count }>{ formattedDaysLeft }</Text>
+        </View>
+    )
 
-    render() {
-        const {
-            formattedDate,
-            formattedDaysLeft
-        } = this.props.wedding.wedding
-
-        return (
-            <View style={ styles.container }>
-                <Image 
-                style={ styles.cover }
-                source={ require('./../../assets/cover.jpg') }
-                resizeMode="contain"/>
-                <Text style={ styles.label }>Data do casamento</Text>
-                <Text style={ styles.date }>{ formattedDate }</Text>
-                <Text style={ styles.label }>Faltam apenas</Text>
-                <Text style={ styles.count }>{ formattedDaysLeft }</Text>
-            </View>
-        )
-    }
 }
 
-const mapStateToProps = (state: Props) => state
-
-const mapDipatchToProps = (dispatch: Dispatch) => ({})
-
-export default connect(
-    mapStateToProps,
-    mapDipatchToProps
-)(WeddingBox)
+export default WeddingBox
