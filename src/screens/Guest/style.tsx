@@ -9,11 +9,11 @@ export default StyleSheet.create({
         color: "white"
     },
     list: {
-        backgroundColor: 'white'
+        // backgroundColor: 'white'
     },
     separator: {
-        height: 1,
-        marginLeft: 16,
-        backgroundColor: '#F0F0F0'
+        // height: 1,
+        // marginLeft: 16,
+        // backgroundColor: '#F0F0F0'
     }
 })

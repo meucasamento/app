@@ -3,8 +3,7 @@ import { Formik } from 'formik'
 import {
     View,
     Button,
-    ScrollView,
-    KeyboardAvoidingView
+    ScrollView
 } from 'react-native'
 
 import Guest from '../../models/guest.model'
@@ -69,7 +68,8 @@ const NewGuestForm = (props: Props) => {
                 <>
                     <ScrollView 
                         contentContainerStyle={styles.form}
-                        keyboardShouldPersistTaps="always">
+                        keyboardShouldPersistTaps="always"
+                        keyboardDismissMode="on-drag">
                             <View style={styles.fieldsBox}>
                                 <TextField 
                                     label="Nome"

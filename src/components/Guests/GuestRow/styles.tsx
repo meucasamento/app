@@ -3,9 +3,13 @@ import { StyleSheet } from 'react-native'
 export default StyleSheet.create({
     row: {
         padding: 16,
+        margin: 16,
+        marginTop: 0,
+        marginBottom: 8,
+        borderRadius: 8,
         flexDirection: 'row',
         alignItems: 'center',
-        backgroundColor: '#fff'
+        backgroundColor: '#f7f7f7'
     },
     leftContainer: {
         flex: 1,
@@ -34,7 +38,7 @@ export default StyleSheet.create({
     unConfirmedTag: {
         fontSize: 12,
         color: "gray",
-        backgroundColor: "#f4f4f4",
+        backgroundColor: "#fff",
         paddingLeft: 8,
         paddingRight: 8,
         paddingBottom: 4,

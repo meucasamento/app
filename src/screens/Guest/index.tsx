@@ -60,10 +60,6 @@ const GuestScreen = (props: Props) => {
         <Text>sem conteúdo</Text>
     )
 
-    const renderSeparator = () => (
-        <View style={ styles.separator }></View>
-    )
-
     const renderRefreshControl = () => {
         return (
             <RefreshControl 
@@ -86,7 +82,8 @@ const GuestScreen = (props: Props) => {
         const others = guests.filter(guest => !guest.isGodfather)
     
         return [
-            { title: `Padrinhos`, data: godfathers },
+            { title: `Padrinhos Jenifer`, data: [] },
+            { title: `Padrinhos Adriano`, data: [] },
             { title: `Convidados`, data: others }
         ]
     }
@@ -127,7 +124,6 @@ const GuestScreen = (props: Props) => {
                 renderItem={({item}) => renderGuestRow(item)}
                 refreshControl={renderRefreshControl()}
                 ListEmptyComponent={renderEmptyRow}
-                ItemSeparatorComponent={renderSeparator}
                 ListFooterComponent={renderFooter}
                 showsVerticalScrollIndicator={false}
                 onEndReached={handleNextPage}
