@@ -10,5 +10,8 @@ export default StyleSheet.create({
     },
     list: {
         backgroundColor: 'white'
+    },
+    footerLoading: {
+        margin: 22
     }
 })

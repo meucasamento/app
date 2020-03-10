@@ -47,7 +47,7 @@ const GuestScreen = (props: Props) => {
 
     const renderSectionFooter = (section: SectionListData<Guest>) => {
         if (section.data.length > 0) return
-        return <EmptyGuestRow message={`Ainda não existem ${section.title.toLowerCase()}`}/>
+        return <EmptyGuestRow message={`Ainda não existe nenhum dado`}/>
     }
 
     const renderGuestRow = (guest: Guest) => (
@@ -71,6 +71,7 @@ const GuestScreen = (props: Props) => {
     const renderFooter = () => {
         return (
             <ActivityIndicator 
+                style={styles.footerLoading}
                 animating={isLoading}
                 hidesWhenStopped={true}/>
         )
@@ -79,11 +80,13 @@ const GuestScreen = (props: Props) => {
     const organizeSections = (): GuestSection[] => {
         const guests = props.guest.guests
         const godfathers = guests.filter(guest => guest.isGodfather)
+        const jeniferGodfathers = godfathers.filter(guest => guest.godfatherOf === "jenifer")
+        const adrianoGodfathers = godfathers.filter(guest => guest.godfatherOf === "adriano")
         const others = guests.filter(guest => !guest.isGodfather)
     
         return [
-            { title: `Padrinhos Jenifer`, data: [] },
-            { title: `Padrinhos Adriano`, data: [] },
+            { title: `Padrinhos Jenifer`, data: jeniferGodfathers },
+            { title: `Padrinhos Adriano`, data: adrianoGodfathers },
             { title: `Convidados`, data: others }
         ]
     }
