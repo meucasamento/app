@@ -1,7 +1,7 @@
 import React from 'react'
 import {
     SafeAreaView,
-    TouchableHighlight,
+    TouchableOpacity,
     View
 } from 'react-native'
 
@@ -25,9 +25,8 @@ const renderConfirmedTag = (guest: Guest) => {
 
 export const GuestRow = (props: Props) => (
     <SafeAreaView>
-        <TouchableHighlight
-            onPress={() => props.onPress && props.onPress(props.guest)}
-            underlayColor="gray">
+        <TouchableOpacity
+            onPress={() => props.onPress && props.onPress(props.guest)}>
             <View style={styles.row}>
                 <View style={styles.leftContainer}>
                     <Text>
@@ -40,7 +39,7 @@ export const GuestRow = (props: Props) => (
                     {renderConfirmedTag(props.guest)}
                 </View>
             </View>
-        </TouchableHighlight>
+        </TouchableOpacity>
     </SafeAreaView>
 )
 

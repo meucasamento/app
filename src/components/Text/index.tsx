@@ -2,30 +2,19 @@ import React, { Component } from 'react'
 
 import { 
     Text as RNText,
-    TextStyle
+    TextStyle,
+    StyleProp
 } from 'react-native'
 
 type Props = {
-    style?: TextStyle,
+    style?: StyleProp<TextStyle>,
     children?: any
 }
 
-type State = {}
+const Text = (props: Props) => (
+    <RNText style={[{ fontSize: 15 }, props.style]}>
+        {props.children}
+    </RNText>
+)
 
-export default class Text extends Component<Props, State> {
-    render() {
-        const { 
-            style,
-            children
-        } = this.props
-
-        return(
-            <RNText style={{
-                fontSize: 15,
-                ...style
-                }}>
-                {children}
-            </RNText>
-        )
-    }
-}
+export default Text

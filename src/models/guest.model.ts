@@ -8,4 +8,5 @@ export default interface Guest {
     peopleCount?: number
     hasCompanion?: boolean
     companion?: string
+    guestOf?: string
 }

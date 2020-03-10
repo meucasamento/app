@@ -87,7 +87,8 @@ const GuestScreen = (props: Props) => {
         return [
             { title: `Padrinhos Jenifer`, data: jeniferGodfathers },
             { title: `Padrinhos Adriano`, data: adrianoGodfathers },
-            { title: `Convidados`, data: others }
+            { title: `Convidados Jenifer`, data: [] },
+            { title: `Convidados Adriano`, data: others }
         ]
     }
 

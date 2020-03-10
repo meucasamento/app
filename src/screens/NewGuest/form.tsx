@@ -12,7 +12,8 @@ import {
     ButtonField,
     TextField,
     SwitchField,
-    StepperField
+    StepperField,
+    SegmentedField
 } from '../../components/Form/Fields'
 
 import styles from './styles'
@@ -36,7 +37,8 @@ const NewGuestForm = (props: Props) => {
                 peopleCount: props.guest?.peopleCount,
                 includeFamily: props.guest?.includeFamily ?? false,
                 hasCompanion: props.guest?.hasCompanion ?? false,
-                companion: props.guest?.companion
+                companion: props.guest?.companion,
+                guestOf: props.guest?.guestOf
             }}
             onSubmit={data => {
                 let guest = props.guest
@@ -49,6 +51,7 @@ const NewGuestForm = (props: Props) => {
                     guest.peopleCount = data.peopleCount
                     guest.hasCompanion = data.hasCompanion
                     guest.companion = data.companion
+                    guest.guestOf = data.guestOf
                 } else {
                     guest = {
                         ...data,
@@ -124,6 +127,14 @@ const NewGuestForm = (props: Props) => {
                                     value={values.invitationDelivered}
                                     isEnabled={!props.isLoading}
                                     onValueChange={value => setFieldValue("invitationDelivered", value)}/>
+                                <SegmentedField<string> 
+                                    label="Convidado por:"
+                                    value={values.guestOf}
+                                    data={[
+                                        { label: "Jenifer", value: "jenifer" },
+                                        { label: "Adriano", value: "adriano" }
+                                    ]}
+                                    onSelectedValue={value => setFieldValue("guestOf", value)}/>
                             </View>
                             <View style={styles.actionsBox}>
                                 <ButtonField
