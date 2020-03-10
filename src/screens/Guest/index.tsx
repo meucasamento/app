@@ -89,8 +89,8 @@ const GuestScreen = (props: Props) => {
         const adrianoGuests = others.filter(guest => guest.guestOf === "adriano")
     
         return [
-            { title: `Padrinhos Jenifer`, data: jeniferGodfathers },
-            { title: `Padrinhos Adriano`, data: adrianoGodfathers },
+            { title: `Padrinhos Jenifer (👰🏽)`, data: jeniferGodfathers },
+            { title: `Padrinhos Adriano (🤵🏻)`, data: adrianoGodfathers },
             { title: `Convidados Jenifer`, data: jeniferGuests },
             { title: `Convidados Adriano`, data: adrianoGuests }
         ]
