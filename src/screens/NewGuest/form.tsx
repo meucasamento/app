@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Formik } from 'formik'
 import {
     View,
@@ -19,6 +19,7 @@ import {
 import styles from './styles'
 import Space from '../../components/Space'
 import KeyboardSpacer from 'react-native-keyboard-spacer'
+import sessionMananger from '../../utils/sessionMananger'
 
 type Props = {
     isLoading?: boolean,
@@ -28,6 +29,16 @@ type Props = {
 }
 
 const NewGuestForm = (props: Props) => {
+    const [guestOf, setGuestOf] = useState<string>()
+
+    useEffect(() => {
+        (async () => {
+            const auth = await sessionMananger.getAuthorization()
+            const admin = auth.email === "adrianosouzacostaios@gmail.com" ? "adriano" : "jenifer"
+            setGuestOf(props.guest?.guestOf ?? admin)
+        })()
+    }, [])
+
     return (
         <Formik 
             initialValues={{
@@ -37,8 +48,7 @@ const NewGuestForm = (props: Props) => {
                 peopleCount: props.guest?.peopleCount,
                 includeFamily: props.guest?.includeFamily ?? false,
                 hasCompanion: props.guest?.hasCompanion ?? false,
-                companion: props.guest?.companion,
-                guestOf: props.guest?.guestOf
+                companion: props.guest?.companion
             }}
             onSubmit={data => {
                 let guest = props.guest
@@ -51,11 +61,12 @@ const NewGuestForm = (props: Props) => {
                     guest.peopleCount = data.peopleCount
                     guest.hasCompanion = data.hasCompanion
                     guest.companion = data.companion
-                    guest.guestOf = data.guestOf
+                    guest.guestOf = guestOf
                 } else {
                     guest = {
                         ...data,
-                        _id: null
+                        _id: null,
+                        guestOf
                     }
                 }
 
@@ -129,12 +140,12 @@ const NewGuestForm = (props: Props) => {
                                     onValueChange={value => setFieldValue("invitationDelivered", value)}/>
                                 <SegmentedField<string> 
                                     label="Convidado por:"
-                                    value={values.guestOf}
+                                    value={guestOf}
                                     data={[
                                         { label: "Jenifer", value: "jenifer" },
                                         { label: "Adriano", value: "adriano" }
                                     ]}
-                                    onSelectedValue={value => setFieldValue("guestOf", value)}/>
+                                    onSelectedValue={value => setGuestOf(value)}/>
                             </View>
                             <View style={styles.actionsBox}>
                                 <ButtonField

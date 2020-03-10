@@ -79,16 +79,20 @@ const GuestScreen = (props: Props) => {
 
     const organizeSections = (): GuestSection[] => {
         const guests = props.guest.guests
+        
         const godfathers = guests.filter(guest => guest.isGodfather)
-        const jeniferGodfathers = godfathers.filter(guest => guest.godfatherOf === "jenifer")
-        const adrianoGodfathers = godfathers.filter(guest => guest.godfatherOf === "adriano")
+        const jeniferGodfathers = godfathers.filter(guest => guest.guestOf === "jenifer")
+        const adrianoGodfathers = godfathers.filter(guest => guest.guestOf === "adriano")
+        
         const others = guests.filter(guest => !guest.isGodfather)
+        const jeniferGuests = others.filter(guest => guest.guestOf === "jenifer")
+        const adrianoGuests = others.filter(guest => guest.guestOf === "adriano")
     
         return [
             { title: `Padrinhos Jenifer`, data: jeniferGodfathers },
             { title: `Padrinhos Adriano`, data: adrianoGodfathers },
-            { title: `Convidados Jenifer`, data: [] },
-            { title: `Convidados Adriano`, data: others }
+            { title: `Convidados Jenifer`, data: jeniferGuests },
+            { title: `Convidados Adriano`, data: adrianoGuests }
         ]
     }
 

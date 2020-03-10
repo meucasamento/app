@@ -51,7 +51,6 @@ const SignupForm = (props: Props) => {
                         label="Email"
                         value={values.email}
                         error={touched.email && errors.email}
-                        autoFocus={true}
                         keyboardType="email-address"
                         isEnabled={!props.isLoading}
                         placeholder="Informe seu email"
