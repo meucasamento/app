@@ -36,6 +36,7 @@ type Props = {
 const GuestScreen = (props: Props) => {
 
     const [isLoading, setIsLoading] = useState(false)
+    const [refreshing, setRefreshing] = useState(false)
 
     useEffect(() => {
         loadPage(1)
@@ -63,8 +64,11 @@ const GuestScreen = (props: Props) => {
     const renderRefreshControl = () => {
         return (
             <RefreshControl 
-            refreshing={false} 
-            onRefresh={() => loadPage(1)} />
+                refreshing={refreshing} 
+                onRefresh={() => {
+                    setRefreshing(true)
+                    loadPage(1)
+                }}/>
         )
     }
 
@@ -103,8 +107,10 @@ const GuestScreen = (props: Props) => {
     const loadPage = (page: number) => {
         setIsLoading(true)
         props.fetch(page, response => 
-            response.finally(() => setIsLoading(false))
-            .catch(err => console.log(err))
+            response.finally(() => {
+                setIsLoading(false)
+                setRefreshing(false)
+            }).catch(err => console.log(err))
         )
     }
 

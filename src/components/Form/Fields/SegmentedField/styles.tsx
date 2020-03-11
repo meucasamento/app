@@ -38,7 +38,6 @@ export default StyleSheet.create({
         textAlign: "center"
     },
     buttonSelectedText: {
-        color: "white",
-        fontWeight: "bold"
+        color: "white"
     }
 })

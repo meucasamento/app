@@ -18,7 +18,7 @@ class GuestRepository implements GuestRepositoryInterface {
         this.session = session
     }
 
-    fetch = async (page: number = 1, limit: number = 10): Promise<PaginationResult<Guest>> => {
+    fetch = async (page: number = 1, limit: number = 20): Promise<PaginationResult<Guest>> => {
         const params = {
             page,
             limit
