@@ -22,6 +22,7 @@ type Props = {
     keyboardType?: KeyboardTypeOptions,
     returnKeyType?: ReturnKeyTypeOptions,
     autoFocus?: boolean,
+    autoCapitalize?: "none" | "sentences" | "words" | "characters",
     onChangeText?(value?: string): void,
     onBlur?(): void,
     onSubmitEditing?(): void
@@ -42,7 +43,7 @@ const TextField = (props: Props) => (
         clearButtonMode="while-editing"
         keyboardType={props.keyboardType}
         returnKeyType={props.returnKeyType}
-        autoCapitalize="none"
+        autoCapitalize={props.autoCapitalize}
         onBlur={props.onBlur}
         onChangeText={props.onChangeText} 
         onSubmitEditing={props.onSubmitEditing}/>

@@ -89,6 +89,7 @@ const NewGuestForm = (props: Props) => {
                                     label="Nome"
                                     value={values.name}
                                     error={touched.name && errors.name}
+                                    autoCapitalize="words"
                                     autoFocus={!values.name}
                                     isEnabled={!props.isLoading}
                                     placeholder="Nome do convidado"
@@ -107,6 +108,7 @@ const NewGuestForm = (props: Props) => {
                                     label="Acompanhante"
                                     value={values.companion}
                                     error={touched.name && errors.name}
+                                    autoCapitalize="words"
                                     autoFocus={!values.companion}
                                     isVisible={values.hasCompanion}
                                     isEnabled={!props.isLoading}
