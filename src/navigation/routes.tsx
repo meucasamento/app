@@ -13,9 +13,14 @@ import ProfileScreen from '../screens/Profile'
 const iconSize = 22
 
 const HomeStack = createStackNavigator({
-  Home: HomeScreeen
+  Home: {
+    screen: HomeScreeen,
+    navigationOptions: () => ({
+      title: 'Casamento',
+    })
+  },
 }, {
-  navigationOptions: {  
+  navigationOptions: {
     tabBarLabel: 'Casamento',
     tabBarIcon: ({tintColor}) => (
       <Icon
@@ -33,8 +38,18 @@ const HomeStack = createStackNavigator({
 })
 
 const GuestStack = createStackNavigator({
-  Guests: GuestsScreen,
-  NewGuest: NewGuestScreen
+  Guests: {
+    screen: GuestsScreen,
+    navigationOptions: () => ({
+      title: "Convidados"
+    })
+  },
+  NewGuest: {
+    screen: NewGuestScreen,
+    navigationOptions: () => ({
+      title: "Convidado"
+    })
+  }
 }, {
   navigationOptions: {
     tabBarLabel: "Convidados",
@@ -54,7 +69,12 @@ const GuestStack = createStackNavigator({
 })
 
 const ProfileStack = createStackNavigator({
-  Profile: ProfileScreen
+  Profile: {
+    screen: ProfileScreen,
+    navigationOptions: () => ({
+      title: "Perfil"
+    })
+  }
 }, {
   navigationOptions: {
     tabBarLabel: "Perfil",
