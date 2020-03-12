@@ -19,7 +19,7 @@ import {
 import styles from './styles'
 import Space from '../../components/Space'
 import KeyboardSpacer from 'react-native-keyboard-spacer'
-import sessionMananger from '../../utils/sessionMananger'
+import sessionMananger from '../../utils/SessionMananger'
 
 type Props = {
     isLoading?: boolean,

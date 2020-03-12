@@ -16,7 +16,7 @@ const HomeStack = createStackNavigator({
   Home: {
     screen: HomeScreeen,
     navigationOptions: () => ({
-      title: 'Casamento',
+      title: 'Casamento'
     })
   },
 }, {
@@ -41,16 +41,18 @@ const GuestStack = createStackNavigator({
   Guests: {
     screen: GuestsScreen,
     navigationOptions: () => ({
-      title: "Convidados"
+      title: "Convidados",
+      headerBackTitle: null
     })
   },
   NewGuest: {
     screen: NewGuestScreen,
     navigationOptions: () => ({
-      title: "Convidado"
+      title: "Convidado",
     })
   }
 }, {
+  headerMode: "screen",
   navigationOptions: {
     tabBarLabel: "Convidados",
     tabBarIcon: ({tintColor}) => (
@@ -101,8 +103,11 @@ const App = createBottomTabNavigator({
 {
   tabBarOptions: {
     activeTintColor: "black",
-    inactiveTintColor: "gray"
-  }
+    inactiveTintColor: "gray",
+  },
+  defaultNavigationOptions: ({ navigation }) => ({
+    tabBarVisible: navigation.state.index === 0
+  })
 })
 
 const switchNavigation = createSwitchNavigator(

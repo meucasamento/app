@@ -1,7 +1,7 @@
 import Guest from "../../models/guest.model";
 import api from '../../services/api'
 import { PaginationResult } from "../../models/response/pagination.response";
-import sessionMananger, { Session } from "../../utils/sessionMananger";
+import sessionMananger, { Session } from "../../utils/SessionMananger";
 
 export interface GuestRepositoryInterface {
     fetch(page: number, limit: number): Promise<PaginationResult<Guest>>

@@ -19,7 +19,7 @@ export function navigateTo(routeName: Routes, params?: any): void {
     navigator.dispatch(
         NavigationActions.navigate({
             routeName,
-            params,
+            params
         })
     )
 }

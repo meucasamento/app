@@ -13,7 +13,7 @@ import {
 } from './session.types'
 
 import sessionRepository from '../../../repositories/session/session.repository'
-import session from '../../../utils/sessionMananger'
+import session from '../../../utils/SessionMananger'
 import Token from '../../../models/token.model'
 
 function* authenticationSaga(action: AuthenticationActionType) {
