@@ -6,6 +6,7 @@ export default interface Guest {
     godfatherOf?: string,
     includeFamily?: boolean
     peopleCount?: number
+    peopleCountTotal?: number
     hasCompanion?: boolean
     companion?: string
     guestOf?: string

@@ -122,9 +122,9 @@ const GuestScreen = (props: Props) => {
 
     return(
         <View style={styles.container}>
-            {/* <Search 
+            <Search 
                 placeholder="Pesquisar por um convidado"
-                onChangedText={text => {}}/> */}
+                onChangedText={text => {}}/>
             <AddButton 
                 onPressed={() => handleOnPressNewGuest()}>
                 <Text style={styles.add}>+</Text>

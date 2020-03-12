@@ -29,7 +29,11 @@ export default StyleSheet.create({
     },
     icons: {
         flex: 1,
-        flexDirection: "row"
+        flexDirection: "row",
+        shadowColor: 'black',
+        shadowOpacity: 0.1,
+        shadowOffset: { height: 2, width: 0 },
+        shadowRadius: 3
     },
     icon: {
         minWidth: 30,
@@ -48,7 +52,8 @@ export default StyleSheet.create({
     },
     iconImage: {
         width: 16,
-        height: 16
+        height: 16,
+        tintColor: "gray"
     },
     imageConfirmed: {
         tintColor: "white"

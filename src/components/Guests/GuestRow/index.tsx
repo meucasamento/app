@@ -23,7 +23,7 @@ const renderIcons = (guest: Guest) => {
     const renderGuestsIcon = () => {
         let name = "users"
         
-        switch (guest.peopleCount) {
+        switch (guest.peopleCountTotal) {
             case 0:
                 name = "user"
                 break
@@ -35,14 +35,16 @@ const renderIcons = (guest: Guest) => {
                 break
         }
 
-        return <Icon name={name}/>
+        return (
+            <View style={styles.icon}>
+                <Icon name={name} color="gray"/>
+                <Text style={styles.iconLabel}>{guest.peopleCountTotal}</Text>
+            </View>
+        )
     }
 
     return <View style={styles.icons}>
-        <View style={styles.icon}>
-            {renderGuestsIcon()}
-            <Text style={styles.iconLabel}>{guest.peopleCount}</Text>
-        </View>
+        {renderGuestsIcon()}
         <View style={[styles.icon, status && styles.confirmed]}>
             <Image 
                 style={[styles.iconImage, status && styles.imageConfirmed]}
