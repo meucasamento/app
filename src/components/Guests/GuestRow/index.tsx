@@ -1,8 +1,10 @@
 import React from 'react'
+import Icon from 'react-native-vector-icons/FontAwesome5'
 import {
     SafeAreaView,
     TouchableOpacity,
-    View
+    View,
+    Image
 } from 'react-native'
 
 import Guest from '../../../models/guest.model'
@@ -15,12 +17,39 @@ type Props = {
     onPress?(guest: Guest): void
 }
 
-const renderConfirmedTag = (guest: Guest) => {
+const renderIcons = (guest: Guest) => {
     const status = guest.invitationDelivered
-    const text = status ? "Convite entregue" : "Convite não entregue"
-    const style = status ? styles.confirmedTag : styles.unConfirmedTag
 
-    return <Text style={style}>{text}</Text>
+    const renderGuestsIcon = () => {
+        let name = "user-alt"
+        
+        switch (guest.peopleCount) {
+            case 0:
+                name = "user"
+                break
+            case 1: 
+                name = "user-alt"
+                break
+            case 2: 
+                name = "user-friends"
+                break
+        }
+
+        return <Icon name={name}/>
+    }
+
+    return <View style={styles.icons}>
+        <View style={styles.icon}>
+            {renderGuestsIcon()}
+            <Text style={styles.iconLabel}>{guest.peopleCount}</Text>
+        </View>
+        <View style={[styles.icon, status && styles.confirmed]}>
+            <Image 
+                style={[styles.iconImage, status && styles.imageConfirmed]}
+                source={require('./../../../assets/icons/invitation_icon.png')}
+                resizeMode="contain"/>
+        </View>
+    </View>
 }
 
 export const GuestRow = (props: Props) => (
@@ -33,10 +62,10 @@ export const GuestRow = (props: Props) => (
                         {props.guest.name} 
                         {props.guest.hasCompanion && ` e ${props.guest.companion}`} 
                         {props.guest.includeFamily && " & Família"}
-                        </Text>
+                    </Text>
                 </View>
                 <View style={styles.rightContainer}>
-                    {renderConfirmedTag(props.guest)}
+                    {renderIcons(props.guest)}
                 </View>
             </View>
         </TouchableOpacity>

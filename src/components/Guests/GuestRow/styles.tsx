@@ -24,26 +24,33 @@ export default StyleSheet.create({
         flex: 1,
         textAlign: "center"
     },
-    confirmedTag: {
-        fontSize: 12,
-        color: "#fff",
-        backgroundColor: "#95C623",
-        paddingLeft: 8,
-        paddingRight: 8,
-        paddingBottom: 4,
-        paddingTop: 4,
-        borderRadius: 4,
-        overflow: "hidden"
+    confirmed: {
+        backgroundColor: "#95C623"
     },
-    unConfirmedTag: {
-        fontSize: 12,
-        color: "gray",
-        backgroundColor: "#fff",
-        paddingLeft: 8,
-        paddingRight: 8,
-        paddingBottom: 4,
-        paddingTop: 4,
-        borderRadius: 4,
-        overflow: "hidden"
+    icons: {
+        flex: 1,
+        flexDirection: "row"
+    },
+    icon: {
+        minWidth: 30,
+        height: 30,
+        backgroundColor: "white",
+        alignItems: "center",
+        justifyContent: "center",
+        paddingRight: 10,
+        paddingLeft: 10,
+        borderRadius: 100,
+        marginLeft: 8,
+        flexDirection: "row"
+    },
+    iconLabel: {
+        marginLeft: 8
+    },
+    iconImage: {
+        width: 16,
+        height: 16
+    },
+    imageConfirmed: {
+        tintColor: "white"
     }
 })

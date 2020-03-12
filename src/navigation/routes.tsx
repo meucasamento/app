@@ -40,7 +40,7 @@ const GuestStack = createStackNavigator({
     tabBarLabel: "Convidados",
     tabBarIcon: ({tintColor}) => (
       <Icon
-          name="user"
+          name="users"
           color={tintColor}
           size={iconSize}
       />
