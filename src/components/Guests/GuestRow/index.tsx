@@ -21,7 +21,7 @@ const renderIcons = (guest: Guest) => {
     const status = guest.invitationDelivered
 
     const renderGuestsIcon = () => {
-        let name = "user-alt"
+        let name = "users"
         
         switch (guest.peopleCount) {
             case 0:
