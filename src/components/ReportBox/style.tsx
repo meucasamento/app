@@ -19,7 +19,7 @@ export default StyleSheet.create({
         padding: 16,
         paddingLeft: 22,
         paddingRight: 22,
-        borderRadius: 16,
+        borderRadius: 12,
         backgroundColor: "black"
     },
     label: {

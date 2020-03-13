@@ -15,7 +15,41 @@ type Props = {
     isLoading?: boolean
 }
 
+type Info = {
+    title: string,
+    value: number
+}
+
 const ReportBox = (props: Props) => {
+
+    const {
+        godfathers,
+        guests,
+        invitations
+    } = props.report
+
+    const infos: Info[] = [
+        { title: "Total de convidados", value: guests.total },
+        { title: "Convidados Jenifer", value: guests.fiancee },
+        { title: "Convidados Adriano", value: guests.engaged },
+        { title: "Padrinhos Jenifer", value: godfathers.fiancee },
+        { title: "Padrinhos Adriano", value: godfathers.engaged },
+        { title: "Total de convites", value: invitations.total },
+        { title: "Convites entregues", value: invitations.delivered },
+        { title: "Convites não engregues", value: invitations.undelivered }
+    ]
+
+    const infoBox = (info: Info, index: number) => (
+        <View 
+            style={styles.report_content_container}
+            key={index}>
+            <View style={styles.report_content}>
+                <Text style={styles.label}>{ info.title }</Text>
+                {props.isLoading && <ActivityIndicator style={styles.loader} />}
+                {!props.isLoading && <Text style={styles.value}>{ info.value }</Text>}
+            </View>
+        </View>
+    )
 
     return (
         <View style={styles.container}>
@@ -23,69 +57,7 @@ const ReportBox = (props: Props) => {
                 contentContainerStyle={styles.scrollView}
                 horizontal={true}
                 showsHorizontalScrollIndicator={false}>
-                <View style={styles.report_content_container}>
-                    <View style={styles.report_content}>
-                        <Text style={styles.label}>Total de convidados</Text>
-                        {props.isLoading && <ActivityIndicator style={styles.loader} />}
-                        {!props.isLoading && <Text style={styles.value}>{ props.report.guests.total }</Text>}
-                    </View>
-                </View>
-
-                <View style={styles.report_content_container}>
-                    <View style={styles.report_content}>
-                    <Text style={styles.label}>Convidados Jenifer</Text>
-                    {props.isLoading && <ActivityIndicator style={styles.loader} />}
-                    {!props.isLoading && <Text style={styles.value}>{ props.report.guests.fiancee }</Text>}
-                    </View>
-                </View>
-
-                <View style={styles.report_content_container}>
-                    <View style={styles.report_content}>
-                    <Text style={styles.label}>Convidados Adriano</Text>
-                    {props.isLoading && <ActivityIndicator style={styles.loader} />}
-                    {!props.isLoading && <Text style={styles.value}>{ props.report.guests.engaged }</Text>}
-                    </View>
-                </View>
-
-                <View style={styles.report_content_container}>
-                    <View style={styles.report_content}>
-                        <Text style={styles.label}>Padrinhos Jenifer</Text>
-                        {props.isLoading && <ActivityIndicator style={styles.loader} />}
-                        {!props.isLoading && <Text style={styles.value}>{ props.report.godfathers.fiancee }</Text>}
-                    </View>
-                </View>
-
-                <View style={styles.report_content_container}>
-                    <View style={styles.report_content}>
-                        <Text style={styles.label}>Padrinhos Adriano</Text>
-                        {props.isLoading && <ActivityIndicator style={styles.loader} />}
-                        {!props.isLoading && <Text style={styles.value}>{ props.report.godfathers.engaged }</Text>}
-                    </View>
-                </View>
-
-                <View style={styles.report_content_container}>
-                    <View style={styles.report_content}>
-                        <Text style={styles.label}>Total de convites</Text>
-                        {props.isLoading && <ActivityIndicator style={styles.loader} />}
-                        {!props.isLoading && <Text style={styles.value}>{ props.report.invitations.total }</Text>}
-                    </View>
-                </View>
-
-                <View style={styles.report_content_container}>
-                    <View style={styles.report_content}>
-                        <Text style={styles.label}>Convites entregues</Text>
-                        {props.isLoading && <ActivityIndicator style={styles.loader} />}
-                        {!props.isLoading && <Text style={styles.value}>{ props.report.invitations.delivered }</Text>}
-                    </View>
-                </View>
-
-                <View style={styles.report_content_container}>
-                    <View style={styles.report_content}>
-                        <Text style={styles.label}>Convites não entregues</Text>
-                        {props.isLoading && <ActivityIndicator style={styles.loader} />}
-                        {!props.isLoading && <Text style={styles.value}>{ props.report.invitations.undelivered }</Text>}
-                    </View>
-                </View>
+                { infos.map((info, index) => infoBox(info, index)) }
             </ScrollView>
         </View>
     )

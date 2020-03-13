@@ -7,7 +7,7 @@ export default StyleSheet.create({
         backgroundColor: '#fff'
     },
     sectionText: {
-        fontSize: 22,
+        fontSize: 20,
         fontWeight: "bold"
     }
 })
