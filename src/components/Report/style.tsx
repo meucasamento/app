@@ -1,26 +1,31 @@
 import { StyleSheet } from 'react-native'
 
 export default StyleSheet.create({
-    container: {
-        marginTop: 16,
-        marginLeft: 14,
-        marginRight: 14,
-        marginBottom: 16
+    container: {},
+    scrollView: {
+        flexDirection: "row",
+        padding: 30
     },
     report_content_container: {
-        padding: 1
+        padding: 4,
+        shadowColor: 'black',
+        shadowOpacity: 0.2,
+        shadowOffset: { height: 4, width: 0 },
+        shadowRadius: 8
     },
     report_content: {
-        flexDirection: "row",
-        justifyContent: "space-between",
-        padding: 12,
-        borderRadius: 4,
-        backgroundColor: "#f7f7f7"
+        padding: 16,
+        paddingLeft: 22,
+        paddingRight: 22,
+        borderRadius: 12,
+        backgroundColor: "black"
     },
     label: {
-        marginRight: 16
+        color: "white"
     },
     value: {
+        color: "white",
+        fontSize: 28,
         fontWeight: "bold"
     }
 })

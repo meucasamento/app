@@ -4,6 +4,9 @@ import { Dispatch } from 'redux';
 
 import { 
     View, 
+    ScrollView,
+    StyleProp,
+    ViewStyle
 } from 'react-native';
 
 import {  GuestState } from '../../store/modules/guest/guest.types';
@@ -12,7 +15,8 @@ import Text from '../Text'
 import styles from './style';
 
 type Props = {
-    guest: GuestState
+    guest: GuestState,
+    style?: StyleProp<ViewStyle>
 }
 
 const Report = (props: Props) => {
@@ -23,33 +27,38 @@ const Report = (props: Props) => {
 
     return (
         <View style={styles.container}>
-            <View style={styles.report_content_container}>
-                <View style={styles.report_content}>
-                    <Text style={styles.label}>Total convidados</Text>
-                    <Text style={styles.value}>{ report.total }</Text>
+            <ScrollView
+                contentContainerStyle={styles.scrollView}
+                horizontal={true}
+                showsHorizontalScrollIndicator={false}>
+                <View style={styles.report_content_container}>
+                    <View style={styles.report_content}>
+                        <Text style={styles.label}>Total convidados</Text>
+                        <Text style={styles.value}>{ report.total }</Text>
+                    </View>
                 </View>
-            </View>
-            
-            <View style={styles.report_content_container}>
-                <View style={styles.report_content}>
-                    <Text style={styles.label}>Confirmados</Text>
-                    <Text style={styles.value}>{ report.confirmed }</Text>
+                
+                <View style={styles.report_content_container}>
+                    <View style={styles.report_content}>
+                        <Text style={styles.label}>Confirmados</Text>
+                        <Text style={styles.value}>{ report.confirmed }</Text>
+                    </View>
                 </View>
-            </View>
 
-            <View style={styles.report_content_container}>
-                <View style={styles.report_content}>
-                    <Text style={styles.label}>Não confirmados</Text>
-                    <Text style={styles.value}>{ report.unconfirmed }</Text>
+                <View style={styles.report_content_container}>
+                    <View style={styles.report_content}>
+                        <Text style={styles.label}>Não confirmados</Text>
+                        <Text style={styles.value}>{ report.unconfirmed }</Text>
+                    </View>
                 </View>
-            </View>
 
-            <View style={styles.report_content_container}>
-                <View style={styles.report_content}>
-                    <Text style={styles.label}>Padrinhos</Text>
-                    <Text style={styles.value}>{ report.godfathers }</Text>
+                <View style={styles.report_content_container}>
+                    <View style={styles.report_content}>
+                        <Text style={styles.label}>Padrinhos</Text>
+                        <Text style={styles.value}>{ report.godfathers }</Text>
+                    </View>
                 </View>
-            </View>
+            </ScrollView>
         </View>
     )
 
