@@ -14,14 +14,16 @@ export default StyleSheet.create({
         shadowRadius: 8
     },
     report_content: {
+        flex: 1,
         padding: 16,
         paddingLeft: 22,
         paddingRight: 22,
-        borderRadius: 12,
+        borderRadius: 16,
         backgroundColor: "black"
     },
     label: {
-        color: "white"
+        color: "white",
+        maxWidth: 100
     },
     value: {
         color: "white",

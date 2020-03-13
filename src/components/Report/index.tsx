@@ -33,28 +33,56 @@ const Report = (props: Props) => {
                 showsHorizontalScrollIndicator={false}>
                 <View style={styles.report_content_container}>
                     <View style={styles.report_content}>
-                        <Text style={styles.label}>Total convidados</Text>
-                        <Text style={styles.value}>{ report.total }</Text>
-                    </View>
-                </View>
-                
-                <View style={styles.report_content_container}>
-                    <View style={styles.report_content}>
-                        <Text style={styles.label}>Confirmados</Text>
+                        <Text style={styles.label}>Total de pessoas</Text>
                         <Text style={styles.value}>{ report.confirmed }</Text>
                     </View>
                 </View>
 
                 <View style={styles.report_content_container}>
                     <View style={styles.report_content}>
-                        <Text style={styles.label}>Não confirmados</Text>
+                        <Text style={styles.label}>Convidados Jenifer</Text>
+                        <Text style={styles.value}>{ report.confirmed }</Text>
+                    </View>
+                </View>
+
+                <View style={styles.report_content_container}>
+                    <View style={styles.report_content}>
+                        <Text style={styles.label}>Convidados Adriano</Text>
+                        <Text style={styles.value}>{ report.confirmed }</Text>
+                    </View>
+                </View>
+
+                <View style={styles.report_content_container}>
+                    <View style={styles.report_content}>
+                        <Text style={styles.label}>Padrinhos Jenifer</Text>
+                        <Text style={styles.value}>{ report.confirmed }</Text>
+                    </View>
+                </View>
+
+                <View style={styles.report_content_container}>
+                    <View style={styles.report_content}>
+                        <Text style={styles.label}>Padrinhos Adriano</Text>
+                        <Text style={styles.value}>{ report.confirmed }</Text>
+                    </View>
+                </View>
+
+                <View style={styles.report_content_container}>
+                    <View style={styles.report_content}>
+                        <Text style={styles.label}>Total de convites</Text>
+                        <Text style={styles.value}>{ report.total }</Text>
+                    </View>
+                </View>
+
+                <View style={styles.report_content_container}>
+                    <View style={styles.report_content}>
+                        <Text style={styles.label}>Convites entregues</Text>
                         <Text style={styles.value}>{ report.unconfirmed }</Text>
                     </View>
                 </View>
 
                 <View style={styles.report_content_container}>
                     <View style={styles.report_content}>
-                        <Text style={styles.label}>Padrinhos</Text>
+                        <Text style={styles.label}>Convites não entregues</Text>
                         <Text style={styles.value}>{ report.godfathers }</Text>
                     </View>
                 </View>

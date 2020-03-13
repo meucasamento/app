@@ -4,7 +4,7 @@ const buttonHeight = 54
 
 export default StyleSheet.create({
     container: {
-        backgroundColor: "#0197F6",
+        backgroundColor: "black",
         justifyContent: "center",
         alignItems: "center",
         borderRadius: 100,

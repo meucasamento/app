@@ -10,7 +10,7 @@ export default StyleSheet.create({
         bottom: '3%',
         right: '8%',
         zIndex: 1,
-        backgroundColor:'#0197F6',
+        backgroundColor:'black',
         borderRadius: 100,
         shadowColor: 'black',
         shadowOpacity: 0.2,
