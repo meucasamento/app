@@ -39,7 +39,7 @@ const ReportBox = (props: Props) => {
         { title: "Convites não engregues", value: invitations.undelivered }
     ]
 
-    const infoBox = (info: Info, index: number) => (
+    const renderInfoBox = (info: Info, index: number) => (
         <View 
             style={styles.report_content_container}
             key={index}>
@@ -57,7 +57,7 @@ const ReportBox = (props: Props) => {
                 contentContainerStyle={styles.scrollView}
                 horizontal={true}
                 showsHorizontalScrollIndicator={false}>
-                { infos.map((info, index) => infoBox(info, index)) }
+                { infos.map((info, index) => renderInfoBox(info, index)) }
             </ScrollView>
         </View>
     )

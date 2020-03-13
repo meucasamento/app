@@ -4,7 +4,7 @@ export default StyleSheet.create({
     container: {},
     scrollView: {
         flexDirection: "row",
-        padding: 30
+        padding: 24
     },
     report_content_container: {
         padding: 4,
