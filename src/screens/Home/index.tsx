@@ -33,7 +33,9 @@ const HomePage = (props: Props) => {
                 <WeedingBox 
                     style={styles.header}
                     wedding={props.weddingState} />
-                <ReportBox report={props.reportState.report} />
+                <ReportBox 
+                    report={props.reportState.report}
+                    isLoading={props.reportState.isLoading} />
             </View>
         </ScrollView>
     )

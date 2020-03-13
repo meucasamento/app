@@ -2,7 +2,8 @@ import {
     ReportState, 
     ReportActionTypes, 
     FETCH_SUCCESS, 
-    FETCH_FAILURE
+    FETCH_FAILURE,
+    FETCH
 } from "./report.types";
 
 const initialState = {
@@ -31,6 +32,11 @@ export default function reducer(
     state: ReportState = initialState,
     action: ReportActionTypes): ReportState {
         switch (action.type) {
+            case FETCH:
+                return {
+                    ...state,
+                    isLoading: true
+                }
             case FETCH_SUCCESS:
                 return {
                     ...initialState,

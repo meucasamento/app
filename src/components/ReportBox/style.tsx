@@ -15,6 +15,7 @@ export default StyleSheet.create({
     },
     report_content: {
         flex: 1,
+        alignItems: "flex-start",
         padding: 16,
         paddingLeft: 22,
         paddingRight: 22,
@@ -23,11 +24,16 @@ export default StyleSheet.create({
     },
     label: {
         color: "white",
-        maxWidth: 100
+        maxWidth: 100,
+        marginBottom: 4
     },
     value: {
         color: "white",
         fontSize: 24,
         fontWeight: "bold"
+    },
+    loader: {
+        marginTop: 4,
+        marginBottom: 4
     }
 })
