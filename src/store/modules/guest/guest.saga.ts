@@ -25,6 +25,10 @@ import {
     removeSuccess
 } from './guest.actions'
 
+import { 
+    fetch as fetchReport
+} from './../report/report.actions'
+
 import guestRepository from './../../../repositories/guest/guest.repository'
 import Guest from '../../../models/guest.model'
             
@@ -66,6 +70,8 @@ function* storeSaga(action: Store) {
             action.completion(Promise.reject(err))
         }
     }
+
+    yield put(fetchReport())
 }
 
 function* removeSaga(action: Delete) {
@@ -73,6 +79,7 @@ function* removeSaga(action: Delete) {
         const guest = action.payload
         yield call(guestRepository.delete, guest)
         yield put(removeSuccess(action.payload))
+        yield put(fetchReport())
         action.completion(Promise.resolve())
     } catch(err) {
         action.completion(Promise.reject(err))
