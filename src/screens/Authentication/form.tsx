@@ -26,9 +26,11 @@ type Props = {
 
 const validationSchema = Yup.object().shape({
     email: Yup.string()
+        .trim()
         .email("Informe um email válido")
         .required("Campo obrigatório"),
     password: Yup.string()
+        .trim()
         .min(4, "A senha deve ter no mínimo 4 caracteres")
         .required("Campo obrigatório")
 })

@@ -26,8 +26,7 @@ const HomeStack = createStackNavigator({
       <Icon
           name="star"
           color={tintColor}
-          size={iconSize}
-      />
+          size={iconSize}/>
     )
   },
   defaultNavigationOptions: {

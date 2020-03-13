@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import * as Yup from 'yup'
 import { Formik } from 'formik'
 import {
     View,
@@ -28,6 +29,18 @@ type Props = {
     onDelete?(guest: Guest): void
 }
 
+const validationSchema = Yup.object().shape({
+    name: Yup.string()
+        .trim()
+        .required("Campo obrigatório"),
+    companion: Yup.string()
+        .trim()
+        .nullable()
+        .when('hasCompanion', (hasCompanion, schema) => {
+            return hasCompanion ? schema.required("Campo obrigatório") : schema.notRequired()
+        })
+})
+
 const NewGuestForm = (props: Props) => {
     const [guestOf, setGuestOf] = useState<string>()
 
@@ -39,17 +52,20 @@ const NewGuestForm = (props: Props) => {
         })()
     }, [])
 
+    const initialFormValues = {
+        name: props.guest?.name,
+        invitationDelivered: props.guest?.invitationDelivered,
+        isGodfather: props.guest?.isGodfather,
+        peopleCount: props.guest?.peopleCount,
+        includeFamily: props.guest?.includeFamily ?? false,
+        hasCompanion: props.guest?.hasCompanion ?? false,
+        companion: props.guest?.companion
+    }
+
     return (
         <Formik 
-            initialValues={{
-                name: props.guest?.name,
-                invitationDelivered: props.guest?.invitationDelivered,
-                isGodfather: props.guest?.isGodfather,
-                peopleCount: props.guest?.peopleCount,
-                includeFamily: props.guest?.includeFamily ?? false,
-                hasCompanion: props.guest?.hasCompanion ?? false,
-                companion: props.guest?.companion
-            }}
+            initialValues={initialFormValues}
+            validationSchema={validationSchema}
             onSubmit={data => {
                 let guest = props.guest
 
@@ -107,7 +123,7 @@ const NewGuestForm = (props: Props) => {
                                 <TextField 
                                     label="Acompanhante"
                                     value={values.companion}
-                                    error={touched.name && errors.name}
+                                    error={touched.companion && errors.companion}
                                     autoCapitalize="words"
                                     autoFocus={!values.companion}
                                     isVisible={values.hasCompanion}
