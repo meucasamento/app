@@ -13,12 +13,6 @@ const initialState: GuestState = {
         page: 1,
         pages: 1,
         total: 1
-    },
-    report: {
-        total: 0,
-        confirmed: 0,
-        unconfirmed: 0,
-        godfathers: 0
     }
 }
 

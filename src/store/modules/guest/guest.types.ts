@@ -1,7 +1,6 @@
 import { SectionListData } from "react-native"
 
 import Guest from "../../../models/guest.model"
-import GuestReport from "../../../models/guestReport.model"
 import { Pagination, PaginationResult } from "../../../models/response/pagination.response" 
 
 export const FETCH = '@guest/FETCH'
@@ -23,8 +22,7 @@ export interface GuestSection extends SectionListData<Guest> {
 
 export interface GuestState {
     guests: Guest[],
-    pagination: Pagination,
-    report: GuestReport
+    pagination: Pagination
 }
 
 // Fetch Types

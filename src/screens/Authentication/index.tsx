@@ -15,7 +15,7 @@ import styles from './style'
 import { navigateTo } from '../../services/navigation.service'
 
 type Props = {
-    session: SessionState,
+    sessionState: SessionState,
     authentication(credentials: Credentials, completion: (response: Promise<void>) => void) : void
 }
 

@@ -1,29 +1,19 @@
 import React from 'react';
-import { connect } from 'react-redux'
-import { Dispatch } from 'redux';
 
 import { 
     View, 
-    ScrollView,
-    StyleProp,
-    ViewStyle
+    ScrollView
 } from 'react-native';
-
-import {  GuestState } from '../../store/modules/guest/guest.types';
 
 import Text from '../Text'
 import styles from './style';
+import Report from '../../models/report.model';
 
 type Props = {
-    guest: GuestState,
-    style?: StyleProp<ViewStyle>
+    report: Report
 }
 
-const Report = (props: Props) => {
-
-    const { 
-        report
-    } = props.guest
+const ReportBox = (props: Props) => {
 
     return (
         <View style={styles.container}>
@@ -34,56 +24,56 @@ const Report = (props: Props) => {
                 <View style={styles.report_content_container}>
                     <View style={styles.report_content}>
                         <Text style={styles.label}>Total de convidados</Text>
-                        <Text style={styles.value}>{ report.confirmed }</Text>
+                        <Text style={styles.value}>{ props.report.guests.total }</Text>
                     </View>
                 </View>
 
                 <View style={styles.report_content_container}>
                     <View style={styles.report_content}>
                         <Text style={styles.label}>Convidados Jenifer</Text>
-                        <Text style={styles.value}>{ report.confirmed }</Text>
+                        <Text style={styles.value}>{ props.report.guests.fiancee }</Text>
                     </View>
                 </View>
 
                 <View style={styles.report_content_container}>
                     <View style={styles.report_content}>
                         <Text style={styles.label}>Convidados Adriano</Text>
-                        <Text style={styles.value}>{ report.confirmed }</Text>
+                        <Text style={styles.value}>{ props.report.guests.engaged }</Text>
                     </View>
                 </View>
 
                 <View style={styles.report_content_container}>
                     <View style={styles.report_content}>
                         <Text style={styles.label}>Padrinhos Jenifer</Text>
-                        <Text style={styles.value}>{ report.confirmed }</Text>
+                        <Text style={styles.value}>{ props.report.godfathers.fiancee }</Text>
                     </View>
                 </View>
 
                 <View style={styles.report_content_container}>
                     <View style={styles.report_content}>
                         <Text style={styles.label}>Padrinhos Adriano</Text>
-                        <Text style={styles.value}>{ report.confirmed }</Text>
+                        <Text style={styles.value}>{ props.report.godfathers.engaged }</Text>
                     </View>
                 </View>
 
                 <View style={styles.report_content_container}>
                     <View style={styles.report_content}>
                         <Text style={styles.label}>Total de convites</Text>
-                        <Text style={styles.value}>{ report.total }</Text>
+                        <Text style={styles.value}>{ props.report.invitations.total }</Text>
                     </View>
                 </View>
 
                 <View style={styles.report_content_container}>
                     <View style={styles.report_content}>
                         <Text style={styles.label}>Convites entregues</Text>
-                        <Text style={styles.value}>{ report.unconfirmed }</Text>
+                        <Text style={styles.value}>{ props.report.invitations.delivered }</Text>
                     </View>
                 </View>
 
                 <View style={styles.report_content_container}>
                     <View style={styles.report_content}>
                         <Text style={styles.label}>Convites não entregues</Text>
-                        <Text style={styles.value}>{ report.godfathers }</Text>
+                        <Text style={styles.value}>{ props.report.invitations.undelivered }</Text>
                     </View>
                 </View>
             </ScrollView>
@@ -92,11 +82,4 @@ const Report = (props: Props) => {
 
 }
 
-const mapStateToProps = (state: Props) => state
-
-const mapDipatchToProps = (dispatch: Dispatch) => ({})
-
-export default connect(
-    mapStateToProps,
-    mapDipatchToProps
-)(Report)
+export default ReportBox

@@ -20,7 +20,7 @@ type NavigationParams = {
 
 type Props = {
     navigation: NavigationScreenProp<NavigationState, NavigationParams>,
-    guest: GuestState,
+    guestState: GuestState,
     store(guest: Guest, completion: (response: Promise<void>) => void): void
     remove(guest: Guest, completion: (response: Promise<void>) => void): void
 }

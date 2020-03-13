@@ -30,7 +30,7 @@ import Guest from '../../../models/guest.model'
             
 function* fetchSaga(action: Fetch) {
     const store = yield select()
-    const guestState: GuestState = store.guest
+    const guestState: GuestState = store.guestState
     const currentPages = guestState.pagination.pages
 
     const page =  action.payload

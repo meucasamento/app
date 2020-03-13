@@ -29,7 +29,7 @@ import AddButton from '../../components/AddButton';
 import { navigateTo } from './../../services/navigation.service'
 
 type Props = {
-    guest: GuestState,
+    guestState: GuestState,
     fetch(page: number, completion: (response: Promise<void>) => void): void
 }
 
@@ -82,7 +82,7 @@ const GuestScreen = (props: Props) => {
     }
 
     const organizeSections = (): GuestSection[] => {
-        const guests = props.guest.guests
+        const guests = props.guestState.guests
         
         const godfathers = guests.filter(guest => guest.isGodfather)
         const jeniferGodfathers = godfathers.filter(guest => guest.guestOf === "jenifer")
@@ -116,7 +116,7 @@ const GuestScreen = (props: Props) => {
 
     const handleNextPage = () => { 
         if (isLoading) return
-        const currentPage = props.guest.pagination.page
+        const currentPage = props.guestState.pagination.page
         loadPage(currentPage + 1)
     }
 

@@ -1,11 +1,13 @@
 import { combineReducers } from 'redux'
 
-import session from './session/session.reducer'
-import guest from './guest/guest.reducer'
-import wedding from './wedding/weeding.reducer'
+import sessionState from './session/session.reducer'
+import guestState from './guest/guest.reducer'
+import weddingState from './wedding/weeding.reducer'
+import reportState from './report/report.reducer'
 
 export default combineReducers({
-    session,
-    guest,
-    wedding
+    sessionState,
+    guestState,
+    weddingState,
+    reportState
 })
