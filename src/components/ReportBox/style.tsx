@@ -33,7 +33,7 @@ export default StyleSheet.create({
         fontWeight: "bold"
     },
     loader: {
-        marginTop: 4,
+        marginTop: 4.4,
         marginBottom: 4
     }
 })
