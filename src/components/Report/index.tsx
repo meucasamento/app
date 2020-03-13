@@ -33,7 +33,7 @@ const Report = (props: Props) => {
                 showsHorizontalScrollIndicator={false}>
                 <View style={styles.report_content_container}>
                     <View style={styles.report_content}>
-                        <Text style={styles.label}>Total de pessoas</Text>
+                        <Text style={styles.label}>Total de convidados</Text>
                         <Text style={styles.value}>{ report.confirmed }</Text>
                     </View>
                 </View>

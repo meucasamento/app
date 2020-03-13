@@ -32,7 +32,7 @@ export default StyleSheet.create({
         paddingRight: 12
     },
     buttonSelected: {
-        backgroundColor: "#0197F6"
+        backgroundColor: "black"
     },
     buttonText: {
         textAlign: "center"

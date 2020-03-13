@@ -9,7 +9,7 @@ export default StyleSheet.create({
     report_content_container: {
         padding: 4,
         shadowColor: 'black',
-        shadowOpacity: 0.2,
+        shadowOpacity: 0.4,
         shadowOffset: { height: 4, width: 0 },
         shadowRadius: 8
     },
@@ -27,7 +27,7 @@ export default StyleSheet.create({
     },
     value: {
         color: "white",
-        fontSize: 28,
+        fontSize: 24,
         fontWeight: "bold"
     }
 })
