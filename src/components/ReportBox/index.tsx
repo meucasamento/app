@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { 
     View, 
     ScrollView,
-    ActivityIndicator
+    ActivityIndicator,
+    Animated
 } from 'react-native';
 
 import Text from '../Text'
@@ -39,17 +40,21 @@ const ReportBox = (props: Props) => {
         { title: "Convites não engregues", value: invitations.undelivered }
     ]
 
-    const renderInfoBox = (info: Info, index: number) => (
-        <View 
-            style={styles.report_content_container}
-            key={index}>
-            <View style={styles.report_content}>
-                <Text style={styles.label}>{ info.title }</Text>
-                {props.isLoading && <ActivityIndicator style={styles.loader} />}
-                {!props.isLoading && <Text style={styles.value}>{ info.value }</Text>}
-            </View>
-        </View>
-    )
+    const renderInfoBox = (info: Info, index: number) => {
+        return (
+            <Animated.View 
+                style={styles.report_content_container}
+                key={index}>
+                <View style={styles.report_content}>
+                    <Text style={styles.label}>{ info.title }</Text>
+                    {props.isLoading && <ActivityIndicator style={styles.loader} />}
+                    {!props.isLoading && <Text style={styles.value}>{ info.value }</Text>}
+                </View>
+            </Animated.View>
+        )
+    }
+
+    const renderReportItens = () => infos.map((info, index) => renderInfoBox(info, index))
 
     return (
         <View style={styles.container}>
@@ -57,7 +62,7 @@ const ReportBox = (props: Props) => {
                 contentContainerStyle={styles.scrollView}
                 horizontal={true}
                 showsHorizontalScrollIndicator={false}>
-                { infos.map((info, index) => renderInfoBox(info, index)) }
+                { renderReportItens() }
             </ScrollView>
         </View>
     )

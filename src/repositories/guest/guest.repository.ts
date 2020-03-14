@@ -48,8 +48,10 @@ class GuestRepository implements GuestRepositoryInterface {
     }
 
     delete = async (guest: Guest): Promise<void> => {
+        const { token } = await await this.session.getToken()
+
         const headers = {
-            authorization: await this.session.getToken()
+            authorization: token
         }
 
         return await api.request(`guests/${guest._id}`, "delete", { headers })

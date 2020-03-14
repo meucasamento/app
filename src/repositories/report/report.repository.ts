@@ -15,8 +15,10 @@ class ReportRepository implements ReportRepositoryInterface {
     }
 
     fetch = async (): Promise<Report> => {
+        const { token } = await this.session.getToken()
+
         const headers = {
-            authorization: await this.session.getToken()
+            authorization: token
         }
 
         return await api.request<Report>("dashboard/report", "get", { headers })

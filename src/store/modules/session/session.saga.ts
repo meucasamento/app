@@ -20,7 +20,7 @@ function* authenticationSaga(action: AuthenticationActionType) {
     try {
         const credentials = action.payload
         const token: Token = yield call(sessionRepository.authentication, credentials)
-        yield call(session.start, credentials, token.token)
+        yield call(session.start, credentials, token)
         action.completion(Promise.resolve())
     } catch(err) {
         action.completion(Promise.reject(err))
