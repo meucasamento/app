@@ -8,7 +8,7 @@ export default new class ClientLogger implements ClientInterceptor {
 
     register(instance: AxiosInstance): void {
         instance.interceptors.request.use(config => {
-            this.logger.request(config)
+            // this.logger.request(config)
             return config
         }, err => {
             this.logger.error(err, "request")
@@ -16,7 +16,7 @@ export default new class ClientLogger implements ClientInterceptor {
         })
 
         instance.interceptors.response.use(config => {
-            this.logger.response(config)
+            // this.logger.response(config)
             return config
         }, err => {
             this.logger.error(err, "response")

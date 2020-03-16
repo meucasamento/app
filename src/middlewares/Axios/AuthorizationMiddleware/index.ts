@@ -12,10 +12,7 @@ export default new class AuthorizationMiddleware implements ClientInterceptor {
                 token
             } = await SessionMananger.getToken()
 
-            config.headers = {
-                ...config.headers,
-                authorization: token
-            }
+            config.headers.authorization = token
 
             return config
         })

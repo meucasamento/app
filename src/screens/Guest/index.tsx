@@ -107,7 +107,7 @@ const GuestScreen = (props: Props) => {
     const loadPage = (page: number) => {
         setIsLoading(true)
         props.fetch(page, response => 
-            response.finally(() => {
+            response.then(() => {
                 setIsLoading(false)
                 setRefreshing(false)
             }).catch(err => console.log(err))

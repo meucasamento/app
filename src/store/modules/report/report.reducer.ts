@@ -45,6 +45,7 @@ export default function reducer(
             case FETCH_FAILURE:
                 return {
                     ...state,
+                    isLoading: false,
                     error: action.payload
                 }
             default:

@@ -2,9 +2,9 @@
   "devToolsPort": 19002,
   "expoServerPort": 19000,
   "packagerPort": 19001,
-  "packagerPid": 71181,
-  "expoServerNgrokUrl": null,
-  "packagerNgrokUrl": null,
-  "ngrokPid": null,
+  "packagerPid": 75445,
+  "expoServerNgrokUrl": "https://5h-j9p.didisouzacosta.mygodfathers.exp.direct",
+  "packagerNgrokUrl": "https://packager.5h-j9p.didisouzacosta.mygodfathers.exp.direct",
+  "ngrokPid": 75456,
   "webpackServerPort": null
 }

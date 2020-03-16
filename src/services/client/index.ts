@@ -32,9 +32,9 @@ export class Client implements ClientInterface {
         return this.instance.request<T>({
             url,
             method,
-            headers: data.headers,
-            params: data.params,
-            data: data.body,
+            headers: data?.headers,
+            params: data?.params,
+            data: data?.body,
             responseType: "json"
         }).then(response => {
             return response.data as T
