@@ -6,21 +6,19 @@ import sessionRepository from '../../../repositories/session/session.repository'
 
 export default new class RevalidateSessionMiddleware implements ClientInterceptor {
     
-    register(instance: AxiosInstance): void {
+    async register(instance: AxiosInstance): Promise<void> {
         instance.interceptors.request.use(async config => {
             if (config.url.startsWith("session")) { 
                 return config 
             }
 
-            return config
-
             try {
                 const isValid = await SessionMananger.sessionIsValid()
                 
                 if (!isValid) {
-                    // const credentials = await SessionMananger.getCredentials()
-                    // const token = await sessionRepository.authentication(credentials)
-                    // await SessionMananger.start(credentials, token)
+                    const credentials = await SessionMananger.getCredentials()
+                    const token = await sessionRepository.authentication(credentials)
+                    await SessionMananger.start(credentials, token)
 
                     console.log("passando aqui")
                 }

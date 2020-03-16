@@ -46,7 +46,7 @@ const NewGuestForm = (props: Props) => {
 
     useEffect(() => {
         (async () => {
-            const auth = await sessionMananger.getAuthorization()
+            const auth = await sessionMananger.getCredentials()
             const admin = auth.email === "adrianosouzacostaios@gmail.com" ? "adriano" : "jenifer"
             setGuestOf(props.guest?.guestOf ?? admin)
         })()
