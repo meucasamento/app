@@ -12,8 +12,7 @@ export default new class SessionRepository implements SessionRepositoryInterface
         const endpoint = "session/authentication"
         const method = "post"
         const data = { body: credentials }
-        const request = api.request<Token>(endpoint, method, data)
-        return await request
+        return await api.request<Token>(endpoint, method, data)
     }
     
 }
