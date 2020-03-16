@@ -9,16 +9,14 @@ import createSagaMiddleware from 'redux-saga'
 import rootReducer from './modules/rootReducer'
 import rootSaga from './modules/rootSaga'
 
-import actionLoggerMiddleware from '../middlewares/ActionLogger'
-import authenticationMiddleware from '../middlewares/AuthenticationInterceptor'
+import actionLoggerMiddleware from '../middlewares/Redux/ActionLogger'
 
 const sagaMiddleware = createSagaMiddleware()
 const store = createStore(
     rootReducer,
     compose(applyMiddleware(
         sagaMiddleware, 
-        actionLoggerMiddleware,
-        authenticationMiddleware
+        actionLoggerMiddleware
     ))
 )
 

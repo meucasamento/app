@@ -1,7 +1,6 @@
 import Guest from "../../models/guest.model";
 import api from '../../services/api'
 import { PaginationResult } from "../../models/response/pagination.response";
-import sessionMananger, { Session } from "../../utils/SessionMananger";
 
 export interface GuestRepositoryInterface {
     fetch(page: number, limit: number): Promise<PaginationResult<Guest>>
@@ -12,49 +11,25 @@ export interface GuestRepositoryInterface {
 
 class GuestRepository implements GuestRepositoryInterface {
     
-    private session: Session
-
-    constructor(session: Session = sessionMananger) {
-        this.session = session
-    }
-
     fetch = async (page: number = 1, limit: number = 20): Promise<PaginationResult<Guest>> => {
         const params = {
             page,
             limit
         }
 
-        const headers = {
-            authorization: await this.session.getToken()
-        }
-
-        return await api.request<PaginationResult<Guest>>("guests", "get", { params, headers })
+        return await api.request<PaginationResult<Guest>>("guests", "get", { params })
     }
 
     store = async (guest: Guest): Promise<Guest> => {
-        const headers = {
-            authorization: await this.session.getToken()
-        }
-
-        return await api.request<Guest>("guests", "post", { body: guest, headers })
+        return await api.request<Guest>("guests", "post", { body: guest })
     }
     
     update = async (guest: Guest): Promise<Guest> => {
-        const headers = {
-            authorization: await this.session.getToken()
-        }
-
-        return await api.request<Guest>(`guests/${guest._id}`, "patch", { body: guest, headers })
+        return await api.request<Guest>(`guests/${guest._id}`, "patch", { body: guest })
     }
 
     delete = async (guest: Guest): Promise<void> => {
-        const { token } = await await this.session.getToken()
-
-        const headers = {
-            authorization: token
-        }
-
-        return await api.request(`guests/${guest._id}`, "delete", { headers })
+        return await api.request(`guests/${guest._id}`, "delete")
     }
 
 }

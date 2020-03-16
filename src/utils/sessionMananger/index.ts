@@ -8,19 +8,20 @@ export interface Session {
     updateAuth(credentials: Credentials): Promise<void>
     sessionIsValid(): Promise<boolean>
     getToken(): Promise<Token>
-    getAuthorization(): Promise<Credentials>
+    getTokenCreadtedIn(): Promise<string>
+    getCredentials(): Promise<Credentials>
     destroy(): Promise<void>
 }
 
 class SessionManager implements Session {
     
     private TOKEN_KEY = "token_key"
-    private TOKEN_CREATED_KEY = "token_created_key"
+    private TOKEN_CREATED_IN_KEY = "token_created_in_key"
     private AUTH_KEY = "auth_key"
 
     start = async (credentials: Credentials, token: Token): Promise<void> => {
         await SecureStore.setItemAsync(this.TOKEN_KEY, JSON.stringify(token))
-        await SecureStore.setItemAsync(this.TOKEN_CREATED_KEY, Date.now().toString())
+        await SecureStore.setItemAsync(this.TOKEN_CREATED_IN_KEY, JSON.stringify(Date.now()))
         await SecureStore.setItemAsync(this.AUTH_KEY, JSON.stringify(credentials))
     }
 
@@ -33,7 +34,12 @@ class SessionManager implements Session {
     }
     
     sessionIsValid = async (): Promise<boolean> => {
-        throw new Error("Method not implemented.");
+        const createdIn = await this.getTokenCreadtedIn()
+        const { expiresIn } = await this.getToken()
+        const now = Date.now()
+        const limit = +createdIn + +expiresIn
+        const isValid = now <= limit
+        return Promise.resolve(isValid)
     }
 
     getToken = async (): Promise<Token> => {
@@ -41,7 +47,11 @@ class SessionManager implements Session {
         return JSON.parse(data)
     }
 
-    getAuthorization = async (): Promise<Credentials> => {
+    getTokenCreadtedIn = async (): Promise<string> => {
+        return await SecureStore.getItemAsync(this.TOKEN_CREATED_IN_KEY)
+    }
+
+    getCredentials = async (): Promise<Credentials> => {
         const data = await SecureStore.getItemAsync(this.AUTH_KEY)
         return JSON.parse(data)
     }

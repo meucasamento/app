@@ -1,8 +1,8 @@
 import { AxiosInstance } from 'axios'
-import ClientInterceptor from "../../services/api/client";
-import Logger from '../../utils/Logger';
+import ClientInterceptor from "../../../services/client"
+import Logger from '../../../utils/Logger';
 
-export class ClientLogger implements ClientInterceptor {
+export default new class ClientLogger implements ClientInterceptor {
     
     private logger = new Logger()
 

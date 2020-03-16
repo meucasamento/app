@@ -24,8 +24,8 @@ export class Client implements ClientInterface {
         this.instance = axios.create({ baseURL })
     }
 
-    register(interceptor: ClientInterceptor): void {
-        interceptor.register(this.instance)
+    register<T extends ClientInterceptor>(interceptors: T[]): void {
+        interceptors.forEach(interceptor => interceptor.register(this.instance))
     }
 
     async request<T>(url: string, method: Method, data?: Data): Promise<T> {
