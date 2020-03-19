@@ -33,7 +33,7 @@ const ReportBox = (props: Props) => {
     } = props.report
 
     const infos: Info[] = [
-        { title: "Total de convidados", value: guests.total, description: 'Contagem de pessoas, incluindo acompanhantes e familiares' },
+        { title: "Total de convidados", value: guests.total, description: 'Contagem total de pessoas, incluindo acompanhantes e familiares' },
         { title: "Convidados Jenifer", value: guests.fiancee, description: 'Contagem de convidados da noiva, incluindo acompanhantes e familiares' },
         { title: "Convidados Adriano", value: guests.engaged, description: 'Contagem de convidados do noivo, incluindo acompanhantes e familiares' },
         { title: "Padrinhos Jenifer", value: godfathers.fiancee, description: 'Contagem de padrinhos e madrinhas da noiva, incluindo acompanhantes' },
