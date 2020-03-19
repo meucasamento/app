@@ -7,18 +7,18 @@ import sessionRepository from './../../../repositories/session/session.repositor
 export default new class RevalidateSessionMiddleware implements ClientInterceptor {
 
     async register(instance: AxiosInstance): Promise<void> {
-        instance.interceptors.response.use(async config => {
-            return config
-        }, async err => {
-            const status = err?.response?.status ?? null
+        instance.interceptors.response.use(
+            response => response, 
+            async err => {
+                const status = err?.response?.status ?? null
 
-            if (status === 401) {   
-                await this.refreshToken()
-                return axios.request(err.config)
-            }
+                if (status === 401) {
+                    await this.refreshToken()
+                    return axios.request(err.config)
+                }
 
-            return Promise.reject(err)
-        })
+                return Promise.reject(err)
+            })
     }
 
     refreshToken = async (): Promise<void> => {
