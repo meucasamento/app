@@ -13,5 +13,9 @@ export default StyleSheet.create({
     },
     footerLoading: {
         margin: 22
+    },
+    loadContainer: {
+        flex: 1,
+        justifyContent: "center"
     }
 })

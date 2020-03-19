@@ -38,6 +38,8 @@ const GuestScreen = (props: Props) => {
     const [isLoading, setIsLoading] = useState(false)
     const [refreshing, setRefreshing] = useState(false)
 
+    const canDisplayLoading = isLoading && props.guestState.guests.length == 0
+
     useEffect(() => {
         loadPage(1)
     }, [])
@@ -57,8 +59,10 @@ const GuestScreen = (props: Props) => {
             onPress={handleOnPressNewGuest}/>
     )
 
-    const renderEmptyRow = () => (
-        <Text>sem conteúdo</Text>
+    const renderPageLoad = () => (
+        <View style={styles.loadContainer}>
+            <ActivityIndicator size="large" />
+        </View>
     )
 
     const renderRefreshControl = () => {
@@ -76,7 +80,7 @@ const GuestScreen = (props: Props) => {
         return (
             <ActivityIndicator 
                 style={styles.footerLoading}
-                animating={isLoading}
+                animating={isLoading && organizeSections().length > 0}
                 hidesWhenStopped={true}/>
         )
     }
@@ -92,12 +96,14 @@ const GuestScreen = (props: Props) => {
         const jeniferGuests = others.filter(guest => guest.guestOf === "jenifer")
         const adrianoGuests = others.filter(guest => guest.guestOf === "adriano")
     
-        return [
+        const sections = [
             { title: `Padrinhos Jenifer (👰🏽)`, data: jeniferGodfathers },
             { title: `Padrinhos Adriano (🤵🏻)`, data: adrianoGodfathers },
             { title: `Convidados Jenifer`, data: jeniferGuests },
             { title: `Convidados Adriano`, data: adrianoGuests }
         ]
+
+        return sections.filter(section => section.data.length > 0)
     }
 
     const handleOnPressNewGuest = (guest?: Guest) => {
@@ -121,6 +127,10 @@ const GuestScreen = (props: Props) => {
     }
 
     return(
+        <>
+        { 
+        canDisplayLoading ? 
+        renderPageLoad() :
         <View style={styles.container}>
             <Search 
                 placeholder="Pesquisar por um convidado"
@@ -137,13 +147,14 @@ const GuestScreen = (props: Props) => {
                 keyExtractor={item => item._id}
                 renderItem={({item}) => renderGuestRow(item)}
                 refreshControl={renderRefreshControl()}
-                ListEmptyComponent={renderEmptyRow}
                 ListFooterComponent={renderFooter}
                 showsVerticalScrollIndicator={false}
                 onEndReached={handleNextPage}
                 onEndReachedThreshold={0.3}/>
             <KeyboardSpacer/>
         </View>
+        }
+        </>
     )
 
 }
