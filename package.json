@@ -16,7 +16,7 @@
     "@types/redux-saga": "^0.10.5",
     "@types/styled-components": "^4.4.2",
     "@types/yup": "^0.26.30",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "date-fns": "^2.9.0",
     "expo": "^36.0.0",
     "expo-font": "~8.0.0",
